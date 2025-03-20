@@ -1,0 +1,35 @@
+[project]
+name = "thompsonsampling"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "ToennisStef",email = "stefan.toennis@gmx.de"}
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy (>=2.2.3,<3.0.0)",
+    "torch (>=2.6.0,<3.0.0)",
+    "torchvision (>=0.21.0,<0.22.0)",
+    "torchaudio (>=2.6.0,<3.0.0)",
+    "jupyter (>=1.1.1,<2.0.0)",
+    "botorch (>=0.13.0,<0.14.0)",
+    "ax-platform (>=0.5.0,<0.6.0)",
+]
+
+[tool.poetry]
+packages = [{include = "thompsonsampling", from = "src"}]
+
+[tool.poetry.dependencies]
+torch = {version = ">=2.6.0,<3.0.0", source = "pytorch"}
+torchvision = {version = ">=0.21.0,<0.22.0", source = "pytorch"}
+torchaudio = {version = ">=2.6.0,<3.0.0", source = "pytorch"}
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[[tool.poetry.source]]
+name = "pytorch"
+url = "https://download.pytorch.org/whl/cpu"
+priority = "explicit"
