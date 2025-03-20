@@ -190,19 +190,17 @@ class Arm():
         self._train_Y = torch.cat((self._train_Y, self._y_func(self._candidates[0,...].view(1, -1))))
         self._candidates = self._candidates[1:,...]
         if verbose:
-            logging.info(f"{self._logstr} Updated train_X: {self._train_X}")
+            logging.info(f"{self._logstr}Updated train_X: {self._train_X}")
             logging.info(f"{self._logstr}Updated train_Y: {self._train_Y}")
+            logging.info(f"{self._logstr}Updated candidates: {self._candidates}")
 
     def SampleAtCandidate(self, verbose=False):
         if self._candidates is None or len(self._candidates) == 0 or self._candidates.shape[0] == 0:
             logging.warning(f"{self._logstr} SampleAtCandidate: No candidates to sample from, setting Samples to -inf")
-            self._Samples = torch.tensor([float('-inf')], dtype=self._dtype, device=self._device)
+            self._Samples = torch.full((self.n_samples,1), float('-inf'), device=self._device)
             return
         self._GRV = self._model.posterior(self._candidates[0,...].unsqueeze(0))
-        temp = []
-        for _ in range(self.n_samples):
-            temp.append(self._GRV.sample())
-        self._Samples = torch.cat(temp, dim=0)
+        self._Samples = self._GRV.sample(torch.Size([self.n_samples]))
         if verbose:
             logging.info(f"{self._logstr} SampleAtCandidate: Sampled {self.n_samples} times at candidate {self._candidates[0,...].unsqueeze(0)}")
     
@@ -231,6 +229,7 @@ class Arm():
             f"  seed={self._seed},\n"
             f"  dtype={self._dtype},\n"
             f"  device={self._device}\n"
+            f"  candidates={self._candidates},\n"
             f")\n"
             "----------------------------------"
         )

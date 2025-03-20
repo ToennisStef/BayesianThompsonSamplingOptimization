@@ -25,6 +25,7 @@ class Frame:
     Probabilities: torch.tensor
 
 
+
 def visualize(Frames):   
     
     fig, ax = plt.subplots(3, 1, figsize=(8, 12))

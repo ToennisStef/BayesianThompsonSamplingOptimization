@@ -1,14 +1,10 @@
 from src.thompsonsampling.MultiFidelity_TestFunctions import MF1
-from src.thompsonsampling.util import get_initial_points
-from src.thompsonsampling.visualize import visualize, Frame
 from src.thompsonsampling.Arms import Arm
-import torch
+from src.thompsonsampling.batchVisualize import *
 
-import numpy as np
-from botorch.sampling import SobolEngine
-from gpytorch import ExactMarginalLogLikelihood
-from botorch.fit import fit_gpytorch_mll
+import torch
 import logging
+import copy
 
 """
 Thompson Sampling Implementation
@@ -34,24 +30,24 @@ def main():
     iteratively. It also visualizes the results at each iteration.
     Steps:
         1. Initialization
-            1.1 Test function,
-            1.1 Initialize the multi-fidelity test functions and dictionaries and lists for the training data and visualization.
-        2. Perform space-filling sampling for the initial points.
-        3. Perform the Bayesian optimization loop:
-        3.1. Define and train the Gaussian Process models using the marginal log likelihood.
-        3.3. Define and optimize the acquisition functions to select new points.
-        3.4. Perform the Thompson Sampling by sampling from the posterior at the new points.
-        3.5. Update the training data with new observations.
-        3.6. Get data for plotting (GP predictions, acquisition functions, etc.).
-        4. Visualize the results at each iteration.
+            1.1 global variable initialization.
+            1.2 Arm initialization.
+        2. Perform the Bayesian optimization loop:
+            2.1. Arm GP calculations (GP fitting, prediction, and acquisition function optimization).
+            2.2. q-best Arm selection ()
+        3. Visualize the results at each iteration.
     Returns:
         None
     Notes: 
         The covariance kernel is defined as a scaled RBF kernel with Automatic Relevance Determination (ARD).
-        The output scale is fixed to 100, to enable arms to still be potentially selected even if the datasample are not in favour of the respective arm.
+        The output scale is fixed to 100, to enable arms to still be potentially selected even if the data samples are not in favor of the respective arm.
     """
     # ------------------------------------------------------------------
     # --- 1 Initialization ---
+    # ------------------------------------------------------------------
+
+    # ------------------------------------------------------------------
+    # --- 1.1 Initialization ---
     # ------------------------------------------------------------------
     
     # Define Global Variables
@@ -67,6 +63,7 @@ def main():
     dim = testfunction.dim
     funcs = testfunction.funcs_neg
     q_batch = 5
+    arm_q_batch = 2
     seed = 0
     
     # Set up logging
@@ -74,7 +71,7 @@ def main():
                 
     
     # ------------------------------------------------------------------
-    # --- 1.1 Arms ---
+    # --- 1.2 Arm initialization ---
     # ------------------------------------------------------------------
     
     arms = [Arm(y_func=funcs[f], 
@@ -82,32 +79,50 @@ def main():
                 n_pts=n_pts, 
                 n_samples=n_samples,
                 bounds=bounds,
-                q_batch=2, 
+                q_batch=arm_q_batch, 
                 seed=seed+f,
                 dtype=dtype,
                 device=device) 
             for f in testfunction.fidelities]
 
+    total_arm_q_batch = 0
     for arm in arms:
-        print(f"Arm {arm}:")
+        total_arm_q_batch += arm.q_batch
         
+    assert total_arm_q_batch >= q_batch, "Total arm_q_batch must be greater than q_batch"
+    
+    
     # ------------------------------------------------------------------
     # --- 3 Bayesian Loop ---
-    # ------------------------------------------------------------------
-    import matplotlib.pyplot as plt
-    plt.figure(figsize=(10, 6))
-    
-    
+    # ------------------------------------------------------------------    
     for Iter in range(n_iterations):
+        # Copy each arm to a list for plotting
+        arms_init = []
+        # ------------------------------------------------------------------
+        # --- 3.1 Arm GP calculations ---
+        # ------------------------------------------------------------------
         for arm in arms:
             arm.CalcGP()
             arm.Predict()
             arm.OptimizeAcqf()
             arm.SampleAtCandidate()
-                    
+            
+            arms_init.append(PArm(pred_x=arm.pred_x,
+                                  pred_mean=arm.pred_mean,
+                                  pred_lower=arm.pred_lower,
+                                  pred_upper=arm.pred_upper,
+                                  train_X=arm.train_X,
+                                  train_Y=arm.train_Y,
+                                  Samples=arm.Samples,
+                                  candidates=arm.candidates,
+                                  instance_id=arm.instance_id,
+                                  y_func=arm.y_func))
+                
         # ------------------------------------------------------------------
-        # --- 3.5 Arm selection ---
+        # --- 3.5 q-best Arm selection ---
         # ------------------------------------------------------------------
+        arms_q = [] # List of arms via Thompson Sampling
+        armSelectProb = [] # Probability of selecting each arm at each q-step
         for q in range(q_batch):
             
             # Identify the arm with the highest sample value
@@ -118,9 +133,26 @@ def main():
                 if max_sample_value > highest_value:
                     highest_value = max_sample_value
                     best_arm = arm
-                    
+            
+            # Calculate the probability of selecting each arm
+            samples = torch.stack([arm.Samples.reshape(-1,1) for arm in arms], dim=1)
+            max_indices = samples.argmax(dim=1).flatten()
+            counts = torch.bincount(max_indices, minlength=len(arms))
+            probabilities = counts / n_samples
+            armSelectProb.append({arm.instance_id: probabilities[i].item() for i, arm in enumerate(arms)})
+            
             # Update data for the best arm
             if best_arm is not None:
+                arms_q.append(PArm(pred_x=best_arm.pred_x,
+                                  pred_mean=best_arm.pred_mean,
+                                  pred_lower=best_arm.pred_lower,
+                                  pred_upper=best_arm.pred_upper,
+                                  train_X=best_arm.train_X,
+                                  train_Y=best_arm.train_Y,
+                                  Samples=best_arm.Samples,
+                                  candidates=best_arm.candidates,
+                                  instance_id=best_arm.instance_id,
+                                  y_func=best_arm.y_func))
                 logging.info(f"Best arm selected: {best_arm.seed} with value: {highest_value}")
                 best_arm.UpdateData()
                 best_arm.SampleAtCandidate() # resample at the next candidate point
@@ -131,34 +163,20 @@ def main():
         # ------------------------------------------------------------------
         # --- 4 Visualisation ---
         # ------------------------------------------------------------------
-        
-        for i, arm in enumerate(arms):
-            
-            # Visualize the GP predictions
-            plt.plot(arm.pred_x.detach().numpy(), 
-                     arm.pred_mean.detach().numpy(),
-                     label=f'Fidelity {i}',
-                     color=f"C{i}")
-            plt.plot(arm.train_X.detach().numpy(),
-                     arm.train_Y.detach().numpy(),
-                     'x',
-                     color=f"C{i}")
-            plt.fill_between(arm.pred_x.detach().numpy().reshape(-1),
-                             arm.pred_lower.detach().numpy(),
-                             arm.pred_upper.detach().numpy(),
-                             alpha=0.5,
-                             color=f"C{i}")
 
-            # Visualize the test functions
-            plt.plot(arm.pred_x.detach().numpy(), 
-                     arm.y_func(arm.pred_x).detach().numpy()
-                     , label=f'Fidelity {i}', color=f"C{i}", linestyle='dashed')
+        fig, axs = create_figure_layout(rows=3, cols=1, width=10, height=12)
+        colors = get_arm_colors(arms)
+        ids = get_arm_ids(arms)
+        plot_arms(arms_init, axs[0])
+        plot_q_arms(arms_q, axs[0], colors=colors)
+        plot_armSelectProb(armSelectProb, axs[1], colors=colors)
+        plot_bestSample(arms_init, axs[2], colors=colors, ids=ids)
+        plot_bestSample(arms_q, axs[2], colors=colors, ids=ids)
+        fig.show()
         plt.show()
 
-        
-        
-        
-            
+
+                    
     
 if __name__ == "__main__":
     main()
