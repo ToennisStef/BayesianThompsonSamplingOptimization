@@ -198,6 +198,7 @@ class Arm():
         if self._candidates is None or len(self._candidates) == 0 or self._candidates.shape[0] == 0:
             logging.warning(f"{self._logstr} SampleAtCandidate: No candidates to sample from, setting Samples to -inf")
             self._Samples = torch.full((self.n_samples,1), float('-inf'), device=self._device)
+            self._GRV = None
             return
         self._GRV = self._model.posterior(self._candidates[0,...].unsqueeze(0))
         self._Samples = self._GRV.sample(torch.Size([self.n_samples]))
