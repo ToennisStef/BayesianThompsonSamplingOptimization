@@ -1,6 +1,6 @@
 # Copyright 2020, Dassault Systemes BIOVIA corp, all rights reserved
-ctd=BP_TZVP_21.ctd CDIR="C:/Program Files/BIOVIA/COSMOtherm2021/COSMOtherm/CTDATA-FILES" LDIR="C:\Program Files\BIOVIA\COSMOtherm2021\licensefiles" odir=//avt.rwth-aachen.de/home$/student/stto01/.AVT-UserConfig/Desktop # Global command line
-FDIR="C:\Program Files\BIOVIA\COSMOtherm2021\COSMOtherm\DATABASE-COSMO\BP-TZVP-COSMO" vpfile                                 # Global command line
+ctd=BP_TZVP_19.ctd CDIR="C:/Program Files/COSMOlogic/COSMOthermX19/COSMOtherm/CTDATA-FILES" LDIR="C:/Program Files/COSMOlogic/COSMOthermX19/licensefiles" odir="\\avt.rwth-aachen.de\home$\student\stto01\.AVT-UserConfig\Desktop\COSMOthemOutput" # Global command line
+FDIR="C:/Program Files/COSMOlogic/COSMOthermX19/COSMOtherm/DATABASE-COSMO/BP-TZVP-COSMO" vpfile                                # Global command line
 !! Isothermal binary phase diagram of Octane - Acetic Acid                        # Comment line
 f = octane_c0.cosmo                                                               # Compound input
 f = aceticacid_c0.cosmo           [                                               # Compound input Conformer 1 (Monomer)
