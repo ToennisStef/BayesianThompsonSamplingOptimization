@@ -1,7 +1,0 @@
-ctd=BP_TZVP_19.ctd CDIR="7" LDIR="" odir="" # Global command line
-FDIR="" vpfile                                 # Global command line
-!! Isothermal binary phase diagram of Octane - Acetic Acid                        # Comment line
-f = octane_c0.cosmo                                                               # Compound input
-f = aceticacid_c0.cosmo           [                                               # Compound input Conformer 1 (Monomer)
-f = aceticacid_dimer_half_c0.mcos ] IEI=1                                         # Compound input Conformer 2 (1/2 Dimer) + Interaction Energy Index
-tc=70.0 binary EN_IEI={1 1 -3.0 0.0}                                              # Automatic binary computation using Interaction Energy Index
