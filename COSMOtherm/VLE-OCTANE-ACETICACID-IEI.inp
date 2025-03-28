@@ -1,0 +1,65 @@
+# Copyright 2020, Dassault Systemes BIOVIA corp, all rights reserved
+ctd=BP_TZVP_21.ctd CDIR="C:/Program Files/BIOVIA/COSMOtherm2021/COSMOtherm/CTDATA-FILES" LDIR="C:\Program Files\BIOVIA\COSMOtherm2021\licensefiles" odir=//avt.rwth-aachen.de/home$/student/stto01/.AVT-UserConfig/Desktop # Global command line
+FDIR="C:\Program Files\BIOVIA\COSMOtherm2021\COSMOtherm\DATABASE-COSMO\BP-TZVP-COSMO" vpfile                                 # Global command line
+!! Isothermal binary phase diagram of Octane - Acetic Acid                        # Comment line
+f = octane_c0.cosmo                                                               # Compound input
+f = aceticacid_c0.cosmo           [                                               # Compound input Conformer 1 (Monomer)
+f = aceticacid_dimer_half_c0.mcos ] IEI=1                                         # Compound input Conformer 2 (1/2 Dimer) + Interaction Energy Index
+tc=70.0 binary EN_IEI={1 1 -3.0 0.0}                                              # Automatic binary computation using Interaction Energy Index
+#
+# Computation of an isothermal (fixed temperature) binary phase diagram of a reactive
+# species (acetic acid which dimerizes in octane solution dependent on the solute
+# concentration). The dimerization reaction is described by the interaction energy
+# index (IEI) formalism of COSMOtherm (see section 5.8 of the COSMOtherm manual).
+#
+# High quality COSMO-files (BP-TZVP-COSMO) and appropriate parametrizations are used.
+#
+# Experimental pure compound vapor pressures are used in the computation of the binary
+# phase diagram properties. Experimental data (Wagner equation coefficients) is given
+# in the compound input area of the input file.
+#
+# The computed phase diagram data can be found in the mixture output section of output-
+# file VLE-OCTANE-ACETICACID-IEI.out and in the table-file VLE-OCTANE-ACETICACID-IEI.tab.
+#
+#
+# Options used      - Explanation
+#
+# ctd=...           - give name of parameterization file
+# cdir=...          - give directory (search path) of parameterization file
+# fdir=...          - give directory (search path) of compounds COSMO-files
+# vpfile            - use vapor pressure / property file from "fdir" for the estimation
+#                     of the pure compounds vapor pressures. This option reads in
+#                     "compound.vap" files with experimental Antoine or Wagner equation
+#                     coefficients, which are used to compute the vapor pressure of the
+#                     pure compounds. The "compound.vap" filesare expected to be in the
+#                     same directory as the cosmo/ccf file. If no "compound.vap" file is
+#                     found, COSMOtherm will use its generic prediction method to estimate
+#                     the pure compound vapor pressures.
+#
+# f=*.cosmo         - compound input
+# [...]             - conformer input, square brackets identify start and end of an conformer block.
+#                     Each conformer has to be given in a separate line. All molecules given within
+#                     this conformer block will be regarded by COSMOtherm as one single compound!
+#                     The contribution of the different conformers are weighted due to their
+#                     relative free energies in the mixture.
+# IEI=...           - Give interaction energy index (IEI-number) for this reaction
+#                     (the dimerization reaction requires a single IEI-number)
+#
+# tc=...            - temperature in [°C]
+# binary            - toggles automatic binary phase diagram computation.
+# EN_IEI={ i  j  c_H  c_S }
+#                   - interaction energy for the reaction of the IEI-number i with
+#                     IEI-number j. c_H is the interaction enthalpy parameter, c_S is
+#                     the interaction entropy parameter. See section 5.8 of the
+#                     COSMOtherm users manual for detailed information on the use
+#                     of interaction energy indices for the description of reactions.
+#
+#
+# Experimental infinte dilution activity coefficients at T = 70°C:
+# ln(gamma_aceticacid) = 2.8
+# ln(gamma_octane)     = 4.3
+#
+#
+#
+#
+#
