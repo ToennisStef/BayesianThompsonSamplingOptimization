@@ -145,7 +145,8 @@ class Arm():
     def Samples(self):
         return self._Samples
 
-    def OptimizeAcqf(self):
+    def OptimizeAcqf(self, seed=None):
+        
         if self.q_batch == 1:
             self._acqf = botorch.acquisition.LogExpectedImprovement(self._model, 
                                                                     best_f=self._train_Y.max()
@@ -154,6 +155,19 @@ class Arm():
             self._acqf = botorch.acquisition.qLogExpectedImprovement(self._model, 
                                                                      best_f=self._train_Y.max()
                                                                      )
+        
+        if seed is not None:    
+            print(f"Setting seed to {seed}")
+            # initials = botorch.optim.initializers.gen_batch_initial_conditions(
+            #     acq_function = self._acqf, 
+            #     bounds = self.bounds,
+            #     q = self.q_batch, 
+            #     # num_restarts=num_restarts, 
+            #     # raw_samples=raw_samples,
+            #     options={"seed": 1}
+            #     )
+            
+        
         self._candidates, self._acqf_value = botorch.optim.optimize_acqf(self._acqf, 
                                                                          bounds=self._bounds, 
                                                                          q=self.q_batch, 
@@ -161,7 +175,7 @@ class Arm():
                                                                          raw_samples=512
                                                                          )
 
-    def CalcGP(self, verbose=False):
+    def CalcGP(self, seed=None, verbose=False):
         if verbose:
             logging.info(f"{self._logstr} CalcGP: Initializing kernel and model.")
         kernel = gpytorch.kernels.ScaleKernel(gpytorch.kernels.RBFKernel(
@@ -176,6 +190,9 @@ class Arm():
         self._mll = ExactMarginalLogLikelihood(self._model.likelihood, self._model)
         if verbose:
             logging.info(f"{self._logstr} CalcGP: Fitting model.")
+        
+        if seed is not None:
+            torch.manual_seed(seed)
         fit_gpytorch_mll(self._mll)
         if verbose:
             logging.info(f"{self._logstr} CalcGP: Model fitting completed")
@@ -194,7 +211,10 @@ class Arm():
             logging.info(f"{self._logstr}Updated train_Y: {self._train_Y}")
             logging.info(f"{self._logstr}Updated candidates: {self._candidates}")
 
-    def SampleAtCandidate(self, verbose=False):
+    def SampleAtCandidate(self, seed=None, verbose=False):
+        if seed is not None:
+            torch.manual_seed(seed)
+        
         if self._candidates is None or len(self._candidates) == 0 or self._candidates.shape[0] == 0:
             logging.warning(f"{self._logstr} SampleAtCandidate: No candidates to sample from, setting Samples to -inf")
             self._Samples = torch.full((self.n_samples,1), float('-inf'), device=self._device)

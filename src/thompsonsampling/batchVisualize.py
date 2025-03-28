@@ -20,6 +20,7 @@ class PArm:
     Dataclass for PArm
     Stores data for visualization of Batch Thompson Sampling algorithm
     """
+    model: torch.nn.Module
     pred_x: torch.Tensor
     pred_mean: torch.Tensor
     pred_lower: torch.Tensor
@@ -83,15 +84,28 @@ def plot_arms(
                 linestyle='dashed',
                 label=f"Arm {ids[arm.instance_id]} true func",
                 )
-        
-        # Visualize the samples
-        if arm.candidates.shape[0] > 0:        
-            ax.scatter(torch.full_like(arm.Samples.flatten() ,arm.candidates[0,...].detach().item()), 
-                        arm.Samples.detach().flatten(), 
+
+        # Visualize the best candidates:
+        for candidate in arm.candidates:
+            
+            m = arm.model.posterior(candidate).mean.detach()
+            std = arm.model.posterior(candidate).variance.sqrt().detach()
+            ax.vlines(candidate.detach().item(), 
+                        ymin=m - 3*std, 
+                        ymax=m + 3*std, 
                         color=colors[arm.instance_id], 
-                        marker='o', 
-                        label=f"Arm {ids[arm.instance_id]} candidate samples",    
-                        s=3)
+                        # linestyle='dashed',
+                        label=f"Arm {ids[arm.instance_id]} candidate",
+                        )
+                   
+        # Visualize the samples
+        # if arm.candidates.shape[0] > 0:        
+        #     ax.scatter(torch.full_like(arm.Samples.flatten() ,arm.candidates[0,...].detach().item()), 
+        #                 arm.Samples.detach().flatten(), 
+        #                 color=colors[arm.instance_id], 
+        #                 marker='o', 
+        #                 label=f"Arm {ids[arm.instance_id]} candidate samples",    
+        #                 s=3)
 
     handles, labels = ax.get_legend_handles_labels()
     by_label = dict(zip(labels, handles))
@@ -169,9 +183,9 @@ def plot_bestSample(q_step, ax, ids, colors):
             
             mean = arm.GRV.mean.detach()
             stdd = arm.GRV.stddev.detach()
-            lower = arm.GRV.mean - 3*arm.GRV.stddev
-            upper = arm.GRV.mean + 3*arm.GRV.stddev
-            x = torch.linspace(lower.item(), upper.item(), 100)
+            lower = arm.GRV.mean - 4*arm.GRV.stddev
+            upper = arm.GRV.mean + 4*arm.GRV.stddev
+            x = torch.linspace(lower.item(), upper.item(), 200)
             y = norm.pdf(x ,loc=mean, scale=stdd) # arm.GRV.log_prob(x).exp()
             y = y / y.max() * 0.95
             ax.fill_betweenx(x.flatten(), 

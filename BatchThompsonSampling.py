@@ -110,7 +110,8 @@ def main():
             arm.OptimizeAcqf()
             arm.SampleAtCandidate()
             
-            arms_init.append(PArm(pred_x=arm.pred_x,
+            arms_init.append(PArm(model=arm._model,
+                                  pred_x=arm.pred_x,
                                   pred_mean=arm.pred_mean,
                                   pred_lower=arm.pred_lower,
                                   pred_upper=arm.pred_upper,
@@ -130,10 +131,21 @@ def main():
         armSelectProb = [] # Probability of selecting each arm at each q-step
         for q in range(q_batch):
             
+            # Identify the arm with the highest sample value
+            highest_value = float('-inf')
+            best_arm = None
+            for arm in arms:
+                arm.SampleAtCandidate()
+                max_sample_value = arm.Samples[0].max().item()                
+                if max_sample_value > highest_value:
+                    highest_value = max_sample_value
+                    best_arm = arm
+            
             # Copy each arm to a list for plotting
             arms_q_step = [] # List of all arms at current q-step
             for arm in arms:
-                arms_q_step.append(PArm(pred_x=arm.pred_x,
+                arms_q_step.append(PArm(model=arm._model,
+                                  pred_x=arm.pred_x,
                                   pred_mean=arm.pred_mean,
                                   pred_lower=arm.pred_lower,
                                   pred_upper=arm.pred_upper,
@@ -146,16 +158,6 @@ def main():
                                   y_func=arm.y_func))
             q_step.append((arms_q_step))    
             
-            # Identify the arm with the highest sample value
-            highest_value = float('-inf')
-            best_arm = None
-            for arm in arms:
-                max_sample_value = arm.Samples[0].max().item()                
-                if max_sample_value > highest_value:
-                    highest_value = max_sample_value
-                    best_arm = arm
-            
-            
             # Calculate the probability of selecting each arm
             samples = torch.stack([arm.Samples.reshape(-1,1) for arm in arms], dim=1)
             max_indices = samples.argmax(dim=1).flatten()
@@ -167,7 +169,9 @@ def main():
             if best_arm is not None:
                 
                 # Copy the best arm to a list for plotting
-                arms_q.append(PArm(pred_x=best_arm.pred_x,
+                arms_q.append(PArm(
+                                  model=best_arm._model,
+                                  pred_x=best_arm.pred_x,
                                   pred_mean=best_arm.pred_mean,
                                   pred_lower=best_arm.pred_lower,
                                   pred_upper=best_arm.pred_upper,
@@ -181,7 +185,7 @@ def main():
                 
                 logging.info(f"Best arm selected: {best_arm.seed} with value: {highest_value}")
                 best_arm.UpdateData()
-                best_arm.SampleAtCandidate() # resample at the next candidate point
+                # best_arm.SampleAtCandidate() # resample at the next candidate point
             else:
                 logging.warning("No best arm found.")
         
@@ -218,7 +222,7 @@ def main():
 
     # Initial plot for the first iteration
     plot_arms(frames[0].arms_init, ax1, ids=ids, colors=colors)
-    plot_q_arms(frames[0].arms_q, ax1, colors=colors)
+    # plot_q_arms(frames[0].arms_q, ax1, colors=colors)
     plot_armSelectProb(frames[0].armSelectProb, ax2, ids=ids, colors=colors)
     plot_bestSample(frames[0].q_step, ax3, ids=ids, colors=colors)
 
@@ -233,7 +237,7 @@ def main():
         ax2.clear()
         ax3.clear()
         plot_arms(frames[iteration].arms_init, ax1, ids=ids, colors=colors)
-        plot_q_arms(frames[iteration].arms_q, ax1, colors=colors)
+        # plot_q_arms(frames[iteration].arms_q, ax1, colors=colors)
         plot_armSelectProb(frames[iteration].armSelectProb, ax2, ids=ids, colors=colors)
         plot_bestSample(frames[iteration].q_step, ax3, ids=ids, colors=colors)
         fig1.canvas.draw_idle()
