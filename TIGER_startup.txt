@@ -1,0 +1,14 @@
+% Adress to the comsotherm.exe executable
+cd C:\Program Files\BIOVIA\COSMOtherm2021\COSMOtherm\BIN-WINDOWS
+
+% Adress to the Q-students folder:
+Q:\Groups\eicr students\Stefan Tönnis\GIT
+
+% Configuration of the inputfile 
+%FDIR: is the file directory (for specific cosmo files, i think it is the specific directory for the components)
+%odir: is the outputfile directory
+%LDIR: is the licensefiles directory
+%CDIR: is the CTDATA-FILES directory (for the cosmo parameter files)
+ctd=BP_TZVP_21.ctd CDIR="C:/Program Files/BIOVIA/COSMOtherm2021/COSMOtherm/CTDATA-FILES" LDIR="C:\Program Files\BIOVIA\COSMOtherm2021\licensefiles" odir=//avt.rwth-aachen.de/home$/student/stto01/.AVT-UserConfig/Desktop # Global command line
+FDIR="C:\Program Files\BIOVIA\COSMOtherm2021\COSMOtherm\DATABASE-COSMO\BP-TZVP-COSMO" vpfile                                 # Global command line
+
