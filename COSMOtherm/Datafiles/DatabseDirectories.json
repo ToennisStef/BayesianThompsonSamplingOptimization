@@ -1,0 +1,12 @@
+{
+    "databases": [
+        {
+            "label": "Cosmo-TZVPD-FINE",
+            "directory": "V:\\groups\\COSMOTHERM-Datenbank\\COSMObase-1901\\BP-TZVPD-FINE"
+        },
+        {
+            "label": "Cosmo-TZVP",
+            "directory": "V:\\groups\\COSMOTHERM-Datenbank\\COSMObase-1901\\BP-TZVP-COSMO"
+        }
+    ]
+}
