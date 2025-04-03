@@ -33,4 +33,3 @@ subprocess_str = cosmotherm_fullpath+inputfile_fullpath
 print(subprocess_str)
 
 subprocess.run(subprocess_str, shell=True)
-
