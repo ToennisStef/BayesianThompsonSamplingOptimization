@@ -658,6 +658,39 @@ files = [
 ]
 
 [[package]]
+name = "diversipy"
+version = "0.9"
+description = "Sample in hypercubes, select diverse subsets, and measure diversity"
+optional = false
+python-versions = "*"
+groups = ["main"]
+files = [
+    {file = "diversipy-0.9.tar.gz", hash = "sha256:165a31e946aa360d49b7dc1470524e2da9582aa774490cb934294040f7222f9c"},
+]
+
+[package.dependencies]
+numpy = "*"
+scipy = "*"
+
+[[package]]
+name = "doepy"
+version = "0.0.1"
+description = "Design of experiments generator with simple CSV input/output options"
+optional = false
+python-versions = "*"
+groups = ["main"]
+files = [
+    {file = "doepy-0.0.1-py3-none-any.whl", hash = "sha256:1349e39e8bb69497519e30f56e69592bb8ce12206a17d98b1b59049402170e7e"},
+    {file = "doepy-0.0.1.tar.gz", hash = "sha256:562f90f9f2ca468b3e346d8c633e9ca225403dbb4e3fdbce11a886dd87d6fe1b"},
+]
+
+[package.dependencies]
+diversipy = "*"
+numpy = "*"
+pandas = "*"
+pyDOE = "*"
+
+[[package]]
 name = "exceptiongroup"
 version = "1.2.2"
 description = "Backport of PEP 654 (exception groups)"
@@ -2419,6 +2452,37 @@ files = [
 ]
 
 [[package]]
+name = "pydoe"
+version = "0.3.8"
+description = "Design of experiments for Python"
+optional = false
+python-versions = "*"
+groups = ["main"]
+files = [
+    {file = "pyDOE-0.3.8.zip", hash = "sha256:cbd6f14ae26d3c9f736013205f53ea1191add4567033c3ee77b7dd356566c4b6"},
+]
+
+[package.dependencies]
+numpy = "*"
+scipy = "*"
+
+[[package]]
+name = "pydoe3"
+version = "1.0.4"
+description = "Design of experiments for Python"
+optional = false
+python-versions = "*"
+groups = ["main"]
+files = [
+    {file = "pydoe3-1.0.4-py2.py3-none-any.whl", hash = "sha256:233b15a2191c70a0d35a1306d23c45423b2995472c2c1402a60fdf4408caf3dd"},
+    {file = "pydoe3-1.0.4.tar.gz", hash = "sha256:904f52eba87d9a1b9e0c14705cd07ff8fd53af01568c77dca5f4fe7a5ce7fd36"},
+]
+
+[package.dependencies]
+numpy = "*"
+scipy = "*"
+
+[[package]]
 name = "pygments"
 version = "2.19.1"
 description = "Pygments is a syntax highlighting package written in Python."
@@ -3623,4 +3687,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10"
-content-hash = "9dc53382754bc57d157c5b5285a3f3618d6cddd4b788ae42487d69a78fdec46a"
+content-hash = "876eb6b30eaf67de2836dca8c417d913619ba105ac6e68f0c7114a01e4f7c2ac"

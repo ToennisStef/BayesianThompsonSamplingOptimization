@@ -65,13 +65,21 @@ tc={temperature} LIQ_EX x1={{{x1_h2o} 0 {x1_lacticacid}}} x2={{0 1 0}}
 # WCONF: some additional output configuration (see documentation)
 # AUTOC: Specifies automatic conformere search & consideration for all compound
 """
-    
-    # Write content to file
-    with open(output_file, "w") as file:
-        file.write(content)
-    
-    print(f"Input file '{output_file}' has been created successfully.")
-
+    # Check if the output file already exists
+    if os.path.exists(output_file):
+        overwrite = input(f"The file '{output_file}' already exists. Do you want to overwrite it? [y/n]: ").strip().lower()
+        if overwrite != 'y':
+            print("Operation cancelled. The file was not overwritten. returning the existing file path and name.")
+        else:    
+        # Write content to file
+            with open(output_file, "w") as file:
+                file.write(content)
+            print(f"Input file '{output_file}' has been created successfully. returning the file path and name")
+    else:
+        with open(output_file, "w") as file:
+            file.write(content)
+            print(f"Input file '{output_file}' has been created successfully. returning the file path and name")
+    return output_file, file_name
 
 def sort_solvents_df(df: pd.DataFrame) -> pd.DataFrame:
     """
@@ -109,5 +117,5 @@ def sort_solvents_df(df: pd.DataFrame) -> pd.DataFrame:
         return (c_count, o_count, o_position, c_paren_count)
 
     df['smiles_sort_key'] = df['SMILES'].apply(parse_smiles)
-    df = df.sort_values(by='smiles_sort_key').reset_index(drop=True)
+    df = df.sort_values(by='smiles_sort_key').reset_index(drop=True).drop(columns='smiles_sort_key')
     return df
