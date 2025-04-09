@@ -1,10 +1,16 @@
+import sys, os
+
+# Ensure parent directory is recognized
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+if parent_dir not in sys.path:
+    sys.path.insert(0, parent_dir)
+
 from src.thompsonsampling.MultiFidelity_TestFunctions import MF1
 from src.thompsonsampling.Arms import Arm
 from src.thompsonsampling.batchVisualize import *
 
 import torch
 import logging
-import copy
 from matplotlib.widgets import Slider
 
 """
