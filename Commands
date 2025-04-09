@@ -1,0 +1,3 @@
+python -m venv COSMO_venv
+source COSMO_venv/bin/activate
+pip install -r requirements.txt
