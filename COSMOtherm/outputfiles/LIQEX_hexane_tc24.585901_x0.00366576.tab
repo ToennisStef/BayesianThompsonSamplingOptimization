@@ -1,0 +1,9 @@
+
+ Property  job 1 : Multi-Component-2-Phase-Equilibrium calculation ;
+ Settings  job 1 : T= 297.74 K ; Phase 1: x(1)= 0.9963 x(3)= 3.6658E-03 ; Phase 2: x(2)= 1.0000 ;
+ Units     job 1 : Concentrations x : mole fraction ;
+ 
+  Nr Compound                     phase_1_x         phase_2_x
+   1 h2o                         0.99632873        0.00018358
+   2 hexane                      6.4046E-06        0.99981487
+   3 lacticacid                  0.00366487        1.5496E-06

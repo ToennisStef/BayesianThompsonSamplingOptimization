@@ -1,0 +1,9 @@
+
+ Property  job 1 : Multi-Component-2-Phase-Equilibrium calculation ;
+ Settings  job 1 : T= 304.53 K ; Phase 1: x(1)= 0.9959 x(3)= 4.0513E-03 ; Phase 2: x(2)= 1.0000 ;
+ Units     job 1 : Concentrations x : mole fraction ;
+ 
+  Nr Compound                     phase_1_x         phase_2_x
+   1 h2o                         0.99776058        0.07926735
+   2 2-octanone                  0.00026826        0.91859468
+   3 lacticacid                  0.00197116        0.00213797

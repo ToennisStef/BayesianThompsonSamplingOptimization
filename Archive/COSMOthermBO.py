@@ -1,10 +1,10 @@
-from  COSMOtherm.Configfiles import Setup
+from  COSMOtherm.Configfiles import Config
 from COSMOtherm.funcs import gen_LIQEX_inp_file, sort_solvents_df
 import subprocess
 import pandas as pd
 
 
-solvents = pd.read_csv(Setup.solvents_filepath)
+solvents = pd.read_csv(Config.solvents_filepath)
 
 
 temperature_range = [20, 40] # [°C] Temperature range in Celsius; From Nina [20°C, 30°C, 40°C]
@@ -21,11 +21,11 @@ c_p_lacticacid = rho_lacticacid / (M_lacticacid*10**3) # [mol/L] Concentration o
 
 c1_lacticacid_range = [massc1_lacticacid_range/M_lacticacid] # [mol/L] Concentration of lactic acid in Fermentation Broth
 
-x1_lacticacid = 
+# x1_lacticacid = 
 # Konvert mass concentration to molar fraction 
 
 
-solvents = pd.read_csv(Setup.solvents_filepath)
+solvents = pd.read_csv(Config.solvents_filepath)
 solvents = sort_solvents_df(solvents)
 # Access the unique row identifier (index) of each row in the DataFrame
 
@@ -50,11 +50,11 @@ gen_LIQEX_inp_file(
     temperature=20, 
     x1_lacticacid=0.25,
     solvent="hexane",
-    ctd_file=Setup.ctd_file,
-    cdir=Setup.cdir,
-    ldir=Setup.ldir,
-    odir=Setup.odir,
-    fdir=Setup.fdir,
-    output_folder=Setup.inputfile_path
+    ctd_file=Config.ctd_file,
+    cdir=Config.cdir,
+    ldir=Config.ldir,
+    odir=Config.odir,
+    fdir=Config.fdir,
+    output_folder=Config.inputfile_path
 )
     

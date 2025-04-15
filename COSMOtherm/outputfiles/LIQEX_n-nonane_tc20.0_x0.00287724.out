@@ -1,0 +1,1573 @@
+ -----------------------------------------
+ COSMOtherm Version 19.0.0 (Revision 5259)
+ -----------------------------------------
+ written by Frank Eckert, Andreas Klamt, Larissa Koch, Selman Terzi
+ Copyright (C) 1999-2018, COSMOlogic GmbH & Co. KG
+
+ Job name   : !! Multi-Component-2-Phase-Equilibrium calculation                        
+ Job date   : 04/14/2025
+ Job time   : 16:02:48
+ Hostname   : unknown
+ OS type    : Windows_NT
+ Executable : Windows 64-bit
+
+ Reading COSMOtherm parameter file BP_TZVPD_FINE_19.ctd from directory C:/Program Files/COSMOlogic/COSMOthermX19/COSMOtherm/CTDATA-FILES/
+ Info: # COSMOtherm parameter file ./BP_TZVPD_FINE_19.ctd for BP-TZVPD-FINE (BP-TZVP optimized) COSMO files                                                  
+
+ Reading COSMOtherm license key license.txt from directory C:/Program Files/COSMOlogic/COSMOthermX19/licensefiles/
+
+ COSMOtherm license key expiration date 12/03/2025
+ COSMOtherm license key version 24
+ Customer : 200000000035108
+ ID       : LKO2613120
+
+ License keys:
+  product                   |    licensed version    | status
+ ------------------------------------------------------------------------------ 
+  COSMOtherm                |          24            | active
+  TURBOMOLE                 |          21            | active
+  COSMOquick                |          24            | active
+  COSMOconf                 |          24            | active
+  COSMOmic                  |          24            | active
+  COSMObase                 |          24            | active
+  COSMOperm                 |          24            | active
+  COSMOplex                 |          24            | active
+ ------------------------------------------------------------------------------ 
+ 
+ Reading vapor pressure and property information for compound 1 from file V:\groups\COSMOTHERM-Datenbank\COSMObase-1901\BP-TZVPD-FINE/h/h2o.vap
+ Reading COSMO information for compound 1 conformer 1 from file V:\groups\COSMOTHERM-Datenbank\COSMObase-1901\BP-TZVPD-FINE/h/h2o_c0.cosmo
+ 
+ Reading vapor pressure and property information for compound 2 from file V:\groups\COSMOTHERM-Datenbank\COSMObase-1901\BP-TZVPD-FINE/n/n-nonane.vap
+ Reading COSMO information for compound 2 conformer 1 from file V:\groups\COSMOTHERM-Datenbank\COSMObase-1901\BP-TZVPD-FINE/n/n-nonane_c0.cosmo
+ Reading COSMO information for compound 2 conformer 2 from file V:\groups\COSMOTHERM-Datenbank\COSMObase-1901\BP-TZVPD-FINE/n/n-nonane_c1.cosmo
+ Reading COSMO information for compound 2 conformer 3 from file V:\groups\COSMOTHERM-Datenbank\COSMObase-1901\BP-TZVPD-FINE/n/n-nonane_c2.cosmo
+ Reading COSMO information for compound 2 conformer 4 from file V:\groups\COSMOTHERM-Datenbank\COSMObase-1901\BP-TZVPD-FINE/n/n-nonane_c3.cosmo
+ Reading COSMO information for compound 2 conformer 5 from file V:\groups\COSMOTHERM-Datenbank\COSMObase-1901\BP-TZVPD-FINE/n/n-nonane_c4.cosmo
+ Reading COSMO information for compound 2 conformer 6 from file V:\groups\COSMOTHERM-Datenbank\COSMObase-1901\BP-TZVPD-FINE/n/n-nonane_c5.cosmo
+ 
+ Reading vapor pressure and property information for compound 3 from file V:\groups\COSMOTHERM-Datenbank\COSMObase-1901\BP-TZVPD-FINE/l/lacticacid.vap
+ Reading COSMO information for compound 3 conformer 1 from file V:\groups\COSMOTHERM-Datenbank\COSMObase-1901\BP-TZVPD-FINE/l/lacticacid_c0.cosmo
+ Reading COSMO information for compound 3 conformer 2 from file V:\groups\COSMOTHERM-Datenbank\COSMObase-1901\BP-TZVPD-FINE/l/lacticacid_c1.cosmo
+ Reading COSMO information for compound 3 conformer 3 from file V:\groups\COSMOTHERM-Datenbank\COSMObase-1901\BP-TZVPD-FINE/l/lacticacid_c2.cosmo
+ Reading COSMO information for compound 3 conformer 4 from file V:\groups\COSMOTHERM-Datenbank\COSMObase-1901\BP-TZVPD-FINE/l/lacticacid_c3.cosmo
+ Reading COSMO information for compound 3 conformer 5 from file V:\groups\COSMOTHERM-Datenbank\COSMObase-1901\BP-TZVPD-FINE/l/lacticacid_c4.cosmo
+ Reading COSMO information for compound 3 conformer 6 from file V:\groups\COSMOTHERM-Datenbank\COSMObase-1901\BP-TZVPD-FINE/l/lacticacid_c5.cosmo
+
+
+ --- Compound 1 (h2o) ---
+
+ Experimental data for compound 1 (h2o) :
+ CAS registry number for compound 1 (CAS-RN = 7732-18-5)
+ Antoine equation coefficients ([mbar]/[K]) for compound 1:        18.8198      3956.2903       -40.6247
+ Wagner equation coefficients ([mbar]/[K]) for compound 1:    220600.0000       647.1400        -7.7645         1.4584        -2.7758        -1.2330
+ Vapor Pressure [mbar] / Temperature [°C] input for compound 1:
+               10.0000            7.0000
+              100.0000           45.8000
+             1000.0000           99.6000
+ Minimum temperature for vapor pressure estimation of compound 1 (TPVMIN = 275.00000 K)
+ Maximum temperature for vapor pressure estimation of compound 1 (TPVMAX = 647.00000 K)
+ UNIQUAC volume parameter for compound 1 (UNIQUAC_RI = 0.92000)
+ UNIQUAC surface parameter for compound 1 (UNIQUAC_QI = 1.40000)
+ Boiling temperature of compound 1 (TBOIL = 373.15000 K)
+ Melting temperature of compound 1 (TMELT = 273.15000 K)
+ Experimental dielectric constant for compound 1 (EPSILON = 78.20000)
+ Critical temperature of compound 1 (TCRIT = 647.09600 K)
+ Critical pressure of compound 1 (PCRIT = 220640.00000 mbar)
+ Critical density of compound 1 (DCRIT = 0.32239 g/ml)
+ DIPPR 116 density parameters for compound 1 (EXPDENSDIPPR116 = {0.92619 -1.15605 3.01718 -2.12561 273.16000 647.09500})
+
+ Compound Information for compound 1 conformer 1 (COSMO file V:\groups\COSMOTHERM-Datenbank\COSMObase-1901\BP-TZVPD-FINE/h/h2o_c0.cosmo)
+ Atomic weights         : 111
+ E_COSMO+dE             :     -47993.2533 kcal/mol
+ E_gas                  :     -47987.6758 kcal/mol
+ E_COSMO-E_gas+dE       :         -5.5774 kcal/mol
+ E_diel                 :         -8.0924 kcal/mol
+ E_disp_intramolecular  :         -0.2880 kcal/mol
+ Averaging corr dE      :          0.4368 kcal/mol
+ Area                   :         43.1419 A^2
+ Volume                 :         25.8553 A^3
+ Molecular Weight       :         18.0153 a.m.u.
+ Total COSMO charge     :         -0.0001 a.u.
+ Dipole moment (t,x,y,z):          2.2004  0.001108  0.000271 -2.200437 Debye                            
+ Sigma moments (1-6)    :          0.0000  6.40E+01  2.982917  1.35E+02  1.50E+01  3.17E+02              
+ H-bond moment (accept) :          3.0054
+ H-bond moment (donor)  :          2.9616
+ 
+ No gas phase energy file for compound 1 conformer 1 found, using single point gas phase energy from cosmo file
+
+
+ --- Compound 2 (n-nonane) ---
+
+ Experimental data for compound 2 (n-nonane) :
+ CAS registry number for compound 2 (CAS-RN = 111-84-2)
+ Antoine equation coefficients ([mbar]/[K]) for compound 2:        16.7234      3574.7211       -59.2637
+ Wagner equation coefficients ([mbar]/[K]) for compound 2:     22900.0000       594.6000        -8.2448         1.5789        -4.3815        -4.0441
+ Vapor Pressure [mbar] / Temperature [°C] input for compound 2:
+                0.1000          -26.0000
+               10.0000           34.0000
+             1000.0000          150.3000
+ Minimum temperature for vapor pressure estimation of compound 2 (TPVMIN = 343.00000 K)
+ Maximum temperature for vapor pressure estimation of compound 2 (TPVMAX = 594.60000 K)
+ UNIQUAC volume parameter for compound 2 (UNIQUAC_RI = 6.52300)
+ UNIQUAC surface parameter for compound 2 (UNIQUAC_QI = 5.47600)
+ Boiling temperature of compound 2 (TBOIL = 423.95000 K)
+ Melting temperature of compound 2 (TMELT = 219.65000 K)
+
+ Compound Information for compound 2 conformer 1 (COSMO file V:\groups\COSMOTHERM-Datenbank\COSMObase-1901\BP-TZVPD-FINE/n/n-nonane_c0.cosmo)
+ Atomic weights         : 11111111111111111111111111111
+ E_COSMO+dE             :    -222881.4009 kcal/mol
+ E_gas                  :    -222880.5463 kcal/mol
+ E_COSMO-E_gas+dE       :         -0.8545 kcal/mol
+ E_diel                 :         -1.0920 kcal/mol
+ E_disp_intramolecular  :        -21.3104 kcal/mol
+ Averaging corr dE      :          0.1840 kcal/mol
+ Area                   :        219.4789 A^2
+ Volume                 :        212.7532 A^3
+ Molecular Weight       :        128.2560 a.m.u.
+ Total COSMO charge     :         -0.0006 a.u.
+ Dipole moment (t,x,y,z):          0.1121  0.000832  0.105051  0.038993 Debye                            
+ Sigma moments (1-6)    :          0.0000  1.08E+01  0.051404  0.996478  0.011668  0.111017              
+ H-bond moment (accept) :          0.0000
+ H-bond moment (donor)  :          0.0000
+ 
+ No gas phase energy file for compound 2 conformer 1 found, using single point gas phase energy from cosmo file
+
+ Compound Information for compound 2 conformer 2 (COSMO file V:\groups\COSMOTHERM-Datenbank\COSMObase-1901\BP-TZVPD-FINE/n/n-nonane_c1.cosmo)
+ Atomic weights         : 11111111111111111111111111111
+ E_COSMO+dE             :    -222880.5671 kcal/mol
+ E_gas                  :    -222879.7463 kcal/mol
+ E_COSMO-E_gas+dE       :         -0.8207 kcal/mol
+ E_diel                 :         -1.0629 kcal/mol
+ E_disp_intramolecular  :        -22.2370 kcal/mol
+ Averaging corr dE      :          0.1866 kcal/mol
+ Area                   :        214.9609 A^2
+ Volume                 :        212.6851 A^3
+ Molecular Weight       :        128.2560 a.m.u.
+ Total COSMO charge     :   7.2980953E-05 a.u.
+ Dipole moment (t,x,y,z):          0.0896 -0.056836 -0.039288 -0.057092 Debye                            
+ Sigma moments (1-6)    :          0.0000  1.07E+01 -0.081802  0.969153 -0.014928  0.106978              
+ H-bond moment (accept) :          0.0000
+ H-bond moment (donor)  :          0.0000
+ 
+ No gas phase energy file for compound 2 conformer 2 found, using single point gas phase energy from cosmo file
+
+ Compound Information for compound 2 conformer 3 (COSMO file V:\groups\COSMOTHERM-Datenbank\COSMObase-1901\BP-TZVPD-FINE/n/n-nonane_c2.cosmo)
+ Atomic weights         : 11111111111111111111111111111
+ E_COSMO+dE             :    -222880.4076 kcal/mol
+ E_gas                  :    -222879.6067 kcal/mol
+ E_COSMO-E_gas+dE       :         -0.8009 kcal/mol
+ E_diel                 :         -1.0341 kcal/mol
+ E_disp_intramolecular  :        -22.1498 kcal/mol
+ Averaging corr dE      :          0.1853 kcal/mol
+ Area                   :        215.6264 A^2
+ Volume                 :        212.5665 A^3
+ Molecular Weight       :        128.2560 a.m.u.
+ Total COSMO charge     :  -4.1867249E-05 a.u.
+ Dipole moment (t,x,y,z):          0.0904 -0.070471 -0.055169 -0.012932 Debye                            
+ Sigma moments (1-6)    :          0.0000  1.05E+01 -0.124353  0.923718 -0.024373  0.098461              
+ H-bond moment (accept) :          0.0000
+ H-bond moment (donor)  :          0.0000
+ 
+ No gas phase energy file for compound 2 conformer 3 found, using single point gas phase energy from cosmo file
+
+ Compound Information for compound 2 conformer 4 (COSMO file V:\groups\COSMOTHERM-Datenbank\COSMObase-1901\BP-TZVPD-FINE/n/n-nonane_c3.cosmo)
+ Atomic weights         : 11111111111111111111111111111
+ E_COSMO+dE             :    -222880.3506 kcal/mol
+ E_gas                  :    -222879.5472 kcal/mol
+ E_COSMO-E_gas+dE       :         -0.8033 kcal/mol
+ E_diel                 :         -1.0411 kcal/mol
+ E_disp_intramolecular  :        -22.1048 kcal/mol
+ Averaging corr dE      :          0.1862 kcal/mol
+ Area                   :        215.6671 A^2
+ Volume                 :        212.5636 A^3
+ Molecular Weight       :        128.2560 a.m.u.
+ Total COSMO charge     :          0.0001 a.u.
+ Dipole moment (t,x,y,z):          0.0902  0.022611 -0.068958  0.053498 Debye                            
+ Sigma moments (1-6)    :          0.0000  1.05E+01 -0.116744  0.929558 -0.022506  0.099666              
+ H-bond moment (accept) :          0.0000
+ H-bond moment (donor)  :          0.0000
+ 
+ No gas phase energy file for compound 2 conformer 4 found, using single point gas phase energy from cosmo file
+
+ Compound Information for compound 2 conformer 5 (COSMO file V:\groups\COSMOTHERM-Datenbank\COSMObase-1901\BP-TZVPD-FINE/n/n-nonane_c4.cosmo)
+ Atomic weights         : 11111111111111111111111111111
+ E_COSMO+dE             :    -222880.3932 kcal/mol
+ E_gas                  :    -222879.5943 kcal/mol
+ E_COSMO-E_gas+dE       :         -0.7989 kcal/mol
+ E_diel                 :         -1.0385 kcal/mol
+ E_disp_intramolecular  :        -22.1543 kcal/mol
+ Averaging corr dE      :          0.1870 kcal/mol
+ Area                   :        215.6051 A^2
+ Volume                 :        212.5636 A^3
+ Molecular Weight       :        128.2560 a.m.u.
+ Total COSMO charge     :          0.0001 a.u.
+ Dipole moment (t,x,y,z):          0.0873 -0.047275 -0.067635  0.028350 Debye                            
+ Sigma moments (1-6)    :          0.0000  1.05E+01 -0.116687  0.932298 -0.022808  0.100163              
+ H-bond moment (accept) :          0.0000
+ H-bond moment (donor)  :          0.0000
+ 
+ No gas phase energy file for compound 2 conformer 5 found, using single point gas phase energy from cosmo file
+
+ Compound Information for compound 2 conformer 6 (COSMO file V:\groups\COSMOTHERM-Datenbank\COSMObase-1901\BP-TZVPD-FINE/n/n-nonane_c5.cosmo)
+ Atomic weights         : 11111111111111111111111111111
+ E_COSMO+dE             :    -222880.3482 kcal/mol
+ E_gas                  :    -222879.5499 kcal/mol
+ E_COSMO-E_gas+dE       :         -0.7983 kcal/mol
+ E_diel                 :         -1.0398 kcal/mol
+ E_disp_intramolecular  :        -22.1166 kcal/mol
+ Averaging corr dE      :          0.1870 kcal/mol
+ Area                   :        215.6264 A^2
+ Volume                 :        212.5650 A^3
+ Molecular Weight       :        128.2560 a.m.u.
+ Total COSMO charge     :          0.0001 a.u.
+ Dipole moment (t,x,y,z):          0.0936 -0.074331  0.021694 -0.052668 Debye                            
+ Sigma moments (1-6)    :          0.0000  1.05E+01 -0.123350  0.935365 -0.023151  0.101448              
+ H-bond moment (accept) :          0.0000
+ H-bond moment (donor)  :          0.0000
+ 
+ No gas phase energy file for compound 2 conformer 6 found, using single point gas phase energy from cosmo file
+
+
+ --- Compound 3 (lacticacid) ---
+
+ Compound Information for compound 3 conformer 1 (COSMO file V:\groups\COSMOTHERM-Datenbank\COSMObase-1901\BP-TZVPD-FINE/l/lacticacid_c0.cosmo)
+ Atomic weights         : 111111111111
+ E_COSMO+dE             :    -215748.6801 kcal/mol
+ E_gas                  :    -215737.1594 kcal/mol
+ E_COSMO-E_gas+dE       :        -11.5207 kcal/mol
+ E_diel                 :        -14.9233 kcal/mol
+ E_disp_intramolecular  :         -7.9216 kcal/mol
+ Averaging corr dE      :          0.6215 kcal/mol
+ Area                   :        120.1634 A^2
+ Volume                 :        106.5048 A^3
+ Molecular Weight       :         90.0783 a.m.u.
+ Total COSMO charge     :          0.0003 a.u.
+ Dipole moment (t,x,y,z):          5.6342 -4.962581 -1.954290  1.815876 Debye                            
+ Sigma moments (1-6)    :          0.0000  9.26E+01 -4.184013  1.56E+02 -5.10E+01  3.43E+02              
+ H-bond moment (accept) :          2.0855
+ H-bond moment (donor)  :          2.8372
+ 
+ No gas phase energy file for compound 3 conformer 1 found, using single point gas phase energy from cosmo file
+
+ Compound Information for compound 3 conformer 2 (COSMO file V:\groups\COSMOTHERM-Datenbank\COSMObase-1901\BP-TZVPD-FINE/l/lacticacid_c1.cosmo)
+ Atomic weights         : 111111111111
+ E_COSMO+dE             :    -215748.4986 kcal/mol
+ E_gas                  :    -215737.5373 kcal/mol
+ E_COSMO-E_gas+dE       :        -10.9613 kcal/mol
+ E_diel                 :        -14.1864 kcal/mol
+ E_disp_intramolecular  :         -7.9782 kcal/mol
+ Averaging corr dE      :          0.6372 kcal/mol
+ Area                   :        119.5838 A^2
+ Volume                 :        106.3744 A^3
+ Molecular Weight       :         90.0783 a.m.u.
+ Total COSMO charge     :          0.0003 a.u.
+ Dipole moment (t,x,y,z):          5.6432 -4.887041  2.797840  0.367402 Debye                            
+ Sigma moments (1-6)    :          0.0000  8.87E+01  1.972080  1.40E+02 -2.98E+01  2.93E+02              
+ H-bond moment (accept) :          1.8771
+ H-bond moment (donor)  :          2.4847
+ 
+ No gas phase energy file for compound 3 conformer 2 found, using single point gas phase energy from cosmo file
+
+ Compound Information for compound 3 conformer 3 (COSMO file V:\groups\COSMOTHERM-Datenbank\COSMObase-1901\BP-TZVPD-FINE/l/lacticacid_c2.cosmo)
+ Atomic weights         : 111111111111
+ E_COSMO+dE             :    -215747.6065 kcal/mol
+ E_gas                  :    -215739.4763 kcal/mol
+ E_COSMO-E_gas+dE       :         -8.1301 kcal/mol
+ E_diel                 :        -10.2144 kcal/mol
+ E_disp_intramolecular  :         -7.8101 kcal/mol
+ Averaging corr dE      :          0.7457 kcal/mol
+ Area                   :        120.2417 A^2
+ Volume                 :        106.5759 A^3
+ Molecular Weight       :         90.0783 a.m.u.
+ Total COSMO charge     :          0.0004 a.u.
+ Dipole moment (t,x,y,z):          3.4208 -2.782781 -1.975225 -0.237114 Debye                            
+ Sigma moments (1-6)    :          0.0000  8.17E+01 -9.493434  1.52E+02 -8.52E+01  4.02E+02              
+ H-bond moment (accept) :          2.0796
+ H-bond moment (donor)  :          3.5488
+ 
+ No gas phase energy file for compound 3 conformer 3 found, using single point gas phase energy from cosmo file
+
+ Compound Information for compound 3 conformer 4 (COSMO file V:\groups\COSMOTHERM-Datenbank\COSMObase-1901\BP-TZVPD-FINE/l/lacticacid_c3.cosmo)
+ Atomic weights         : 111111111111
+ E_COSMO+dE             :    -215746.1854 kcal/mol
+ E_gas                  :    -215736.5699 kcal/mol
+ E_COSMO-E_gas+dE       :         -9.6155 kcal/mol
+ E_diel                 :        -12.0403 kcal/mol
+ E_disp_intramolecular  :         -7.8263 kcal/mol
+ Averaging corr dE      :          0.7985 kcal/mol
+ Area                   :        121.2359 A^2
+ Volume                 :        107.7258 A^3
+ Molecular Weight       :         90.0783 a.m.u.
+ Total COSMO charge     :          0.0004 a.u.
+ Dipole moment (t,x,y,z):          2.6808  0.687585  1.222652  2.284563 Debye                            
+ Sigma moments (1-6)    :          0.0000  9.52E+01 -9.279924  1.79E+02 -8.57E+01  4.42E+02              
+ H-bond moment (accept) :          2.4742
+ H-bond moment (donor)  :          4.7099
+ 
+ No gas phase energy file for compound 3 conformer 4 found, using single point gas phase energy from cosmo file
+
+ Compound Information for compound 3 conformer 5 (COSMO file V:\groups\COSMOTHERM-Datenbank\COSMObase-1901\BP-TZVPD-FINE/l/lacticacid_c4.cosmo)
+ Atomic weights         : 111111111111
+ E_COSMO+dE             :    -215746.0988 kcal/mol
+ E_gas                  :    -215734.2469 kcal/mol
+ E_COSMO-E_gas+dE       :        -11.8519 kcal/mol
+ E_diel                 :        -15.4923 kcal/mol
+ E_disp_intramolecular  :         -7.7365 kcal/mol
+ Averaging corr dE      :          0.7497 kcal/mol
+ Area                   :        121.4869 A^2
+ Volume                 :        107.5139 A^3
+ Molecular Weight       :         90.0783 a.m.u.
+ Total COSMO charge     :          0.0001 a.u.
+ Dipole moment (t,x,y,z):          4.5492 -2.507745 -3.769835  0.441697 Debye                            
+ Sigma moments (1-6)    :          0.0000  1.05E+02 -0.628692  2.13E+02 -4.53E+01  5.50E+02              
+ H-bond moment (accept) :          3.9249
+ H-bond moment (donor)  :          4.9729
+ 
+ No gas phase energy file for compound 3 conformer 5 found, using single point gas phase energy from cosmo file
+
+ Compound Information for compound 3 conformer 6 (COSMO file V:\groups\COSMOTHERM-Datenbank\COSMObase-1901\BP-TZVPD-FINE/l/lacticacid_c5.cosmo)
+ Atomic weights         : 111111111111
+ E_COSMO+dE             :    -215746.0355 kcal/mol
+ E_gas                  :    -215736.3775 kcal/mol
+ E_COSMO-E_gas+dE       :         -9.6580 kcal/mol
+ E_diel                 :        -12.1366 kcal/mol
+ E_disp_intramolecular  :         -7.7279 kcal/mol
+ Averaging corr dE      :          0.8020 kcal/mol
+ Area                   :        121.1546 A^2
+ Volume                 :        107.2976 A^3
+ Molecular Weight       :         90.0783 a.m.u.
+ Total COSMO charge     :          0.0004 a.u.
+ Dipole moment (t,x,y,z):          1.9935 -1.037490 -1.370029  1.010343 Debye                            
+ Sigma moments (1-6)    :          0.0000  9.63E+01 -1.07E+01  1.83E+02 -8.84E+01  4.53E+02              
+ H-bond moment (accept) :          2.5251
+ H-bond moment (donor)  :          4.6396
+ 
+ No gas phase energy file for compound 3 conformer 6 found, using single point gas phase energy from cosmo file
+
+
+ Total number of processed compounds:    3
+ Total number of processed molecules:   13
+
+
+----------------
+ START job     1
+----------------
+
+ ---------------------------------------------------------------------
+ Multi-Component-2-Phase-Equilibrium (Liquid Extraction) calculation
+ Initial phase 1: X1={0.997123 0 0.002877}
+ Initial phase 2: X2={0 1}
+ ---------------------------------------------------------------------
+
+
+
+ Results for mixture 1 - LIQ_EX Phase 1 Iteration    0
+ ---------------------
+ Temperature          :    293.150 K
+ Compound Nr.         :         1         2         3
+ Compound             :       h2o  n-nonane lacticaci
+ Mole Fraction        :    0.9971    0.0000    0.0029
+
+ Compound: 1  (h2o)
+ Chemical potential of the compound in the mixture :         2.88312 kcal/mol
+ Log10(partial pressure [mbar])                    :         0.99136
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :    -47990.37016 kcal/mol
+ Total mean interaction energy in the mix (H_int)  :        -5.86096 kcal/mol
+ Misfit interaction energy in the mix (H_MF)       :         0.54849 kcal/mol
+ H-Bond interaction energy in the mix (H_HB)       :        -4.97505 kcal/mol
+ VdW interaction energy in the mix (H_vdW)         :        -4.36645 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         2.93205 kcal/mol
+
+ Compound: 2  (n-nonane)
+ Chemical potential of the compound in the mixture :         6.92516 kcal/mol
+ Log10(partial pressure [mbar])                    :         7.82771
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222874.47570 kcal/mol
+ Total mean interaction energy in the mix (H_int)  :        -6.96186 kcal/mol
+ Misfit interaction energy in the mix (H_MF)       :         2.99242 kcal/mol
+ H-Bond interaction energy in the mix (H_HB)       :         0.00000 kcal/mol
+ VdW interaction energy in the mix (H_vdW)         :       -24.67370 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+
+ Compound: 3  (lacticacid)
+ Chemical potential of the compound in the mixture :         3.59765 kcal/mol
+ Log10(partial pressure [mbar])                    :        -1.66606
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215745.08249 kcal/mol
+ Total mean interaction energy in the mix (H_int)  :        -8.51744 kcal/mol
+ Misfit interaction energy in the mix (H_MF)       :         1.78375 kcal/mol
+ H-Bond interaction energy in the mix (H_HB)       :        -7.44109 kcal/mol
+ VdW interaction energy in the mix (H_vdW)         :       -13.38705 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+
+
+
+ Compound: 1 Conformer: 1 (h2o_c0)
+ Chemical potential of the molecule in the mixture :         2.88312 kcal/mol
+ Log10(partial pressure [mbar])                    :         0.99136
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :    -47990.37016 kcal/mol
+ Total mean interaction energy in the mix          :        -5.86096 kcal/mol
+ Misfit interaction energy in the mix              :         0.54849 kcal/mol
+ H-Bond interaction energy in the mix              :        -4.97505 kcal/mol
+ VdW interaction energy in the mix                 :        -4.36645 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         2.93205 kcal/mol
+ Normalized weight factor of molecule in compound  :         1.00000
+ Normalized weight factor of molecule in gas phase :         1.00000
+
+ Compound: 2 Conformer: 1 (n-nonane_c0)
+ Chemical potential of the molecule in the mixture :         7.21815 kcal/mol
+ Log10(partial pressure [mbar])                    :         7.74412
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222874.18270 kcal/mol
+ Total mean interaction energy in the mix          :        -7.49513 kcal/mol
+ Misfit interaction energy in the mix              :         3.02696 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -24.85510 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.60474
+ Normalized weight factor of molecule in gas phase :         0.49886
+
+ Compound: 2 Conformer: 2 (n-nonane_c1)
+ Chemical potential of the molecule in the mixture :         7.44830 kcal/mol
+ Log10(partial pressure [mbar])                    :         7.94089
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222873.11877 kcal/mol
+ Total mean interaction energy in the mix          :        -7.10253 kcal/mol
+ Misfit interaction energy in the mix              :         2.89764 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -24.33317 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.09736
+ Normalized weight factor of molecule in gas phase :         0.12501
+
+ Compound: 2 Conformer: 3 (n-nonane_c2)
+ Chemical potential of the molecule in the mixture :         7.39907 kcal/mol
+ Log10(partial pressure [mbar])                    :         7.91898
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222873.00856 kcal/mol
+ Total mean interaction energy in the mix          :        -7.16687 kcal/mol
+ Misfit interaction energy in the mix              :         2.91940 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -24.41928 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.08058
+ Normalized weight factor of molecule in gas phase :         0.09918
+
+ Compound: 2 Conformer: 4 (n-nonane_c3)
+ Chemical potential of the molecule in the mixture :         7.40474 kcal/mol
+ Log10(partial pressure [mbar])                    :         7.92140
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222872.94581 kcal/mol
+ Total mean interaction energy in the mix          :        -7.11588 kcal/mol
+ Misfit interaction energy in the mix              :         2.98146 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -24.43034 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.07235
+ Normalized weight factor of molecule in gas phase :         0.08977
+
+ Compound: 2 Conformer: 5 (n-nonane_c4)
+ Chemical potential of the molecule in the mixture :         7.42322 kcal/mol
+ Log10(partial pressure [mbar])                    :         7.93849
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222872.96997 kcal/mol
+ Total mean interaction energy in the mix          :        -7.12738 kcal/mol
+ Misfit interaction energy in the mix              :         2.94597 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -24.40635 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.07542
+ Normalized weight factor of molecule in gas phase :         0.09708
+
+ Compound: 2 Conformer: 6 (n-nonane_c5)
+ Chemical potential of the molecule in the mixture :         7.42552 kcal/mol
+ Log10(partial pressure [mbar])                    :         7.94065
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222872.92270 kcal/mol
+ Total mean interaction energy in the mix          :        -7.10668 kcal/mol
+ Misfit interaction energy in the mix              :         2.97121 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -24.41089 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.06954
+ Normalized weight factor of molecule in gas phase :         0.09009
+
+ Compound: 3 Conformer: 1 (lacticacid_c0)
+ Chemical potential of the molecule in the mixture :         5.53467 kcal/mol
+ Log10(partial pressure [mbar])                    :        -1.46264
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215743.14547 kcal/mol
+ Total mean interaction energy in the mix          :        -7.84909 kcal/mol
+ Misfit interaction energy in the mix              :         1.82030 kcal/mol
+ H-Bond interaction energy in the mix              :        -4.58464 kcal/mol
+ VdW interaction energy in the mix                 :       -13.33659 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.03597
+ Normalized weight factor of molecule in gas phase :         0.00476
+
+ Compound: 3 Conformer: 2 (lacticacid_c1)
+ Chemical potential of the molecule in the mixture :         5.69024 kcal/mol
+ Log10(partial pressure [mbar])                    :        -0.92963
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215742.80841 kcal/mol
+ Total mean interaction energy in the mix          :        -7.38290 kcal/mol
+ Misfit interaction energy in the mix              :         1.94245 kcal/mol
+ H-Bond interaction energy in the mix              :        -4.26210 kcal/mol
+ VdW interaction energy in the mix                 :       -13.31510 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.02017
+ Normalized weight factor of molecule in gas phase :         0.00936
+
+ Compound: 3 Conformer: 3 (lacticacid_c2)
+ Chemical potential of the molecule in the mixture :         3.83769 kcal/mol
+ Log10(partial pressure [mbar])                    :        -0.20006
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215743.76878 kcal/mol
+ Total mean interaction energy in the mix          :        -8.50436 kcal/mol
+ Misfit interaction energy in the mix              :         1.86306 kcal/mol
+ H-Bond interaction energy in the mix              :        -5.21801 kcal/mol
+ VdW interaction energy in the mix                 :       -13.40125 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.10486
+ Normalized weight factor of molecule in gas phase :         0.94961
+
+ Compound: 3 Conformer: 4 (lacticacid_c3)
+ Chemical potential of the molecule in the mixture :         2.03194 kcal/mol
+ Log10(partial pressure [mbar])                    :        -2.65362
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215744.15349 kcal/mol
+ Total mean interaction energy in the mix          :       -10.72900 kcal/mol
+ Misfit interaction energy in the mix              :         1.78640 kcal/mol
+ H-Bond interaction energy in the mix              :        -7.39352 kcal/mol
+ VdW interaction energy in the mix                 :       -13.37372 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.20296
+ Normalized weight factor of molecule in gas phase :         0.02089
+
+ Compound: 3 Conformer: 5 (lacticacid_c4)
+ Chemical potential of the molecule in the mixture :         1.45987 kcal/mol
+ Log10(partial pressure [mbar])                    :        -4.74733
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215744.63896 kcal/mol
+ Total mean interaction energy in the mix          :       -11.70160 kcal/mol
+ Misfit interaction energy in the mix              :         1.76387 kcal/mol
+ H-Bond interaction energy in the mix              :        -8.32371 kcal/mol
+ VdW interaction energy in the mix                 :       -13.39361 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.46702
+ Normalized weight factor of molecule in gas phase :         0.00039
+
+ Compound: 3 Conformer: 6 (lacticacid_c5)
+ Chemical potential of the molecule in the mixture :         1.98861 kcal/mol
+ Log10(partial pressure [mbar])                    :        -2.71759
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215744.04685 kcal/mol
+ Total mean interaction energy in the mix          :       -10.80988 kcal/mol
+ Misfit interaction energy in the mix              :         1.75955 kcal/mol
+ H-Bond interaction energy in the mix              :        -7.42583 kcal/mol
+ VdW interaction energy in the mix                 :       -13.39544 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.16901
+ Normalized weight factor of molecule in gas phase :         0.01500
+
+
+
+
+ Results for mixture 2 - LIQ_EX Phase 2 Iteration    0
+ ---------------------
+ Temperature          :    293.150 K
+ Compound Nr.         :         1         2         3
+ Compound             :       h2o  n-nonane lacticaci
+ Mole Fraction        :    0.0000    1.0000    0.0000
+
+ Compound: 1  (h2o)
+ Chemical potential of the compound in the mixture :         8.23498 kcal/mol
+ Log10(partial pressure [mbar])                    :         4.98122
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :    -47985.01829 kcal/mol
+ Total mean interaction energy in the mix (H_int)  :         0.95559 kcal/mol
+ Misfit interaction energy in the mix (H_MF)       :         2.68629 kcal/mol
+ H-Bond interaction energy in the mix (H_HB)       :         0.00000 kcal/mol
+ VdW interaction energy in the mix (H_vdW)         :        -4.66275 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         2.93205 kcal/mol
+ Equilibrium constant Kx(1,2)                      :      9769.17982
+ Equilibrium concentration x_k(1,2)                :         0.99990
+
+ Compound: 2  (n-nonane)
+ Chemical potential of the compound in the mixture :        -2.53205 kcal/mol
+ Log10(partial pressure [mbar])                    :         0.77729
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222883.93290 kcal/mol
+ Total mean interaction energy in the mix (H_int)  :        -9.91317 kcal/mol
+ Misfit interaction energy in the mix (H_MF)       :         0.78483 kcal/mol
+ H-Bond interaction energy in the mix (H_HB)       :         0.00000 kcal/mol
+ VdW interaction energy in the mix (H_vdW)         :       -25.34824 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Equilibrium constant Kx(1,2)                      :  8.90388402E-08
+ Equilibrium concentration x_k(1,2)                :         0.00000
+
+ Compound: 3  (lacticacid)
+ Chemical potential of the compound in the mixture :         8.58324 kcal/mol
+ Log10(partial pressure [mbar])                    :         2.05074
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215740.09690 kcal/mol
+ Total mean interaction energy in the mix (H_int)  :        -1.08345 kcal/mol
+ Misfit interaction energy in the mix (H_MF)       :         3.72772 kcal/mol
+ H-Bond interaction energy in the mix (H_HB)       :         0.00000 kcal/mol
+ VdW interaction energy in the mix (H_vdW)         :       -14.13608 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Equilibrium constant Kx(1,2)                      :      5209.52587
+ Equilibrium concentration x_k(1,2)                :         0.99981
+
+
+
+ Compound: 1 Conformer: 1 (h2o_c0)
+ Chemical potential of the molecule in the mixture :         8.23498 kcal/mol
+ Log10(partial pressure [mbar])                    :         4.98122
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :    -47985.01829 kcal/mol
+ Total mean interaction energy in the mix          :         0.95559 kcal/mol
+ Misfit interaction energy in the mix              :         2.68629 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :        -4.66275 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         2.93205 kcal/mol
+ Normalized weight factor of molecule in compound  :         1.00000
+ Normalized weight factor of molecule in gas phase :         1.00000
+
+ Compound: 2 Conformer: 1 (n-nonane_c0)
+ Chemical potential of the molecule in the mixture :        -2.30460 kcal/mol
+ Log10(partial pressure [mbar])                    :         0.64484
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222883.70545 kcal/mol
+ Total mean interaction energy in the mix          :       -10.37348 kcal/mol
+ Misfit interaction energy in the mix              :         0.79190 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -25.49839 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.67675
+ Normalized weight factor of molecule in gas phase :         0.49886
+
+ Compound: 2 Conformer: 2 (n-nonane_c1)
+ Chemical potential of the molecule in the mixture :        -1.84536 kcal/mol
+ Log10(partial pressure [mbar])                    :         1.01240
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222882.41242 kcal/mol
+ Total mean interaction energy in the mix          :        -9.86059 kcal/mol
+ Misfit interaction energy in the mix              :         0.77460 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -24.96819 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.07353
+ Normalized weight factor of molecule in gas phase :         0.12501
+
+ Compound: 2 Conformer: 3 (n-nonane_c2)
+ Chemical potential of the molecule in the mixture :        -1.94946 kcal/mol
+ Log10(partial pressure [mbar])                    :         0.94958
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222882.35708 kcal/mol
+ Total mean interaction energy in the mix          :        -9.95626 kcal/mol
+ Misfit interaction energy in the mix              :         0.76691 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -25.05617 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.06687
+ Normalized weight factor of molecule in gas phase :         0.09918
+
+ Compound: 2 Conformer: 4 (n-nonane_c3)
+ Chemical potential of the molecule in the mixture :        -1.95824 kcal/mol
+ Log10(partial pressure [mbar])                    :         0.94123
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222882.30879 kcal/mol
+ Total mean interaction energy in the mix          :        -9.96419 kcal/mol
+ Misfit interaction energy in the mix              :         0.76901 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -25.06621 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.06155
+ Normalized weight factor of molecule in gas phase :         0.08977
+
+ Compound: 2 Conformer: 5 (n-nonane_c4)
+ Chemical potential of the molecule in the mixture :        -1.92596 kcal/mol
+ Log10(partial pressure [mbar])                    :         0.96860
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222882.31915 kcal/mol
+ Total mean interaction energy in the mix          :        -9.94033 kcal/mol
+ Misfit interaction energy in the mix              :         0.76968 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -25.04302 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.06265
+ Normalized weight factor of molecule in gas phase :         0.09708
+
+ Compound: 2 Conformer: 6 (n-nonane_c5)
+ Chemical potential of the molecule in the mixture :        -1.93247 kcal/mol
+ Log10(partial pressure [mbar])                    :         0.96420
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222882.28069 kcal/mol
+ Total mean interaction energy in the mix          :        -9.94480 kcal/mol
+ Misfit interaction energy in the mix              :         0.76933 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -25.04713 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.05865
+ Normalized weight factor of molecule in gas phase :         0.09009
+
+ Compound: 3 Conformer: 1 (lacticacid_c0)
+ Chemical potential of the molecule in the mixture :        10.58491 kcal/mol
+ Log10(partial pressure [mbar])                    :         2.30236
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215738.09523 kcal/mol
+ Total mean interaction energy in the mix          :        -0.48470 kcal/mol
+ Misfit interaction energy in the mix              :         5.36872 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -14.10526 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.03219
+ Normalized weight factor of molecule in gas phase :         0.00476
+
+ Compound: 3 Conformer: 2 (lacticacid_c1)
+ Chemical potential of the molecule in the mixture :        10.16674 kcal/mol
+ Log10(partial pressure [mbar])                    :         2.40763
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215738.33191 kcal/mol
+ Total mean interaction energy in the mix          :        -0.70560 kcal/mol
+ Misfit interaction energy in the mix              :         5.11967 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -14.07711 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.04833
+ Normalized weight factor of molecule in gas phase :         0.00936
+
+ Compound: 3 Conformer: 3 (lacticacid_c2)
+ Chemical potential of the molecule in the mixture :         7.59226 kcal/mol
+ Log10(partial pressure [mbar])                    :         2.59901
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215740.01420 kcal/mol
+ Total mean interaction energy in the mix          :        -2.32376 kcal/mol
+ Misfit interaction energy in the mix              :         3.56390 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -14.13950 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.86765
+ Normalized weight factor of molecule in gas phase :         0.94961
+
+ Compound: 3 Conformer: 4 (lacticacid_c3)
+ Chemical potential of the molecule in the mixture :         8.16311 kcal/mol
+ Log10(partial pressure [mbar])                    :         1.91721
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215738.02233 kcal/mol
+ Total mean interaction energy in the mix          :        -1.76958 kcal/mol
+ Misfit interaction energy in the mix              :         4.11826 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -14.13968 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.02840
+ Normalized weight factor of molecule in gas phase :         0.02089
+
+ Compound: 3 Conformer: 5 (lacticacid_c4)
+ Chemical potential of the molecule in the mixture :         9.82597 kcal/mol
+ Log10(partial pressure [mbar])                    :         1.48966
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215736.27286 kcal/mol
+ Total mean interaction energy in the mix          :        -0.50239 kcal/mol
+ Misfit interaction energy in the mix              :         5.43364 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -14.18786 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.00141
+ Normalized weight factor of molecule in gas phase :         0.00039
+
+ Compound: 3 Conformer: 6 (lacticacid_c5)
+ Chemical potential of the molecule in the mixture :         8.16163 kcal/mol
+ Log10(partial pressure [mbar])                    :         1.88444
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215737.87383 kcal/mol
+ Total mean interaction energy in the mix          :        -1.80004 kcal/mol
+ Misfit interaction energy in the mix              :         4.11612 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -14.16800 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.02201
+ Normalized weight factor of molecule in gas phase :         0.01500
+
+
+
+
+ Results for mixture 3 - LIQ_EX Phase 1 Iteration    1
+ ---------------------
+ Temperature          :    293.150 K
+ Compound Nr.         :         1         2         3
+ Compound             :       h2o  n-nonane lacticaci
+ Mole Fraction        :    0.9971    0.0000    0.0029
+
+ Compound: 1  (h2o)
+ Chemical potential of the compound in the mixture :         2.88312 kcal/mol
+ Log10(partial pressure [mbar])                    :         0.99136
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :    -47990.37016 kcal/mol
+ Total mean interaction energy in the mix (H_int)  :        -5.86096 kcal/mol
+ Misfit interaction energy in the mix (H_MF)       :         0.54849 kcal/mol
+ H-Bond interaction energy in the mix (H_HB)       :        -4.97505 kcal/mol
+ VdW interaction energy in the mix (H_vdW)         :        -4.36645 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         2.93205 kcal/mol
+
+ Compound: 2  (n-nonane)
+ Chemical potential of the compound in the mixture :         6.92515 kcal/mol
+ Log10(partial pressure [mbar])                    :         7.82771
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222874.47570 kcal/mol
+ Total mean interaction energy in the mix (H_int)  :        -6.96186 kcal/mol
+ Misfit interaction energy in the mix (H_MF)       :         2.99242 kcal/mol
+ H-Bond interaction energy in the mix (H_HB)       :         0.00000 kcal/mol
+ VdW interaction energy in the mix (H_vdW)         :       -24.67370 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+
+ Compound: 3  (lacticacid)
+ Chemical potential of the compound in the mixture :         3.59764 kcal/mol
+ Log10(partial pressure [mbar])                    :        -1.66606
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215745.08250 kcal/mol
+ Total mean interaction energy in the mix (H_int)  :        -8.51744 kcal/mol
+ Misfit interaction energy in the mix (H_MF)       :         1.78375 kcal/mol
+ H-Bond interaction energy in the mix (H_HB)       :        -7.44109 kcal/mol
+ VdW interaction energy in the mix (H_vdW)         :       -13.38705 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+
+
+
+ Compound: 1 Conformer: 1 (h2o_c0)
+ Chemical potential of the molecule in the mixture :         2.88312 kcal/mol
+ Log10(partial pressure [mbar])                    :         0.99136
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :    -47990.37016 kcal/mol
+ Total mean interaction energy in the mix          :        -5.86096 kcal/mol
+ Misfit interaction energy in the mix              :         0.54849 kcal/mol
+ H-Bond interaction energy in the mix              :        -4.97505 kcal/mol
+ VdW interaction energy in the mix                 :        -4.36645 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         2.93205 kcal/mol
+ Normalized weight factor of molecule in compound  :         1.00000
+ Normalized weight factor of molecule in gas phase :         1.00000
+
+ Compound: 2 Conformer: 1 (n-nonane_c0)
+ Chemical potential of the molecule in the mixture :         7.21815 kcal/mol
+ Log10(partial pressure [mbar])                    :         7.74412
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222874.18271 kcal/mol
+ Total mean interaction energy in the mix          :        -7.49513 kcal/mol
+ Misfit interaction energy in the mix              :         3.02696 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -24.85510 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.60474
+ Normalized weight factor of molecule in gas phase :         0.49886
+
+ Compound: 2 Conformer: 2 (n-nonane_c1)
+ Chemical potential of the molecule in the mixture :         7.44830 kcal/mol
+ Log10(partial pressure [mbar])                    :         7.94089
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222873.11877 kcal/mol
+ Total mean interaction energy in the mix          :        -7.10253 kcal/mol
+ Misfit interaction energy in the mix              :         2.89763 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -24.33317 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.09736
+ Normalized weight factor of molecule in gas phase :         0.12501
+
+ Compound: 2 Conformer: 3 (n-nonane_c2)
+ Chemical potential of the molecule in the mixture :         7.39906 kcal/mol
+ Log10(partial pressure [mbar])                    :         7.91898
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222873.00856 kcal/mol
+ Total mean interaction energy in the mix          :        -7.16687 kcal/mol
+ Misfit interaction energy in the mix              :         2.91940 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -24.41928 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.08058
+ Normalized weight factor of molecule in gas phase :         0.09918
+
+ Compound: 2 Conformer: 4 (n-nonane_c3)
+ Chemical potential of the molecule in the mixture :         7.40474 kcal/mol
+ Log10(partial pressure [mbar])                    :         7.92140
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222872.94582 kcal/mol
+ Total mean interaction energy in the mix          :        -7.11588 kcal/mol
+ Misfit interaction energy in the mix              :         2.98145 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -24.43034 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.07235
+ Normalized weight factor of molecule in gas phase :         0.08977
+
+ Compound: 2 Conformer: 5 (n-nonane_c4)
+ Chemical potential of the molecule in the mixture :         7.42322 kcal/mol
+ Log10(partial pressure [mbar])                    :         7.93848
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222872.96997 kcal/mol
+ Total mean interaction energy in the mix          :        -7.12738 kcal/mol
+ Misfit interaction energy in the mix              :         2.94596 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -24.40635 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.07542
+ Normalized weight factor of molecule in gas phase :         0.09708
+
+ Compound: 2 Conformer: 6 (n-nonane_c5)
+ Chemical potential of the molecule in the mixture :         7.42552 kcal/mol
+ Log10(partial pressure [mbar])                    :         7.94065
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222872.92270 kcal/mol
+ Total mean interaction energy in the mix          :        -7.10668 kcal/mol
+ Misfit interaction energy in the mix              :         2.97120 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -24.41089 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.06954
+ Normalized weight factor of molecule in gas phase :         0.09009
+
+ Compound: 3 Conformer: 1 (lacticacid_c0)
+ Chemical potential of the molecule in the mixture :         5.53467 kcal/mol
+ Log10(partial pressure [mbar])                    :        -1.46264
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215743.14548 kcal/mol
+ Total mean interaction energy in the mix          :        -7.84909 kcal/mol
+ Misfit interaction energy in the mix              :         1.82030 kcal/mol
+ H-Bond interaction energy in the mix              :        -4.58464 kcal/mol
+ VdW interaction energy in the mix                 :       -13.33659 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.03597
+ Normalized weight factor of molecule in gas phase :         0.00476
+
+ Compound: 3 Conformer: 2 (lacticacid_c1)
+ Chemical potential of the molecule in the mixture :         5.69024 kcal/mol
+ Log10(partial pressure [mbar])                    :        -0.92964
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215742.80841 kcal/mol
+ Total mean interaction energy in the mix          :        -7.38290 kcal/mol
+ Misfit interaction energy in the mix              :         1.94245 kcal/mol
+ H-Bond interaction energy in the mix              :        -4.26210 kcal/mol
+ VdW interaction energy in the mix                 :       -13.31510 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.02017
+ Normalized weight factor of molecule in gas phase :         0.00936
+
+ Compound: 3 Conformer: 3 (lacticacid_c2)
+ Chemical potential of the molecule in the mixture :         3.83768 kcal/mol
+ Log10(partial pressure [mbar])                    :        -0.20006
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215743.76878 kcal/mol
+ Total mean interaction energy in the mix          :        -8.50436 kcal/mol
+ Misfit interaction energy in the mix              :         1.86306 kcal/mol
+ H-Bond interaction energy in the mix              :        -5.21801 kcal/mol
+ VdW interaction energy in the mix                 :       -13.40125 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.10486
+ Normalized weight factor of molecule in gas phase :         0.94961
+
+ Compound: 3 Conformer: 4 (lacticacid_c3)
+ Chemical potential of the molecule in the mixture :         2.03194 kcal/mol
+ Log10(partial pressure [mbar])                    :        -2.65362
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215744.15349 kcal/mol
+ Total mean interaction energy in the mix          :       -10.72900 kcal/mol
+ Misfit interaction energy in the mix              :         1.78640 kcal/mol
+ H-Bond interaction energy in the mix              :        -7.39352 kcal/mol
+ VdW interaction energy in the mix                 :       -13.37372 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.20296
+ Normalized weight factor of molecule in gas phase :         0.02089
+
+ Compound: 3 Conformer: 5 (lacticacid_c4)
+ Chemical potential of the molecule in the mixture :         1.45987 kcal/mol
+ Log10(partial pressure [mbar])                    :        -4.74733
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215744.63896 kcal/mol
+ Total mean interaction energy in the mix          :       -11.70160 kcal/mol
+ Misfit interaction energy in the mix              :         1.76387 kcal/mol
+ H-Bond interaction energy in the mix              :        -8.32371 kcal/mol
+ VdW interaction energy in the mix                 :       -13.39361 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.46702
+ Normalized weight factor of molecule in gas phase :         0.00039
+
+ Compound: 3 Conformer: 6 (lacticacid_c5)
+ Chemical potential of the molecule in the mixture :         1.98861 kcal/mol
+ Log10(partial pressure [mbar])                    :        -2.71759
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215744.04685 kcal/mol
+ Total mean interaction energy in the mix          :       -10.80988 kcal/mol
+ Misfit interaction energy in the mix              :         1.75955 kcal/mol
+ H-Bond interaction energy in the mix              :        -7.42583 kcal/mol
+ VdW interaction energy in the mix                 :       -13.39544 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.16901
+ Normalized weight factor of molecule in gas phase :         0.01500
+
+
+
+
+ Results for mixture 4 - LIQ_EX Phase 2 Iteration    1
+ ---------------------
+ Temperature          :    293.150 K
+ Compound Nr.         :         1         2         3
+ Compound             :       h2o  n-nonane lacticaci
+ Mole Fraction        :    0.0001    0.9999    0.0000
+
+ Compound: 1  (h2o)
+ Chemical potential of the compound in the mixture :         8.01039 kcal/mol
+ Log10(partial pressure [mbar])                    :         4.81378
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :    -47985.24289 kcal/mol
+ Total mean interaction energy in the mix (H_int)  :         0.67463 kcal/mol
+ Misfit interaction energy in the mix (H_MF)       :         2.41743 kcal/mol
+ H-Bond interaction energy in the mix (H_HB)       :        -0.01324 kcal/mol
+ VdW interaction energy in the mix (H_vdW)         :        -4.66161 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         2.93205 kcal/mol
+ Equilibrium constant Kx(1,2)                      :      6643.83518
+ Equilibrium concentration x_k(1,2)                :         0.99985
+
+ Compound: 2  (n-nonane)
+ Chemical potential of the compound in the mixture :        -2.53205 kcal/mol
+ Log10(partial pressure [mbar])                    :         0.77730
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222883.93290 kcal/mol
+ Total mean interaction energy in the mix (H_int)  :        -9.91291 kcal/mol
+ Misfit interaction energy in the mix (H_MF)       :         0.78506 kcal/mol
+ H-Bond interaction energy in the mix (H_HB)       :         0.00000 kcal/mol
+ VdW interaction energy in the mix (H_vdW)         :       -25.34820 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Equilibrium constant Kx(1,2)                      :  8.90397348E-08
+ Equilibrium concentration x_k(1,2)                :         0.00000
+
+ Compound: 3  (lacticacid)
+ Chemical potential of the compound in the mixture :         8.32362 kcal/mol
+ Log10(partial pressure [mbar])                    :         1.85719
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215740.35652 kcal/mol
+ Total mean interaction energy in the mix (H_int)  :        -1.49428 kcal/mol
+ Misfit interaction energy in the mix (H_MF)       :         3.55261 kcal/mol
+ H-Bond interaction energy in the mix (H_HB)       :        -0.14355 kcal/mol
+ VdW interaction energy in the mix (H_vdW)         :       -14.12662 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Equilibrium constant Kx(1,2)                      :      3336.21185
+ Equilibrium concentration x_k(1,2)                :         0.99970
+
+
+
+ Compound: 1 Conformer: 1 (h2o_c0)
+ Chemical potential of the molecule in the mixture :         8.01039 kcal/mol
+ Log10(partial pressure [mbar])                    :         4.81378
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :    -47985.24289 kcal/mol
+ Total mean interaction energy in the mix          :         0.67463 kcal/mol
+ Misfit interaction energy in the mix              :         2.41743 kcal/mol
+ H-Bond interaction energy in the mix              :        -0.01324 kcal/mol
+ VdW interaction energy in the mix                 :        -4.66161 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         2.93205 kcal/mol
+ Normalized weight factor of molecule in compound  :         1.00000
+ Normalized weight factor of molecule in gas phase :         1.00000
+
+ Compound: 2 Conformer: 1 (n-nonane_c0)
+ Chemical potential of the molecule in the mixture :        -2.30459 kcal/mol
+ Log10(partial pressure [mbar])                    :         0.64485
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222883.70545 kcal/mol
+ Total mean interaction energy in the mix          :       -10.37322 kcal/mol
+ Misfit interaction energy in the mix              :         0.79212 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -25.49835 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.67675
+ Normalized weight factor of molecule in gas phase :         0.49886
+
+ Compound: 2 Conformer: 2 (n-nonane_c1)
+ Chemical potential of the molecule in the mixture :        -1.84535 kcal/mol
+ Log10(partial pressure [mbar])                    :         1.01240
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222882.41242 kcal/mol
+ Total mean interaction energy in the mix          :        -9.86033 kcal/mol
+ Misfit interaction energy in the mix              :         0.77483 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -24.96816 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.07353
+ Normalized weight factor of molecule in gas phase :         0.12501
+
+ Compound: 2 Conformer: 3 (n-nonane_c2)
+ Chemical potential of the molecule in the mixture :        -1.94945 kcal/mol
+ Log10(partial pressure [mbar])                    :         0.94959
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222882.35708 kcal/mol
+ Total mean interaction energy in the mix          :        -9.95600 kcal/mol
+ Misfit interaction energy in the mix              :         0.76713 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -25.05614 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.06687
+ Normalized weight factor of molecule in gas phase :         0.09918
+
+ Compound: 2 Conformer: 4 (n-nonane_c3)
+ Chemical potential of the molecule in the mixture :        -1.95823 kcal/mol
+ Log10(partial pressure [mbar])                    :         0.94123
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222882.30879 kcal/mol
+ Total mean interaction energy in the mix          :        -9.96394 kcal/mol
+ Misfit interaction energy in the mix              :         0.76924 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -25.06618 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.06155
+ Normalized weight factor of molecule in gas phase :         0.08977
+
+ Compound: 2 Conformer: 5 (n-nonane_c4)
+ Chemical potential of the molecule in the mixture :        -1.92595 kcal/mol
+ Log10(partial pressure [mbar])                    :         0.96860
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222882.31914 kcal/mol
+ Total mean interaction energy in the mix          :        -9.94008 kcal/mol
+ Misfit interaction energy in the mix              :         0.76991 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -25.04299 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.06265
+ Normalized weight factor of molecule in gas phase :         0.09708
+
+ Compound: 2 Conformer: 6 (n-nonane_c5)
+ Chemical potential of the molecule in the mixture :        -1.93247 kcal/mol
+ Log10(partial pressure [mbar])                    :         0.96420
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222882.28069 kcal/mol
+ Total mean interaction energy in the mix          :        -9.94454 kcal/mol
+ Misfit interaction energy in the mix              :         0.76956 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -25.04710 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.05865
+ Normalized weight factor of molecule in gas phase :         0.09009
+
+ Compound: 3 Conformer: 1 (lacticacid_c0)
+ Chemical potential of the molecule in the mixture :         9.86655 kcal/mol
+ Log10(partial pressure [mbar])                    :         1.76681
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215738.81359 kcal/mol
+ Total mean interaction energy in the mix          :        -1.25708 kcal/mol
+ Misfit interaction energy in the mix              :         4.63249 kcal/mol
+ H-Bond interaction energy in the mix              :        -0.03910 kcal/mol
+ VdW interaction energy in the mix                 :       -14.10231 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.07075
+ Normalized weight factor of molecule in gas phase :         0.00476
+
+ Compound: 3 Conformer: 2 (lacticacid_c1)
+ Chemical potential of the molecule in the mixture :         9.58422 kcal/mol
+ Log10(partial pressure [mbar])                    :         1.97336
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215738.91443 kcal/mol
+ Total mean interaction energy in the mix          :        -1.34236 kcal/mol
+ Misfit interaction energy in the mix              :         4.51505 kcal/mol
+ H-Bond interaction energy in the mix              :        -0.03443 kcal/mol
+ VdW interaction energy in the mix                 :       -14.07481 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.08412
+ Normalized weight factor of molecule in gas phase :         0.00936
+
+ Compound: 3 Conformer: 3 (lacticacid_c2)
+ Chemical potential of the molecule in the mixture :         7.37099 kcal/mol
+ Log10(partial pressure [mbar])                    :         2.43405
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215740.23547 kcal/mol
+ Total mean interaction energy in the mix          :        -2.71337 kcal/mol
+ Misfit interaction energy in the mix              :         3.33337 kcal/mol
+ H-Bond interaction energy in the mix              :        -0.16543 kcal/mol
+ VdW interaction energy in the mix                 :       -14.13315 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.81239
+ Normalized weight factor of molecule in gas phase :         0.94961
+
+ Compound: 3 Conformer: 4 (lacticacid_c3)
+ Chemical potential of the molecule in the mixture :         8.21548 kcal/mol
+ Log10(partial pressure [mbar])                    :         1.95625
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215737.96995 kcal/mol
+ Total mean interaction energy in the mix          :        -1.84223 kcal/mol
+ Misfit interaction energy in the mix              :         4.14688 kcal/mol
+ H-Bond interaction energy in the mix              :        -0.10623 kcal/mol
+ VdW interaction energy in the mix                 :       -14.13472 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.01663
+ Normalized weight factor of molecule in gas phase :         0.02089
+
+ Compound: 3 Conformer: 5 (lacticacid_c4)
+ Chemical potential of the molecule in the mixture :         9.19370 kcal/mol
+ Log10(partial pressure [mbar])                    :         1.01830
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215736.90513 kcal/mol
+ Total mean interaction energy in the mix          :        -1.25659 kcal/mol
+ Misfit interaction energy in the mix              :         4.77967 kcal/mol
+ H-Bond interaction energy in the mix              :        -0.10569 kcal/mol
+ VdW interaction energy in the mix                 :       -14.18240 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.00267
+ Normalized weight factor of molecule in gas phase :         0.00039
+
+ Compound: 3 Conformer: 6 (lacticacid_c5)
+ Chemical potential of the molecule in the mixture :         8.18942 kcal/mol
+ Log10(partial pressure [mbar])                    :         1.90516
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215737.84604 kcal/mol
+ Total mean interaction energy in the mix          :        -1.90117 kcal/mol
+ Misfit interaction energy in the mix              :         4.11716 kcal/mol
+ H-Bond interaction energy in the mix              :        -0.10730 kcal/mol
+ VdW interaction energy in the mix                 :       -14.16288 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.01344
+ Normalized weight factor of molecule in gas phase :         0.01500
+
+
+
+
+ Results for mixture 5 - LIQ_EX Phase 1 Iteration    2
+ ---------------------
+ Temperature          :    293.150 K
+ Compound Nr.         :         1         2         3
+ Compound             :       h2o  n-nonane lacticaci
+ Mole Fraction        :    0.9971    0.0000    0.0029
+
+ Compound: 1  (h2o)
+ Chemical potential of the compound in the mixture :         2.88312 kcal/mol
+ Log10(partial pressure [mbar])                    :         0.99136
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :    -47990.37016 kcal/mol
+ Total mean interaction energy in the mix (H_int)  :        -5.86096 kcal/mol
+ Misfit interaction energy in the mix (H_MF)       :         0.54849 kcal/mol
+ H-Bond interaction energy in the mix (H_HB)       :        -4.97505 kcal/mol
+ VdW interaction energy in the mix (H_vdW)         :        -4.36645 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         2.93205 kcal/mol
+
+ Compound: 2  (n-nonane)
+ Chemical potential of the compound in the mixture :         6.92516 kcal/mol
+ Log10(partial pressure [mbar])                    :         7.82772
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222874.47570 kcal/mol
+ Total mean interaction energy in the mix (H_int)  :        -6.96186 kcal/mol
+ Misfit interaction energy in the mix (H_MF)       :         2.99242 kcal/mol
+ H-Bond interaction energy in the mix (H_HB)       :         0.00000 kcal/mol
+ VdW interaction energy in the mix (H_vdW)         :       -24.67369 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+
+ Compound: 3  (lacticacid)
+ Chemical potential of the compound in the mixture :         3.59765 kcal/mol
+ Log10(partial pressure [mbar])                    :        -1.66606
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215745.08250 kcal/mol
+ Total mean interaction energy in the mix (H_int)  :        -8.51744 kcal/mol
+ Misfit interaction energy in the mix (H_MF)       :         1.78375 kcal/mol
+ H-Bond interaction energy in the mix (H_HB)       :        -7.44109 kcal/mol
+ VdW interaction energy in the mix (H_vdW)         :       -13.38705 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+
+
+
+ Compound: 1 Conformer: 1 (h2o_c0)
+ Chemical potential of the molecule in the mixture :         2.88312 kcal/mol
+ Log10(partial pressure [mbar])                    :         0.99136
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :    -47990.37016 kcal/mol
+ Total mean interaction energy in the mix          :        -5.86096 kcal/mol
+ Misfit interaction energy in the mix              :         0.54849 kcal/mol
+ H-Bond interaction energy in the mix              :        -4.97505 kcal/mol
+ VdW interaction energy in the mix                 :        -4.36645 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         2.93205 kcal/mol
+ Normalized weight factor of molecule in compound  :         1.00000
+ Normalized weight factor of molecule in gas phase :         1.00000
+
+ Compound: 2 Conformer: 1 (n-nonane_c0)
+ Chemical potential of the molecule in the mixture :         7.21815 kcal/mol
+ Log10(partial pressure [mbar])                    :         7.74412
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222874.18270 kcal/mol
+ Total mean interaction energy in the mix          :        -7.49513 kcal/mol
+ Misfit interaction energy in the mix              :         3.02696 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -24.85510 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.60474
+ Normalized weight factor of molecule in gas phase :         0.49886
+
+ Compound: 2 Conformer: 2 (n-nonane_c1)
+ Chemical potential of the molecule in the mixture :         7.44830 kcal/mol
+ Log10(partial pressure [mbar])                    :         7.94089
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222873.11876 kcal/mol
+ Total mean interaction energy in the mix          :        -7.10253 kcal/mol
+ Misfit interaction energy in the mix              :         2.89763 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -24.33317 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.09736
+ Normalized weight factor of molecule in gas phase :         0.12501
+
+ Compound: 2 Conformer: 3 (n-nonane_c2)
+ Chemical potential of the molecule in the mixture :         7.39907 kcal/mol
+ Log10(partial pressure [mbar])                    :         7.91898
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222873.00856 kcal/mol
+ Total mean interaction energy in the mix          :        -7.16687 kcal/mol
+ Misfit interaction energy in the mix              :         2.91940 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -24.41928 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.08058
+ Normalized weight factor of molecule in gas phase :         0.09918
+
+ Compound: 2 Conformer: 4 (n-nonane_c3)
+ Chemical potential of the molecule in the mixture :         7.40474 kcal/mol
+ Log10(partial pressure [mbar])                    :         7.92140
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222872.94581 kcal/mol
+ Total mean interaction energy in the mix          :        -7.11588 kcal/mol
+ Misfit interaction energy in the mix              :         2.98145 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -24.43034 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.07235
+ Normalized weight factor of molecule in gas phase :         0.08977
+
+ Compound: 2 Conformer: 5 (n-nonane_c4)
+ Chemical potential of the molecule in the mixture :         7.42322 kcal/mol
+ Log10(partial pressure [mbar])                    :         7.93849
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222872.96996 kcal/mol
+ Total mean interaction energy in the mix          :        -7.12738 kcal/mol
+ Misfit interaction energy in the mix              :         2.94596 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -24.40635 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.07542
+ Normalized weight factor of molecule in gas phase :         0.09708
+
+ Compound: 2 Conformer: 6 (n-nonane_c5)
+ Chemical potential of the molecule in the mixture :         7.42552 kcal/mol
+ Log10(partial pressure [mbar])                    :         7.94065
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222872.92270 kcal/mol
+ Total mean interaction energy in the mix          :        -7.10668 kcal/mol
+ Misfit interaction energy in the mix              :         2.97120 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -24.41089 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.06954
+ Normalized weight factor of molecule in gas phase :         0.09009
+
+ Compound: 3 Conformer: 1 (lacticacid_c0)
+ Chemical potential of the molecule in the mixture :         5.53467 kcal/mol
+ Log10(partial pressure [mbar])                    :        -1.46264
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215743.14548 kcal/mol
+ Total mean interaction energy in the mix          :        -7.84909 kcal/mol
+ Misfit interaction energy in the mix              :         1.82030 kcal/mol
+ H-Bond interaction energy in the mix              :        -4.58465 kcal/mol
+ VdW interaction energy in the mix                 :       -13.33659 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.03597
+ Normalized weight factor of molecule in gas phase :         0.00476
+
+ Compound: 3 Conformer: 2 (lacticacid_c1)
+ Chemical potential of the molecule in the mixture :         5.69024 kcal/mol
+ Log10(partial pressure [mbar])                    :        -0.92964
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215742.80841 kcal/mol
+ Total mean interaction energy in the mix          :        -7.38290 kcal/mol
+ Misfit interaction energy in the mix              :         1.94245 kcal/mol
+ H-Bond interaction energy in the mix              :        -4.26210 kcal/mol
+ VdW interaction energy in the mix                 :       -13.31510 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.02017
+ Normalized weight factor of molecule in gas phase :         0.00936
+
+ Compound: 3 Conformer: 3 (lacticacid_c2)
+ Chemical potential of the molecule in the mixture :         3.83768 kcal/mol
+ Log10(partial pressure [mbar])                    :        -0.20006
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215743.76878 kcal/mol
+ Total mean interaction energy in the mix          :        -8.50436 kcal/mol
+ Misfit interaction energy in the mix              :         1.86306 kcal/mol
+ H-Bond interaction energy in the mix              :        -5.21801 kcal/mol
+ VdW interaction energy in the mix                 :       -13.40125 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.10486
+ Normalized weight factor of molecule in gas phase :         0.94961
+
+ Compound: 3 Conformer: 4 (lacticacid_c3)
+ Chemical potential of the molecule in the mixture :         2.03194 kcal/mol
+ Log10(partial pressure [mbar])                    :        -2.65362
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215744.15349 kcal/mol
+ Total mean interaction energy in the mix          :       -10.72900 kcal/mol
+ Misfit interaction energy in the mix              :         1.78640 kcal/mol
+ H-Bond interaction energy in the mix              :        -7.39352 kcal/mol
+ VdW interaction energy in the mix                 :       -13.37372 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.20296
+ Normalized weight factor of molecule in gas phase :         0.02089
+
+ Compound: 3 Conformer: 5 (lacticacid_c4)
+ Chemical potential of the molecule in the mixture :         1.45987 kcal/mol
+ Log10(partial pressure [mbar])                    :        -4.74733
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215744.63896 kcal/mol
+ Total mean interaction energy in the mix          :       -11.70160 kcal/mol
+ Misfit interaction energy in the mix              :         1.76387 kcal/mol
+ H-Bond interaction energy in the mix              :        -8.32371 kcal/mol
+ VdW interaction energy in the mix                 :       -13.39361 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.46702
+ Normalized weight factor of molecule in gas phase :         0.00039
+
+ Compound: 3 Conformer: 6 (lacticacid_c5)
+ Chemical potential of the molecule in the mixture :         1.98861 kcal/mol
+ Log10(partial pressure [mbar])                    :        -2.71759
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215744.04685 kcal/mol
+ Total mean interaction energy in the mix          :       -10.80988 kcal/mol
+ Misfit interaction energy in the mix              :         1.75955 kcal/mol
+ H-Bond interaction energy in the mix              :        -7.42583 kcal/mol
+ VdW interaction energy in the mix                 :       -13.39544 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.16901
+ Normalized weight factor of molecule in gas phase :         0.01500
+
+
+
+
+ Results for mixture 6 - LIQ_EX Phase 2 Iteration    2
+ ---------------------
+ Temperature          :    293.150 K
+ Compound Nr.         :         1         2         3
+ Compound             :       h2o  n-nonane lacticaci
+ Mole Fraction        :    0.0002    0.9998    0.0000
+
+ Compound: 1  (h2o)
+ Chemical potential of the compound in the mixture :         7.99798 kcal/mol
+ Log10(partial pressure [mbar])                    :         4.80453
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :    -47985.25530 kcal/mol
+ Total mean interaction energy in the mix (H_int)  :         0.65975 kcal/mol
+ Misfit interaction energy in the mix (H_MF)       :         2.40851 kcal/mol
+ H-Bond interaction energy in the mix (H_HB)       :        -0.01946 kcal/mol
+ VdW interaction energy in the mix (H_vdW)         :        -4.66135 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         2.93205 kcal/mol
+ Equilibrium constant Kx(1,2)                      :      6503.81240
+ Equilibrium concentration x_k(1,2)                :         0.99985
+
+ Compound: 2  (n-nonane)
+ Chemical potential of the compound in the mixture :        -2.53205 kcal/mol
+ Log10(partial pressure [mbar])                    :         0.77730
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222883.93290 kcal/mol
+ Total mean interaction energy in the mix (H_int)  :        -9.91279 kcal/mol
+ Misfit interaction energy in the mix (H_MF)       :         0.78516 kcal/mol
+ H-Bond interaction energy in the mix (H_HB)       :         0.00000 kcal/mol
+ VdW interaction energy in the mix (H_vdW)         :       -25.34819 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Equilibrium constant Kx(1,2)                      :  8.90394354E-08
+ Equilibrium concentration x_k(1,2)                :         0.00000
+
+ Compound: 3  (lacticacid)
+ Chemical potential of the compound in the mixture :         8.29588 kcal/mol
+ Log10(partial pressure [mbar])                    :         1.83651
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215740.38426 kcal/mol
+ Total mean interaction energy in the mix (H_int)  :        -1.58187 kcal/mol
+ Misfit interaction energy in the mix (H_MF)       :         3.52446 kcal/mol
+ H-Bond interaction energy in the mix (H_HB)       :        -0.20388 kcal/mol
+ VdW interaction energy in the mix (H_vdW)         :       -14.12476 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Equilibrium constant Kx(1,2)                      :      3181.06359
+ Equilibrium concentration x_k(1,2)                :         0.99969
+
+
+
+ Compound: 1 Conformer: 1 (h2o_c0)
+ Chemical potential of the molecule in the mixture :         7.99798 kcal/mol
+ Log10(partial pressure [mbar])                    :         4.80453
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :    -47985.25530 kcal/mol
+ Total mean interaction energy in the mix          :         0.65975 kcal/mol
+ Misfit interaction energy in the mix              :         2.40851 kcal/mol
+ H-Bond interaction energy in the mix              :        -0.01946 kcal/mol
+ VdW interaction energy in the mix                 :        -4.66135 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         2.93205 kcal/mol
+ Normalized weight factor of molecule in compound  :         1.00000
+ Normalized weight factor of molecule in gas phase :         1.00000
+
+ Compound: 2 Conformer: 1 (n-nonane_c0)
+ Chemical potential of the molecule in the mixture :        -2.30459 kcal/mol
+ Log10(partial pressure [mbar])                    :         0.64485
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222883.70545 kcal/mol
+ Total mean interaction energy in the mix          :       -10.37310 kcal/mol
+ Misfit interaction energy in the mix              :         0.79223 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -25.49834 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.67675
+ Normalized weight factor of molecule in gas phase :         0.49886
+
+ Compound: 2 Conformer: 2 (n-nonane_c1)
+ Chemical potential of the molecule in the mixture :        -1.84535 kcal/mol
+ Log10(partial pressure [mbar])                    :         1.01240
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222882.41242 kcal/mol
+ Total mean interaction energy in the mix          :        -9.86021 kcal/mol
+ Misfit interaction energy in the mix              :         0.77493 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -24.96815 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.07353
+ Normalized weight factor of molecule in gas phase :         0.12501
+
+ Compound: 2 Conformer: 3 (n-nonane_c2)
+ Chemical potential of the molecule in the mixture :        -1.94945 kcal/mol
+ Log10(partial pressure [mbar])                    :         0.94959
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222882.35707 kcal/mol
+ Total mean interaction energy in the mix          :        -9.95588 kcal/mol
+ Misfit interaction energy in the mix              :         0.76723 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -25.05612 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.06687
+ Normalized weight factor of molecule in gas phase :         0.09918
+
+ Compound: 2 Conformer: 4 (n-nonane_c3)
+ Chemical potential of the molecule in the mixture :        -1.95823 kcal/mol
+ Log10(partial pressure [mbar])                    :         0.94123
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222882.30879 kcal/mol
+ Total mean interaction energy in the mix          :        -9.96382 kcal/mol
+ Misfit interaction energy in the mix              :         0.76934 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -25.06617 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.06155
+ Normalized weight factor of molecule in gas phase :         0.08977
+
+ Compound: 2 Conformer: 5 (n-nonane_c4)
+ Chemical potential of the molecule in the mixture :        -1.92595 kcal/mol
+ Log10(partial pressure [mbar])                    :         0.96861
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222882.31914 kcal/mol
+ Total mean interaction energy in the mix          :        -9.93996 kcal/mol
+ Misfit interaction energy in the mix              :         0.77001 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -25.04298 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.06265
+ Normalized weight factor of molecule in gas phase :         0.09708
+
+ Compound: 2 Conformer: 6 (n-nonane_c5)
+ Chemical potential of the molecule in the mixture :        -1.93246 kcal/mol
+ Log10(partial pressure [mbar])                    :         0.96420
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -222882.28069 kcal/mol
+ Total mean interaction energy in the mix          :        -9.94442 kcal/mol
+ Misfit interaction energy in the mix              :         0.76966 kcal/mol
+ H-Bond interaction energy in the mix              :         0.00000 kcal/mol
+ VdW interaction energy in the mix                 :       -25.04709 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :        14.33301 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.05865
+ Normalized weight factor of molecule in gas phase :         0.09009
+
+ Compound: 3 Conformer: 1 (lacticacid_c0)
+ Chemical potential of the molecule in the mixture :         9.83418 kcal/mol
+ Log10(partial pressure [mbar])                    :         1.74268
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215738.84596 kcal/mol
+ Total mean interaction energy in the mix          :        -1.30928 kcal/mol
+ Misfit interaction energy in the mix              :         4.59749 kcal/mol
+ H-Bond interaction energy in the mix              :        -0.05696 kcal/mol
+ VdW interaction energy in the mix                 :       -14.10165 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.07132
+ Normalized weight factor of molecule in gas phase :         0.00476
+
+ Compound: 3 Conformer: 2 (lacticacid_c1)
+ Chemical potential of the molecule in the mixture :         9.55336 kcal/mol
+ Log10(partial pressure [mbar])                    :         1.95035
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215738.94529 kcal/mol
+ Total mean interaction energy in the mix          :        -1.38990 kcal/mol
+ Misfit interaction energy in the mix              :         4.48265 kcal/mol
+ H-Bond interaction energy in the mix              :        -0.05019 kcal/mol
+ VdW interaction energy in the mix                 :       -14.07420 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.08457
+ Normalized weight factor of molecule in gas phase :         0.00936
+
+ Compound: 3 Conformer: 3 (lacticacid_c2)
+ Chemical potential of the molecule in the mixture :         7.34400 kcal/mol
+ Log10(partial pressure [mbar])                    :         2.41393
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215740.26246 kcal/mol
+ Total mean interaction energy in the mix          :        -2.80940 kcal/mol
+ Misfit interaction energy in the mix              :         3.30470 kcal/mol
+ H-Bond interaction energy in the mix              :        -0.23484 kcal/mol
+ VdW interaction energy in the mix                 :       -14.13109 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.81134
+ Normalized weight factor of molecule in gas phase :         0.94961
+
+ Compound: 3 Conformer: 4 (lacticacid_c3)
+ Chemical potential of the molecule in the mixture :         8.18799 kcal/mol
+ Log10(partial pressure [mbar])                    :         1.93576
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215737.99744 kcal/mol
+ Total mean interaction energy in the mix          :        -1.91774 kcal/mol
+ Misfit interaction energy in the mix              :         4.11674 kcal/mol
+ H-Bond interaction energy in the mix              :        -0.15313 kcal/mol
+ VdW interaction energy in the mix                 :       -14.13319 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.01662
+ Normalized weight factor of molecule in gas phase :         0.02089
+
+ Compound: 3 Conformer: 5 (lacticacid_c4)
+ Chemical potential of the molecule in the mixture :         9.15188 kcal/mol
+ Log10(partial pressure [mbar])                    :         0.98712
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215736.94695 kcal/mol
+ Total mean interaction energy in the mix          :        -1.34229 kcal/mol
+ Misfit interaction energy in the mix              :         4.73951 kcal/mol
+ H-Bond interaction energy in the mix              :        -0.15278 kcal/mol
+ VdW interaction energy in the mix                 :       -14.18085 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.00274
+ Normalized weight factor of molecule in gas phase :         0.00039
+
+ Compound: 3 Conformer: 6 (lacticacid_c5)
+ Chemical potential of the molecule in the mixture :         8.16292 kcal/mol
+ Log10(partial pressure [mbar])                    :         1.88540
+ Free energy of molecule in mix (E_COSMO+dE+Mu)    :   -215737.87254 kcal/mol
+ Total mean interaction energy in the mix          :        -1.97491 kcal/mol
+ Misfit interaction energy in the mix              :         4.08910 kcal/mol
+ H-Bond interaction energy in the mix              :        -0.15451 kcal/mol
+ VdW interaction energy in the mix                 :       -14.16134 kcal/mol
+ Gas liquid transition energy in the mix (H_glt)   :         8.25184 kcal/mol
+ Normalized weight factor of molecule in compound  :         0.01341
+ Normalized weight factor of molecule in gas phase :         0.01500
+
+
+ Iterative computation of Multi-Component-2-Phase-Equilibrium (LIQ_EX) converged !
+
+
+----------------
+ END job       1
+----------------

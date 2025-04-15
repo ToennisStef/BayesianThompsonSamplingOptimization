@@ -2,10 +2,6 @@
 *.csv
 *.zone
 *.data
-<<<<<<< HEAD
-*.inp
-=======
-*.json
-*.inp
 COSMO_venv/
->>>>>>> 7e6ca5b1f9a16614edf201018414072ee7aad4bc
+COSMOtherm/inputfiles/
+.vscode/
