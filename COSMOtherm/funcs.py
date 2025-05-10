@@ -79,7 +79,8 @@ tc={tC} LIQ_EX x1={{{x1_h2o} 0 {x1_lacticacid}}} x2={{0 1 0}}
 """
     # Check if the output file already exists
     if os.path.exists(file_fullpath):
-        overwrite = input(f"The file '{file_fullpath}' already exists. Do you want to overwrite it? [y/n]: ").strip().lower()
+        # overwrite = input(f"The file '{file_fullpath}' already exists. Do you want to overwrite it? [y/n]: ").strip().lower()
+        overwrite = 'n'
         if overwrite != 'y':
             print("Operation cancelled. The file was not overwritten. returning the existing file path and name.")
         else:    
@@ -172,6 +173,41 @@ def build_design_matrix(
     return reduced_fullfact
 
 
+def build_design_matrix_fullfactorial(
+    tC_range:list, 
+    x1_lacticacid_range:list, 
+    solvents:pd.DataFrame,
+    )-> pd.DataFrame:
+    """
+    Generate a reduced full factorial design matrix based on the provided ranges and solvents.
+    The design matrix is generated using the pyDOE3 library.
+    The function returns a DataFrame with the generated design matrix.
+    Parameters:
+        tC_range (list): List of temperature values.
+        x1_lacticacid_range (list): List of lactic acid mole fraction values.
+        solvents_ids (list): List of solvent IDs.
+        solvents (pd.DataFrame): DataFrame containing solvent information.
+    Returns:
+        pd.DataFrame: DataFrame containing the generated design matrix.
+    """
+    solvents_ids = solvents.index.tolist()
+    levels = [len(tC_range), len(x1_lacticacid_range), len(solvents_ids)]
+    fullfact_design = pyDOE3.fullfact(levels=levels)
+    # reduced_design = pyDOE3.gsd(levels=levels, reduction=reduction)
+    fullfact = pd.DataFrame(fullfact_design, columns=['temperature', 'x1_lacticacid', 'solvent'])
+    fullfact['temperature'] = fullfact['temperature'].map({
+        i: tC_range[i] for i in range(len(tC_range))
+    })
+    fullfact['x1_lacticacid'] = fullfact['x1_lacticacid'].map({
+        i: x1_lacticacid_range[i] for i in range(len(x1_lacticacid_range))
+    })
+    fullfact['solvent'] = fullfact['solvent'].map({
+        i: solvents_ids[i] for i in range(len(solvents_ids))
+    })
+    fullfact = fullfact.join(solvents['COSMO_name'], on='solvent')
+    return fullfact
+
+
 def run_COSMOtherm_calculations(
     COSMOtherm_exe_fullpath: str, 
     files: list,
@@ -237,7 +273,7 @@ def get_training_data(
         # Extract Temperature (T) and x(3) value
         temperature_match = re.search(r'T= (\d+\.\d+) K', settings_line)
         x3_match = re.search(r'x\(3\)= ([\d\.E\-]+)', settings_line)
-
+        
         temperature = float(temperature_match.group(1)) if temperature_match else None
         x3_value = float(x3_match.group(1)) if x3_match else None
 

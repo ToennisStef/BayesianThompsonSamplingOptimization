@@ -4,4 +4,5 @@
 *.data
 COSMO_venv/
 COSMOtherm/inputfiles/
+COSMOtherm/outputfiles/
 .vscode/

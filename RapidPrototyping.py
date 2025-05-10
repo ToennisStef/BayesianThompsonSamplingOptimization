@@ -14,13 +14,13 @@ N_steps = 10  # Number of iterations for Bayesian optimization
 Run_initialSampling = False  # Set to False if you want to skip the initial sampling step
 
 tC_range = [20, 40]  # [°C]
-massc1_lacticacid_range = [5, 20]  # [g/L]
-M_h2o = 18.01528  # [g/mol]
-M_lacticacid = 90.078  # [g/mol]
-rho_lacticacid = 1.209  # [g/mL]
-rho_h2o = 1.0  # [g/mL]
-c_p_h2o = 55.5  # [mol/L]
-c_p_lacticacid = rho_lacticacid / M_lacticacid * (10**3)  # [mol/L]
+massc1_lacticacid_range = [5, 20]  # [g/L] mass concentration of lactic acid in the solution [250]
+M_h2o = 18.01528  # [g/mol] molar mass of water
+M_lacticacid = 90.078  # [g/mol] molar mass of lactic acid
+rho_lacticacid = 1.209  # [g/mL] density of lactic acid
+rho_h2o = 1.0  # [g/mL] density of water
+c_p_h2o = 55.5  # [mol/L] concentration of pure water at 25 °C
+c_p_lacticacid = rho_lacticacid / M_lacticacid * (10**3)  # [mol/L] concentration of pure lactic acid at 25 °C
 
 # --- Helper Functions ---
 def calculate_molar_fractions():
