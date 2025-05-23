@@ -1,5 +1,5 @@
 from  COSMOtherm.Configfiles import Config
-from COSMOtherm.funcs import gen_LIQEX_inp_file, sort_solvents_df
+from COSMOtherm.src.funcs import gen_LIQEX_inp_file, sort_solvents_df
 import subprocess
 import pandas as pd
 

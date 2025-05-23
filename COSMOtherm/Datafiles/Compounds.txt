@@ -1,7 +1,0 @@
-Hexan Hexanol Hexanon
-Heptan Heptanol Heptanon
-Octan Octanol Octanon
-Nonan Nonanol Nonanon
-Decan Decanol Decanon
-Undecan Undecanol Undecanon
-Dodecan dodecanol dodecanon

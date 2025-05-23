@@ -3,8 +3,8 @@ import pandas as pd
 import subprocess
 import os
 from COSMOtherm.Configfiles import Config, COSMOthermConfig
-from COSMOtherm.funcs import gen_LIQEX_inp_file, load_and_sort_solvents, run_COSMOtherm_calculations, list_files_with_extension
-from COSMOtherm.funcs import get_training_data, get_next_candidate, build_design_matrix
+from COSMOtherm.src.funcs import gen_LIQEX_inp_file, load_and_sort_solvents, run_COSMOtherm_calculations, list_files_with_extension
+from COSMOtherm.src.funcs import get_training_data, get_next_candidate, build_design_matrix
 import torch
 
 

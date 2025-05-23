@@ -37,12 +37,20 @@ This iterative process continues until the optimal combination of $\mathbf{x}$ a
 ## Optimization of Lactic Acid Extraction – Problem Statement & Approaches
 
 ### Goal:
-- Optimize the extraction of lactic acid from a contaminated aqueous solution by selecting an optimal solvent and extraction temperature.
+- Optimize the extraction of lactic acid from a contaminated aqueous solution (the fermentation broth) by selecting an optimal solvent, extraction temperature and initial lactic acid concentration.
+
+### Problem Statement
+
+We try to optimize the extraction efficiency
+
+### Initial Approach:
+
+
 - Perform thermodynamic calculations using COSMOtherm.
 - Apply Bayesian Optimization (BO) for optimization.
 
-### Initial Approach:
-- Model the problem as a Multi-Armed Bandit (MAB) with one continuous variable (temperature).
+
+Model the problem as a Multi-Armed Bandit (MAB) with one continuous variable (temperature).
 - Combine Bayesian Optimization with Thompson Sampling:
     1. Treat each solvent as a discrete variable, with a separate Gaussian Process (GP) for temperature for each solvent.
     2. Determine the best next temperature candidate for each solvent.
@@ -67,31 +75,6 @@ This iterative process continues until the optimal combination of $\mathbf{x}$ a
 - encoding of solvents with ordinal-encoding either by:
     - arbitrary ordinal encoding
     - ordinal encoding of sorted solvent dataframe with respect to SMILES configuration
-
-
-
-## Maybe later:
-- Only consider c6-c11:
-
-| Chain-length | Alkane   | Alcohol   | Ketone    |
-|-------------|---------|-----------|----------|
-| C6          | Hexan   | Hexanol   | Hexanon  |
-| C7          | Heptan  | Heptanol  | Heptanon |
-| C8          | Octan   | Octanol   | Octanon  |
-| C9          | Nonan   | Nonanol   | Nonanon  |
-| C10         | Decan   | Decanol   | Decanon  |
-| C11         | Undecan | Undecanol | Undecanon|
-
-- encode with respect to chain length and functional end-group:
-
-| Chain-length | Alkane   | Alcohol   | Ketone    |
-|-------------|---------|-----------|----------|
-| C6          | 1;1     | 1;2       | 1;3      |
-| C7          | 2;1     | 2;2       | 2;3      |
-| C8          | 3;1     | 3;2       | 3;3      |
-| C9          | 4;1     | 4;2       | 4;3      |
-| C10         | 5;1     | 5;2       | 5;3      |
-| C11         | 6;1     | 6;2       | 6;3      |
 
 
 
