@@ -4,5 +4,3 @@
 COSMO_venv/
 .vscode/
 Archive/
-*.out
-*.inp
