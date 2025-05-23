@@ -4,3 +4,6 @@
 COSMO_venv/
 .vscode/
 Archive/
+*.tab
+*.out
+*.inp
