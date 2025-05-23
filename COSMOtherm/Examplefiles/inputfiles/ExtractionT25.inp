@@ -1,7 +1,3 @@
-ctd=BP_TZVPD_FINE_19.ctd CDIR="C:/Program Files/COSMOlogic/COSMOthermX19/COSMOtherm/CTDATA-FILES" LDIR="C:/Program Files/COSMOlogic/COSMOthermX19/licensefiles" odir="\\avt.rwth-aachen.de\home$\student\stto01\.AVT-UserConfig\Desktop\COSMOthemOutput" # Global command line
-FDIR="V:\groups\COSMOTHERM-Datenbank\COSMObase-1901\BP-TZVPD-FINE" vpfile CTAB WCONF AUTOC                                 # Global command line
-!! Isothermal binary phase diagram of Octane - Acetic Acid                        # Comment line
-f = h2o           
-f = 1-octanol
-f = lacticacid                                                               # Compound input
-tc=25 LIQ_EX x1={0.75 0 0.25} x2={0 1 0}
+version https://git-lfs.github.com/spec/v1
+oid sha256:849fb654cde5d864388a387f262d96f9bb86611e5e8bf4abf273d0993c1da592
+size 688
