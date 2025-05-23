@@ -1,9 +1,3 @@
-
- Property  job 1 : Multi-Component-2-Phase-Equilibrium calculation ;
- Settings  job 1 : T= 313.15 K ; Phase 1: x(1)= 0.9959 x(3)= 4.0513E-03 ; Phase 2: x(2)= 1.0000 ;
- Units     job 1 : Concentrations x : mole fraction ;
- 
-  Nr Compound                     phase_1_x         phase_2_x
-   1 h2o                         0.99745698        0.03725985
-   2 5-nonanone                  4.6244E-05        0.96112540
-   3 lacticacid                  0.00249677        0.00161475
+version https://git-lfs.github.com/spec/v1
+oid sha256:f40381812a40419c64fae2eb48b72dd37e4ab6f6fd224041a3685c7206314341
+size 481
