@@ -95,12 +95,22 @@ def get_output_df(
                 P2_x3_in = value
 
         
-
+        # Determine if the descriptor is 4 or 5 lines long
+        with open(file, 'r') as f:
+            lines = [next(f) for _ in range(6)]
+        # Check if the 5th line (index 4) contains column headers (e.g., 'Compound')
+        header_line = lines[4].strip()
+        if re.match(r'Compound', header_line):
+            skiprows = 4
+        else:
+            skiprows = 5
         # Read the file data
         C = []
         P1_x_out = []
         P2_x_out = []
-        file_data = pd.read_csv(file, sep=r'\s+', skiprows=4)
+        file_data = pd.read_csv(file, sep=r'\s+', skiprows=skiprows)
+        
+        # file_data = pd.read_csv(file, sep=r'\s+', skiprows=4)
         for idx, row in file_data.iterrows():
             C.append(row['Compound'])
             P1_x_out.append(row['phase_1_x'])

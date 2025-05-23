@@ -1,5 +1,4 @@
 **/__pycache__/
-*.csv
 *.zone
 *.data
 COSMO_venv/
