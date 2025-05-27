@@ -116,7 +116,20 @@ def get_training_data(
         x3_value = float(x3_match.group(1)) if x3_match else None
 
         # print(f"Extracted Temperature: {temperature} K, x(3): {x3_value}")
-        data = pd.read_csv(file, sep=r'\s+', skiprows=4)
+        
+        
+        # Determine if the descriptor is 4 or 5 lines long
+        with open(file, 'r') as f:
+            lines = [next(f) for _ in range(6)]
+        # Check if the 5th line (index 4) contains column headers (e.g., 'Compound')
+        header_line = lines[4].strip()
+        if re.match(r'Compound', header_line):
+            skiprows = 4
+        else:
+            skiprows = 5
+
+        data = pd.read_csv(file, sep=r'\s+', skiprows=skiprows)
+        
         solvent_name = data['Compound'][1]
         
         solvent_index = solvents[solvents['COSMO_name'] == solvent_name].index[0]
