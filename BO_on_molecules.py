@@ -4,13 +4,24 @@ warnings.filterwarnings("ignore")
 import time
 import numpy as np
 import pandas as pd
-import torch
-from matplotlib import pyplot as plt
-from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
 
+import torch
+from sklearn.model_selection import train_test_split
+from concurrent.futures import ProcessPoolExecutor
+
+from rdkit import Chem
+from mordred import Calculator, descriptors
+from mordred import (HydrogenBond, TopoPSA, SLogP, RotatableBond,
+                     Weight, VdwVolumeABC, Constitutional, Polarizability, CPSA)
+
+from botorch.exceptions.warnings import BadInitialCandidatesWarning
 from botorch.fit import fit_gpytorch_mll
 from botorch.acquisition import LogExpectedImprovement as ExpectedImprovement
 from botorch.models.gp_regression import SingleTaskGP
+from botorch.models.transforms.input import Normalize
+from botorch.models.transforms.outcome import Standardize
+
 from gpytorch.likelihoods import GaussianLikelihood
 from gpytorch.means import ConstantMean
 from gpytorch.kernels import RBFKernel, ScaleKernel, ProductKernel
@@ -20,24 +31,6 @@ from gpytorch.distributions import MultivariateNormal
 from gauche.dataloader import MolPropLoader
 from gauche.kernels.fingerprint_kernels.tanimoto_kernel import TanimotoKernel
 
-from concurrent.futures import ProcessPoolExecutor
-from rdkit import Chem
-
-from mordred import Calculator, descriptors
-from mordred import HydrogenBond, TopoPSA, SLogP, RotatableBond
-from mordred import Weight, VdwVolumeABC, Constitutional, Polarizability, CPSA
-
-import numpy as np
-import torch
-import pandas as pd
-import time
-import warnings
-from botorch.exceptions.warnings import BadInitialCandidatesWarning
-import matplotlib.pyplot as plt
-
-from COSMOtherm.src.BayesianOptimization import get_next_candidate as get_next_candidate_alphab
-from botorch.models.transforms.input import Normalize
-from botorch.models.transforms.outcome import Standardize
 # Experiment parameters
 N_TRIALS = 20
 holdout_set_size = 0.95
@@ -101,8 +94,8 @@ def update_random_observations(best_random, heldout_x, heldout_y):
 def expert_featurization(smiles_list):
 
     calc = Calculator([
-        HydrogenBond.HBondAcceptor,
-        HydrogenBond.HBondDonor,
+        # HydrogenBond.HBondAcceptor,
+        # HydrogenBond.HBondDonor,
         # TopoPSA.TopoPSA,
         SLogP.SLogP,
         # RotatableBond.RotatableBondsCount,
@@ -172,11 +165,6 @@ def run_trial(args):
     data_index = [i for i in range(len(y))]
     np.random.seed(trial)
     torch.manual_seed(trial)
-
-    # Generate initial training data and initialize model
-    # train_x_ei, heldout_x_ei, train_y_ei, heldout_y_ei = train_test_split(
-    #     X, y, test_size=holdout_set_size, random_state=trial
-    # )
     
     train_idx, heldout_idx = train_test_split(
         data_index, test_size=holdout_set_size, random_state=trial
@@ -298,7 +286,7 @@ def run_trial(args):
     return torch.hstack(best_observed_ei), torch.hstack(best_observed_ei_alphab), torch.hstack(best_observed_ei_expert), torch.hstack(best_random)
 
 if __name__ == "__main__":
-    # Load the Photoswitch dataset
+    # Load the Lactate Solubility dataset
     loader = MolPropLoader()
     loader.read_csv(path="./output_data_full.csv", smiles_column="SMILES", label_column="KV")
     df = pd.read_csv("./output_data_full.csv")
