@@ -58,7 +58,7 @@ FDIR="{fdir}" vpfile CTAB WCONF AUTOC                                 # Global c
 f = h2o                      # Compound input (water)
 f = {solvent}                # Compound input (solvent)
 f = lacticacid               # Compound input (lactic acid)
-tc={tC} LIQ_EX x1={{{x1_h2o} 0 {x1_lacticacid}}} x2={{0 1 0}}
+tc={tC} LIQ_EX x1={{{x1_h2o} 0 {x1_lacticacid}}} x2={{0 1 0}} maxiter=1000
 # LIQ_EX: Liquid phase equilibrium calculation
 # x1: Mole fraction of the first component in the input stream
 # x2: Mole fraction of the second component in the input stream

@@ -38,6 +38,7 @@ def get_output_df(
                 - 'Phase 2 x(1) output': Output value for x(1) in Phase 2.
                 - 'Phase 2 x(2) output': Output value for x(2) in Phase 2.
                 - 'Phase 2 x(3) output': Output value for x(3) in Phase 2.
+                - 'Warning msg': A warning message from COSMOtherm if applicable.
             - description (str): A textual description of the DataFrame columns.
     Notes:
         - The function assumes a specific file format and structure, including 
@@ -104,6 +105,17 @@ def get_output_df(
             skiprows = 4
         else:
             skiprows = 5
+            
+        warning_msg = ""
+        if skiprows == 5:
+            warning_line = lines[4].strip()
+            warning_match = re.search(r'WARNING:\s*(.*)', warning_line)
+            if warning_match:
+                warning_msg = warning_match.group(1)
+        else:
+            warning_msg = ""
+
+            
         # Read the file data
         C = []
         P1_x_out = []
@@ -136,6 +148,7 @@ def get_output_df(
             "Phase 2 x(1) output": P2_x_out[0],
             "Phase 2 x(2) output": P2_x_out[1],
             "Phase 2 x(3) output": P2_x_out[2],
+            "Warning msg": warning_msg
         })
 
     # Create a DataFrame from the collected data

@@ -124,8 +124,8 @@ def run_initialSample_calculations(
         The directories for the input and output files are defined in the Config and COSMOthermConfig scripts.
     
     """
-    from COSMOtherm_functions.Inputfile_Generation import gen_LIQEX_inp_file
-    from COSMOtherm_functions.Run_COSMOtherm_Calculations import run_COSMOtherm_calculations
+    from .COSMOtherm_functions.Inputfile_Generation import gen_LIQEX_inp_file
+    from .COSMOtherm_functions.Run_COSMOtherm_Calculations import run_COSMOtherm_calculations
     from ..Configfiles import Config, COSMOthermConfig
     
     # Each row in the design matrix is a COSMOtherm calculation:

@@ -6,7 +6,6 @@ from COSMOtherm.src.funcs import load_and_sort_solvents, run_initialSample_calcu
 import logging
 
 # --- Constants & Global Variables ---
-N_steps = 10  # Number of iterations for Bayesian optimization
 Run_initialSampling = True  # Set to False if you want to skip the initial sampling step
 
 tC_range = [20, 30, 40]  # [°C]
