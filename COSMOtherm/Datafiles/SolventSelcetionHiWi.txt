@@ -23,8 +23,8 @@
 
 
 NOT FOUND in COSMOtherm Database:
-| 1,1,1 Trichloroethane                 | 75 14 7       | [1,1,1 Trichloroethane](https://pubchem.ncbi.nlm.nih.gov/compound/1-1-1-Trichloroethane) |
-| Carvacrol                             | 94 75 7       | [Carvacrol](https://pubchem.ncbi.nlm.nih.gov/compound/Carvacrol)       |
+| 1,1,1 Trichloroethane                 | 71-55-6       | [1,1,1 Trichloroethane](https://pubchem.ncbi.nlm.nih.gov/compound/1-1-1-Trichloroethane) |
+| Carvacrol                             | 499-75-2       | [Carvacrol](https://pubchem.ncbi.nlm.nih.gov/compound/Carvacrol)       |
 
 Duplicates to Initial Solvent Selection:
 | Hexane (n Hexane)                     | 110 54 3      | [Hexane](https://pubchem.ncbi.nlm.nih.gov/compound/Hexane)             |

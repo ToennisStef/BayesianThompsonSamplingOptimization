@@ -168,6 +168,9 @@ In this relaxation, the solvent variable $z$ is allowed to take continuous value
 |2-undecanone|112-12-9|N/A|
 |dodecane|112-40-3|N/A|
 | dodecanol |112-53-8|N/A|
+| 1,1,1-Trichloroethane | 75-14-7 | [1,1,1-Trichloroethane](https://pubchem.ncbi.nlm.nih.gov/compound/1-1-1-Trichloroethane) |
+| Carvacrol | 94-75-7 | [Carvacrol](https://pubchem.ncbi.nlm.nih.gov/compound/Carvacrol)             |
+| 4-methy-2-pentanone | 108-10-1 | N/A
 
 
 ### NOT FOUND in COSMOtherm Database:
@@ -176,9 +179,6 @@ In this relaxation, the solvent variable $z$ is allowed to take continuous value
 | 2-dodecanone | 6175-49-1 | N/A |
 | 3-dodecanone | 1534-27-6 | N/A |
 | 5-dodecanone | 19780-10-0 | N/A |
-| 1,1,1-Trichloroethane | 75-14-7 | [1,1,1-Trichloroethane](https://pubchem.ncbi.nlm.nih.gov/compound/1-1-1-Trichloroethane) |
-| Carvacrol | 94-75-7 | [Carvacrol](https://pubchem.ncbi.nlm.nih.gov/compound/Carvacrol)             |
-| 4-methy-2-pentanone | 108-10-1 | N/A
 
 
 

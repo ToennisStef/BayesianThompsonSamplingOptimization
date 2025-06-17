@@ -14,6 +14,13 @@ massconcentration_lacticacid_range = [5, 10, 20, 50, 100, 150, 200, 250]  # [g/L
 # 5[g/L] 10[g/L] 20[g/L] (Für kontinuierliche Abtrennung aus dem Fermenter relevant)
 # 50[g/L] 100[g/L] 150[g/L] 200[g/L] 250[g/L] (Das ist laut Literatur die maximale Konzentration die bisher bei Fermentation erreicht wird)
 
+composition_types = [
+    "Mole fraction", 
+    "Mass fraction", 
+    "Masses W[g]", 
+    "Mole numbers"
+    ] # Types of composition to be used in the calculations
+
 # Configure logging in the main file
 logging.basicConfig(
     level=logging.INFO,
