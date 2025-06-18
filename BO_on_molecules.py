@@ -1,6 +1,7 @@
 import warnings
 warnings.filterwarnings("ignore")
 
+import os
 import time
 import numpy as np
 import pandas as pd
@@ -31,10 +32,12 @@ from gpytorch.distributions import MultivariateNormal
 from gauche.dataloader import MolPropLoader
 from gauche.kernels.fingerprint_kernels.tanimoto_kernel import TanimotoKernel
 
+from transformers import AutoModel, AutoTokenizer
+
 # Experiment parameters
-N_TRIALS = 20
+N_TRIALS = 10
 holdout_set_size = 0.95
-N_ITERS = 20
+N_ITERS = 10
 verbose = True
 
 
@@ -92,11 +95,10 @@ def update_random_observations(best_random, heldout_x, heldout_y):
     return best_random, heldout_x, heldout_y
 
 def expert_featurization(smiles_list):
-
     calc = Calculator([
-        # HydrogenBond.HBondAcceptor,
+        HydrogenBond.HBondAcceptor,
         # HydrogenBond.HBondDonor,
-        # TopoPSA.TopoPSA,
+        TopoPSA.TopoPSA,
         SLogP.SLogP,
         # RotatableBond.RotatableBondsCount,
         Weight,
@@ -105,7 +107,6 @@ def expert_featurization(smiles_list):
         # Polarizability,
         CPSA,
     ])
-
     # calc = Calculator(descriptors.all, ignore_3D=False)
 
     # Convert SMILES to RDKit Mol objects, skipping invalids
@@ -121,6 +122,22 @@ def expert_featurization(smiles_list):
     X_calc = X_calc.select_dtypes(include=[np.number])  # Ensure only numeric columns are kept
     print(f"Expert featurization dims: {X_calc.shape}")
     return X_calc.to_numpy()
+
+def molformer_featurization(smiles_list):
+    
+
+    model = AutoModel.from_pretrained("ibm/MoLFormer-XL-both-10pct", deterministic_eval=True, trust_remote_code=True)
+    tokenizer = AutoTokenizer.from_pretrained("ibm/MoLFormer-XL-both-10pct", trust_remote_code=True)
+
+    inputs = tokenizer(smiles_list, padding=True, return_tensors="pt")
+    with torch.no_grad():
+        outputs = model(**inputs)
+    # outputs.pooler_output.shape  # (batch_size, hidden_size)
+    features = outputs.pooler_output.cpu().numpy()
+    
+    print(f"MolFormer featurization dims: {features.shape}")    
+    
+    return features
 
 
 
@@ -304,9 +321,11 @@ if __name__ == "__main__":
 
     X_fp = loader.features
     X_fp = np.concatenate((X_fp, X_temp.values.reshape(-1, 1)), axis=1)  # Add temperature as a feature
-    X_alphab = np.concatenate((df["solvent_id"].values.reshape(-1, 1), X_temp.values.reshape(-1, 1)), axis=1)
+    # X_alphab = np.concatenate((df["solvent_id"].values.reshape(-1, 1), X_temp.values.reshape(-1, 1)), axis=1)
     X_expert = expert_featurization(df["SMILES"])
     X_expert = np.concatenate((X_expert, X_temp.values.reshape(-1, 1)), axis=1)  # Add temperature as a feature
+    X_llm = molformer_featurization(df["SMILES"].to_list())
+    X_alphab = np.concatenate((X_llm, X_temp.values.reshape(-1, 1)), axis=1)  # Add temperature as a feature
     # run_trial(1)
     
     fname = f"BOvsRS_{N_ITERS}iters_{N_TRIALS}trials_{holdout_set_size}holdout"
@@ -321,7 +340,7 @@ if __name__ == "__main__":
 
     t_start = time.time()
     best_observed_all_ei, best_observed_all_ei_alphab, best_observed_all_ei_expert, best_random_all = [], [],[], []
-    with ProcessPoolExecutor() as executor:
+    with ProcessPoolExecutor(max_workers=os.cpu_count()-2) as executor:
         results = list(executor.map(run_trial, iterable))
 
     t_end = time.time()
