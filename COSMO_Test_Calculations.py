@@ -16,11 +16,12 @@ log_dir = "logs"
 os.makedirs(log_dir, exist_ok=True)
 
 # Configure logging in the main file
+log_filename = os.path.splitext(os.path.basename(__file__))[0] + ".log"
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
     handlers=[
-        logging.FileHandler(os.path.join(log_dir, "COSMO_LLE_Calculation.log")),
+        logging.FileHandler(os.path.join(log_dir, log_filename)),
         logging.StreamHandler()
     ]
 )
