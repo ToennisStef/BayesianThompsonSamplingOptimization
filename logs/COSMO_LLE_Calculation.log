@@ -1,0 +1,5 @@
+2025-06-26 16:21:44,124 - INFO - Starting new COSMOtherm LLE calculation run.
+2025-06-26 16:26:14,668 - INFO - Starting new COSMOtherm LLE calculation run.
+2025-06-26 16:26:15,352 - INFO - Input file '.\PVAP_n-undecane.inp' has been created successfully. Returning the file path and name.
+2025-06-26 16:26:15,376 - INFO - Running COSMOtherm calculation for file: Q:\Groups\eicr students\Stefan Tönnis\GIT_Repos\BayesianThompsonSamplingOptimization\PVAP_n-undecane.inp
+2025-06-26 16:26:32,609 - INFO - Calculation completed with return code: 0

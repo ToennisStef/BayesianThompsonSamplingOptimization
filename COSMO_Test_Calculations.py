@@ -75,7 +75,7 @@ if __name__ == "__main__":
             solvent=solvent, 
             t_start=25,
             t_end=100,
-            t_step=5,
+            t_steps=5,
             ctd_file=COSMOthermConfig.TIGER['ctd_file'], 
             cdir=COSMOthermConfig.TIGER['cdir'], 
             ldir=COSMOthermConfig.TIGER['ldir'], 
