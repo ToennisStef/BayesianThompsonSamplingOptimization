@@ -9294,3 +9294,19 @@
 2025-06-03 15:24:54,855 - ERROR - Generated an exception: Queue objects should only be shared between processes through inheritance
 2025-06-03 15:24:54,861 - ERROR - Generated an exception: Queue objects should only be shared between processes through inheritance
 2025-06-03 15:24:54,868 - ERROR - Generated an exception: Queue objects should only be shared between processes through inheritance
+2025-06-26 11:43:13,297 - WARNING - File already exists: ./COSMOtherm/inputfiles/Screening/MassesWg\LIQEX_n-undecane_tc20_W15.0.inp
+2025-06-26 11:43:13,299 - INFO - Skipping inputfile generation for: 'LIQEX_n-undecane_tc20_W15.0.inp'
+2025-06-26 11:43:13,300 - INFO - The file was not overwritten. Returning the existing file path and name.
+2025-06-26 11:43:13,304 - WARNING - File already exists: ./COSMOtherm/inputfiles/Screening/MassesWg\LIQEX_n-undecane_tc30_W15.0.inp
+2025-06-26 11:43:13,306 - INFO - Skipping inputfile generation for: 'LIQEX_n-undecane_tc30_W15.0.inp'
+2025-06-26 11:43:13,308 - INFO - The file was not overwritten. Returning the existing file path and name.
+2025-06-26 11:43:13,310 - WARNING - File already exists: ./COSMOtherm/inputfiles/Screening/MassesWg\LIQEX_n-undecane_tc40_W15.0.inp
+2025-06-26 11:43:13,311 - INFO - Skipping inputfile generation for: 'LIQEX_n-undecane_tc40_W15.0.inp'
+2025-06-26 11:43:13,313 - INFO - The file was not overwritten. Returning the existing file path and name.
+2025-06-26 11:43:13,316 - WARNING - File already exists: ./COSMOtherm/inputfiles/Screening/MassesWg\LIQEX_n-undecane_tc20_W110.0.inp
+2025-06-26 11:43:13,355 - INFO - Skipping inputfile generation for: 'LIQEX_n-undecane_tc20_W110.0.inp'
+2025-06-26 11:43:13,359 - INFO - The file was not overwritten. Returning the existing file path and name.
+2025-06-26 11:43:13,389 - WARNING - File already exists: ./COSMOtherm/inputfiles/Screening/MassesWg\LIQEX_n-undecane_tc30_W110.0.inp
+2025-06-26 11:43:13,391 - INFO - Skipping inputfile generation for: 'LIQEX_n-undecane_tc30_W110.0.inp'
+2025-06-26 11:43:13,392 - INFO - The file was not overwritten. Returning the existing file path and name.
+2025-06-26 11:43:13,395 - INFO - Running COSMOtherm calculation for file: U:\Github\BayesianThompsonSamplingOptimization\COSMOtherm\inputfiles\Screening\MassesWg\LIQEX_n-undecane_tc30_W110.0.inp

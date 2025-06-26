@@ -8,3 +8,6 @@ Archive/
 *.out
 *.inp
 *.xml
+*.apw.txt
+*.apw
+*.log

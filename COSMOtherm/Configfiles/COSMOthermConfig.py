@@ -4,7 +4,9 @@ ctd_file = "BP_TZVPD_FINE_19.ctd"  # COSMOtherm CTD file
 cdir = r"C:\Program Files\COSMOlogic\COSMOthermX19\COSMOtherm\CTDATA-FILES"  # COSMOtherm CTDATA directory
 ldir = "C:\Program Files\COSMOlogic\COSMOthermX19\licensefiles"  # COSMOtherm license files directory
 fdir = r"V:\groups\COSMOTHERM-Datenbank\COSMObase-1901\BP-TZVPD-FINE"  # COSMObase directory
-odir = r"Q:\Groups\eicr students\Stefan Tönnis\GIT_Repos\BayesianThompsonSamplingOptimization\COSMOtherm\outputfiles" # Output directory
+# odir = r"Q:\Groups\eicr students\Stefan Tönnis\GIT_Repos\BayesianThompsonSamplingOptimization\COSMOtherm\outputfiles" # Output directory
+odir = r"U:\Github\BayesianThompsonSamplingOptimization\COSMOtherm\outputfiles"
+
 
 # Server configuration for COSMOtherm
 LION = {
@@ -24,7 +26,7 @@ TIGER = {
     "cdir": r"C:\Program Files\BIOVIA\COSMOtherm2021\COSMOtherm\CTDATA-FILES",          # Directory for COSMOtherm CTDATA files
     "ldir": r"C:\Program Files\BIOVIA\COSMOtherm2021\licensefiles",          # Directory for COSMOtherm license files
     "fdir": r"V:\groups\COSMOTHERM-Datenbank 2021\BP-TZVPD-FINE",          # Directory for COSMObase files
-    "odir": r"Q:\Groups\eicr students\Stefan Tönnis\GIT_Repos\BayesianThompsonSamplingOptimization\COSMOtherm\outputfiles"           # Output directory for results
+    "odir": odir           # Output directory for results
 }
 
 composition_types = {
