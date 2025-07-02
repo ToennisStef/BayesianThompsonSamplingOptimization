@@ -8,7 +8,7 @@ def list_files_with_extension(folder_path, file_extension):
         files = glob.glob(search_pattern)
         return files
 
-def get_output_df(
+def get_LIQEX_output_df(
     files: list,
     return_description: bool = False,
     ) -> tuple:
@@ -179,3 +179,4 @@ def get_output_df(
         return result_df, description
     else:
         return result_df
+    

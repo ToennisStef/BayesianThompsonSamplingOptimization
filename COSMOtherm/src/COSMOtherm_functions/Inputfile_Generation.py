@@ -402,3 +402,81 @@ FDIR="{fdir}" AUTOC UNIT=SI                                # Global command line
         "filename": file_name,
         "folder": os.path.abspath(inputfiles_folder)
     }
+
+# ternary={1 2 3} tc=25.0 NRTL # Ternary VLE computation
+def gen_ternaryVLE_NRTL_inp_file(
+    carrier:str,
+    solute:str,
+    solvent:str,
+    tC:float,
+    ctd_file:str,
+    cdir:str,
+    ldir:str,
+    odir:str,
+    fdir:str,
+    file_name:str = None,
+    inputfiles_folder:str = ".",
+    overwrite:bool = False
+    )->None:
+    """
+    Generates an input file for ternary VLE + NRTL calculations in COSMOtherm for a given carrier, solute, and solvent.
+    
+    Parameters:
+        carrier (str): Name of the carrier component.
+        solute (str): Name of the solute component.
+        solvent (str): Name of the solvent component.
+        tC (float): Temperature in degrees Celsius.
+        ctd_file (str): Path to the CT-Data file.
+        cdir (str): Directory for the CT-data/parameterization file.
+        ldir (str): Directory for the license file.
+        odir (str): Directory for the output files.
+        fdir (str): Directory for the compound data files.
+        file_name (str, optional): Name of the input file. If None, a default name will be generated.
+        inputfiles_folder (str, optional): Directory where the input file will be saved. Default is the current directory.
+        overwrite (bool, optional): If True, overwrite existing files. Default is False.
+
+    Returns:
+        str: The full path of the generated input file.
+        str: The name of the generated input file.
+        str: The folder where the input file is saved.
+    """
+    
+    # Ensure the output directory exists
+    os.makedirs(inputfiles_folder, exist_ok=True)
+    logger.debug(f"Ensured the directory '{inputfiles_folder}' exists.")
+    
+    if file_name is None:
+        file_name = f"ternaryVLE_NRTL_{carrier}_{solute}_{solvent}.inp"
+    file_fullpath = os.path.join(inputfiles_folder, file_name)
+
+    # Define content
+    content = f"""ctd={ctd_file} CDIR="{cdir}" LDIR="{ldir}" odir="{odir}" # Global command line
+FDIR="{fdir}" AUTOC UNIT=SI                                # Global command line
+!  Ternary VLE computation with NRTL model for {carrier}, {solute}, and {solvent} at {tC} °C                                          # Comment line
+"""
+    content += f"f = {carrier}\n"
+    content += f"f = {solute}\n"
+    content += f"f = {solvent}\n"
+    content += f"ternary={{1 2 3}} tc={tC} NRTL"  # Ternary VLE computation with NRTL model
+    
+    if os.path.exists(file_fullpath):
+        logger.warning(f"File already exists: {file_fullpath}")
+        if not overwrite:
+            logger.info(f"Skipping inputfile generation for: '{file_name}'")
+            logger.info("The file was not overwritten. Returning the existing file path and name.")
+            return {
+                "fullpath": os.path.abspath(file_fullpath),
+                "filename": file_name,
+                "folder": os.path.abspath(inputfiles_folder)
+            }
+            
+    with open(file_fullpath, "w") as file:
+        logger.debug(f"Generating inputfile: '{file_fullpath}'")
+        file.write(content)
+        logger.info(f"Input file '{file_fullpath}' has been created successfully. Returning the file path and name.")
+    
+    return {
+        "fullpath": os.path.abspath(file_fullpath),
+        "filename": file_name,
+        "folder": os.path.abspath(inputfiles_folder)
+    }

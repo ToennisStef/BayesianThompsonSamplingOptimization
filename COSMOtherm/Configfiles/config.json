@@ -17,10 +17,10 @@
   "TIGER": {
     "COSMOtherm_version": "COSMOtherm 2021",
     "exe_fullpath": "C:/Program Files/BIOVIA/COSMOtherm2021/COSMOtherm/BIN-WINDOWS/cosmotherm.exe",
-    "ctd_file": "BP_TZVPD_FINE_21.ctd",
+    "ctd_file": "BP_TZVP_21.ctd",
     "cdir": "C:/Program Files/BIOVIA/COSMOtherm2021/COSMOtherm/CTDATA-FILES",
     "ldir": "C:/Program Files/BIOVIA/COSMOtherm2021/licensefiles",
-    "fdir": "V:/groups/COSMOTHERM-Datenbank 2021/BP-TZVPD-FINE"
+    "fdir": "V:/groups/COSMOTHERM-Datenbank 2021/BP-TZVP-COSMO"
   },
   "composition_types": {
     "Mole fraction": "x",
