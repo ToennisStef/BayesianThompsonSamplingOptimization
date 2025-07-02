@@ -1,0 +1,53 @@
+{
+  "tC_range": [20, 40],
+  "massconcentration_lacticacid_range": [5, 250],
+  "solvents_fullpath": "./COSMOtherm/Datafiles/solvents+densities.csv",
+  "outputfile_dir": "./COSMOtherm/outputfiles",
+  "initialSamples_dir": "./COSMOtherm/outputfiles/CompleteScreening",
+  "inputfile_dir": "./COSMOtherm/inputfiles",
+  "odir": "Q:/Groups/eicr students/Stefan Tönnis/GIT_Repos/BayesianThompsonSamplingOptimization/COSMOtherm/outputfiles",
+  
+  "LION": {
+    "COSMOtherm_version": "COSMOtherm 2019",
+    "exe_fullpath": "C:/Program Files/COSMOlogic/COSMOthermX19/COSMOtherm/BIN-WINDOWS/cosmotherm.exe",
+    "ctd_file": "BP_TZVPD_FINE_19.ctd",
+    "cdir": "C:/Program Files/COSMOlogic/COSMOthermX19/COSMOtherm/CTDATA-FILES",
+    "ldir": "C:/Program Files/COSMOlogic/COSMOthermX19/licensefiles",
+    "fdir": "V:/groups/COSMOTHERM-Datenbank/COSMObase-1901/BP-TZVPD-FINE",
+  },
+  "TIGER": {
+    "COSMOtherm_version": "COSMOtherm 2021",
+    "exe_fullpath": "C:/Program Files/BIOVIA/COSMOtherm2021/COSMOtherm/BIN-WINDOWS/cosmotherm.exe",
+    "ctd_file": "BP_TZVPD_FINE_21.ctd",
+    "cdir": "C:/Program Files/BIOVIA/COSMOtherm2021/COSMOtherm/CTDATA-FILES",
+    "ldir": "C:/Program Files/BIOVIA/COSMOtherm2021/licensefiles",
+    "fdir": "V:/groups/COSMOTHERM-Datenbank 2021/BP-TZVPD-FINE",
+  },
+  "composition_types": {
+    "Mole fraction": "x",
+    "Mass fraction": "c",
+    "Masses W[g]": "W",
+    "Mole numbers": "N"
+  },
+  "inputfile_dir_screening": {
+    "Mole fraction": "./COSMOtherm/inputfiles/Screening/MoleFraction",
+    "Mass fraction": "./COSMOtherm/inputfiles/Screening/MassFraction",
+    "Masses W[g]": "./COSMOtherm/inputfiles/Screening/MassesWg",
+    "Mole numbers": "./COSMOtherm/inputfiles/Screening/MoleNumbers"
+  },
+  "outputfile_dir_screening": {
+    "Mole fraction": "./COSMOtherm/outputfiles/Screening/MoleFraction",
+    "Mass fraction": "./COSMOtherm/outputfiles/Screening/MassFraction",
+    "Masses W[g]": "./COSMOtherm/outputfiles/Screening/MassesWg",
+    "Mole numbers": "./COSMOtherm/outputfiles/Screening/MoleNumbers"
+  },
+  "V_p1": 1.0,
+  "V_p2": 1.0,
+  "tC_levels": [20, 30, 40],
+  "rho_lacticacid_levels": [5, 10, 20, 50, 100, 150, 200, 250],
+  "composition_type": "Masses W[g]",
+  "N_steps": 50,
+  "Run_initialSampling": false,
+  "log_file": "BayesianOptimization.log",
+  "reduction": 4
+} 

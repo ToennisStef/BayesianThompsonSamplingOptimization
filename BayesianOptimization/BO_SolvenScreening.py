@@ -1,6 +1,6 @@
 # --- Imports ---
 import os
-from COSMOtherm.Configfiles import Config, COSMOthermConfig
+from COSMOtherm.Configfiles import Config
 from COSMOtherm.src.Chemfuncs import calc_la_molefrac
 from COSMOtherm.src.Design_Matrix import build_design_matrix
 from COSMOtherm.src.COSMOtherm_functions.Inputfile_Generation import gen_LIQEX_inp_file
@@ -12,11 +12,11 @@ import torch
 
 
 # --- Constants & Global Variables ---
-N_steps = 50  # Number of iterations for Bayesian optimization
-Run_initialSampling = False  # Set to False if you want to skip the initial sampling step
+N_steps = Config.config['N_steps']
+Run_initialSampling = Config.config['Run_initialSampling']
 
 # --- Logger Setup ---
-log_file = "BayesianOptimization.log"
+log_file = Config.config['log_file']
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
@@ -37,11 +37,11 @@ if __name__ == "__main__":
     # This is still ugly and should be improved
     solvents_ids = solvents.index.tolist()
     solvents_ids_range = [solvents_ids[0], solvents_ids[-1]]
-    tC_range = Config.tC_range
-    massconcentration_lacticacid_range = Config.massconcentration_lacticacid_range
+    tC_range = Config.config['tC_range']
+    massconcentration_lacticacid_range = Config.config['massconcentration_lacticacid_range']
     
     x1_lacticacid_range = calc_la_molefrac(
-        massconcentration_lacticacid=massconcentration_lacticacid_range
+        rho_lacticacid=massconcentration_lacticacid_range
         )
     
     # --- Initial Sampling ---    
@@ -50,7 +50,7 @@ if __name__ == "__main__":
         tC_range=tC_range, 
         x1_lacticacid_range=x1_lacticacid_range, 
         solvents=solvents,
-        reduction=4
+        reduction=Config.config['reduction']
         )
     if Run_initialSampling:    
         # Run the calculations for the design matrix 
@@ -64,7 +64,7 @@ if __name__ == "__main__":
     # Load the initial samples from the design matrix
     initialSample_files = get_filelist_from_design_matrix(
         design_matrix=design_matrix,
-        output_dir= Config.initialSamples_dir
+        output_dir= Config.config['initialSamples_dir']
     )
 
     # Load the results from the initial calculations
@@ -90,22 +90,22 @@ if __name__ == "__main__":
             tC=next_tc,
             x1_lacticacid=next_x1_lacticacid,
             solvent=next_solvent,
-            ctd_file=COSMOthermConfig.ctd_file,
-            cdir=COSMOthermConfig.cdir,
-            ldir=COSMOthermConfig.ldir,
-            odir=COSMOthermConfig.odir,
-            fdir=COSMOthermConfig.fdir,
+            ctd_file=Config.TIGER['ctd_file'],
+            cdir=Config.TIGER['cdir'],
+            ldir=Config.TIGER['ldir'],
+            odir=Config.TIGER['odir'],
+            fdir=Config.TIGER['fdir'],
             inputfiles_folder=Config.inputfile_dir
         )
         
         # Run the calculations for the new candidate
         results = run_COSMOtherm_calculations(
-            COSMOtherm_exe_fullpath=Config.COSMOtherm_exe_fullpath,
+            COSMOtherm_exe_fullpath=Config.TIGER['exe_fullpath'],
             files=[inputfile_fullpath]
         )
         
         # Load the results from the new calculations
-        outputfile_fullpath = os.path.join(COSMOthermConfig.odir, file_name[:-3] + "tab")
+        outputfile_fullpath = os.path.join(Config.TIGER['odir'], file_name[:-3] + "tab")
         
         # Get the training data from the new calculations
         train_X_, train_Y_ = get_training_data(
