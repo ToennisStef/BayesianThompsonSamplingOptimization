@@ -13,7 +13,7 @@
     "ctd_file": "BP_TZVPD_FINE_19.ctd",
     "cdir": "C:/Program Files/COSMOlogic/COSMOthermX19/COSMOtherm/CTDATA-FILES",
     "ldir": "C:/Program Files/COSMOlogic/COSMOthermX19/licensefiles",
-    "fdir": "V:/groups/COSMOTHERM-Datenbank/COSMObase-1901/BP-TZVPD-FINE",
+    "fdir": "V:/groups/COSMOTHERM-Datenbank/COSMObase-1901/BP-TZVPD-FINE"
   },
   "TIGER": {
     "COSMOtherm_version": "COSMOtherm 2021",
@@ -21,7 +21,7 @@
     "ctd_file": "BP_TZVPD_FINE_21.ctd",
     "cdir": "C:/Program Files/BIOVIA/COSMOtherm2021/COSMOtherm/CTDATA-FILES",
     "ldir": "C:/Program Files/BIOVIA/COSMOtherm2021/licensefiles",
-    "fdir": "V:/groups/COSMOTHERM-Datenbank 2021/BP-TZVPD-FINE",
+    "fdir": "V:/groups/COSMOTHERM-Datenbank 2021/BP-TZVPD-FINE"
   },
   "composition_types": {
     "Mole fraction": "x",
