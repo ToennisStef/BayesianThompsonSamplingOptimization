@@ -44,7 +44,7 @@ if __name__ == "__main__":
         #     ctd_file=Config.TIGER['ctd_file'], 
         #     cdir=Config.TIGER['cdir'], 
         #     ldir=Config.TIGER['ldir'], 
-        #     odir=Config.TIGER['odir'], 
+        #     odir=Config.outputfile_dir, 
         #     fdir=Config.TIGER['fdir'],
         #     overwrite=True
         #     )
@@ -56,7 +56,7 @@ if __name__ == "__main__":
         #     ctd_file=Config.TIGER['ctd_file'], 
         #     cdir=Config.TIGER['cdir'], 
         #     ldir=Config.TIGER['ldir'], 
-        #     odir=Config.TIGER['odir'], 
+        #     odir=Config.outputfile_dir, 
         #     fdir=Config.TIGER['fdir'],
         #     overwrite=True
         #     )
@@ -66,7 +66,7 @@ if __name__ == "__main__":
         #     ctd_file=Config.TIGER['ctd_file'], 
         #     cdir=Config.TIGER['cdir'], 
         #     ldir=Config.TIGER['ldir'], 
-        #     odir=Config.TIGER['odir'], 
+        #     odir=Config.outputfile_dir, 
         #     fdir=Config.TIGER['fdir'],
         #     overwrite=True
         #     )
@@ -79,7 +79,7 @@ if __name__ == "__main__":
             ctd_file=Config.TIGER['ctd_file'], 
             cdir=Config.TIGER['cdir'], 
             ldir=Config.TIGER['ldir'], 
-            odir=Config.TIGER['odir'], 
+            odir=Config.outputfile_dir,
             fdir=Config.TIGER['fdir'],
             overwrite=True
             )

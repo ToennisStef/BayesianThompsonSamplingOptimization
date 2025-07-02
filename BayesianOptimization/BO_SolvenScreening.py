@@ -93,7 +93,7 @@ if __name__ == "__main__":
             ctd_file=Config.TIGER['ctd_file'],
             cdir=Config.TIGER['cdir'],
             ldir=Config.TIGER['ldir'],
-            odir=Config.TIGER['odir'],
+            odir=Config.outputfile_dir,
             fdir=Config.TIGER['fdir'],
             inputfiles_folder=Config.inputfile_dir
         )
@@ -105,7 +105,7 @@ if __name__ == "__main__":
         )
         
         # Load the results from the new calculations
-        outputfile_fullpath = os.path.join(Config.TIGER['odir'], file_name[:-3] + "tab")
+        outputfile_fullpath = os.path.join(Config.outputfile_dir, file_name[:-3] + "tab")
         
         # Get the training data from the new calculations
         train_X_, train_Y_ = get_training_data(

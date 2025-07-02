@@ -5,7 +5,6 @@
   "outputfile_dir": "./COSMOtherm/outputfiles",
   "initialSamples_dir": "./COSMOtherm/outputfiles/CompleteScreening",
   "inputfile_dir": "./COSMOtherm/inputfiles",
-  "odir": "Q:/Groups/eicr students/Stefan Tönnis/GIT_Repos/BayesianThompsonSamplingOptimization/COSMOtherm/outputfiles",
   
   "LION": {
     "COSMOtherm_version": "COSMOtherm 2019",
