@@ -180,102 +180,8 @@ def get_LIQEX_output_df(
     else:
         return result_df
     
-def get_ternaryVLE_NRTL_output_df(
-    files: list,
-    return_description: bool = False,
-    ) -> tuple:
-    """
-    Extracts and processes data from a list of files to create a pandas DataFrame 
-    containing temperature, phase input/output values, and compound information.
-    """
-    # EXAMPLE file
-
-    #  Property  job 1 : Ternary mixture ;
-    #  Compounds job 1 : h2o (1) ; lacticacid (2) ; n-undecane (3) ;
-    #  Settings  job 1 : T= 303.15 K ;
-    #  Units     job 1 : Energies in kJ/mol ; Pressure in kPa ; Area in nm^2 ; Temperature in K ; Molecular weights in g/mol ; Concentrations x : mole fraction ;
-    #  General   job 1 : Molecular weights 18.0153 (1) 90.0783 (2) 156.3093 (3) ; Surface areas 0.4307 (1) 1.1968 (2) 2.5175 (3) ;
     
-    #           x1          x2          x3             H^E             G^E            ptot    mu1+RTln(x1)    mu2+RTln(x2)    mu3+RTln(x3)      ln(gamma1)      ln(gamma2)      ln(gamma3)          y1          y2          y3
-    #  0.000998004 0.000998004 0.998003992      0.05835114      0.03461745      2.09785273     13.52537457     17.91562133    -13.69832344      5.98606583      7.25499471      0.00052061 0.942820411 0.002009701 0.055169888
-    #  0.000999001 0.049950050 0.949050949      0.82359720      0.75673467      0.32515368      7.57112326     22.26380382    -13.71085347      3.62276463      5.06708065      0.04584421 0.573033842 0.072781724 0.354184433
-    #  0.000999001 0.099900100 0.899100899      1.27993355      1.32800778      0.24222153      6.12817811     21.89488942    -13.67815365      3.05028741      4.22756956      0.11288483 0.433942808 0.084398208 0.481658985
-    #  0.000999001 0.149850150 0.849150849      1.62270566      1.80438032      0.20861703      5.16485730     21.47978481    -13.61655615      2.66809740      3.65741494      0.19448157 0.343805226 0.083113672 0.573081102
-
-    # ....
-
-    #  0.899100899 0.099900100 0.000999001     -0.47183633      0.20729401    112.80528689     15.67990466     12.11779211      3.54206504      0.03746555      0.34858256     13.74726687 0.041219849 0.000003746 0.958776405
-    #  0.949050949 0.000999001 0.049950050      0.77267448      1.63657975     73.95562239     16.20349186     -1.25381759      2.38098757      0.19112747     -0.35132897      9.37459545 0.077389184 0.000000028 0.922610787
-    #  0.949050949 0.049950050 0.000999001     -0.26280666      0.15084429    676.74518204     15.75640931     11.06836290      8.14611477      0.01375096      0.62537690     15.57388765 0.007082599 0.000000412 0.992916989
-    #  0.998003992 0.000998004 0.000998004      0.01081313      0.04905197   9233.91911396     15.84909772      2.34013544     14.74968164      0.00022957      1.07554233     18.19479973 0.000538521 0.000000000 0.999461479
-
-    #  Property  job 1 : NRTL model parameters for the activity coefficients of the TERNARY mixture of h2o (1) + lacticacid (2) + n-undecane (3) ;
-    #  Settings  job 1 : T= 303.15 K ;
-    #  Units     job 1 : rms in ln(gamma) ;
-    #  General   job 1 :WARNING: NRTL fit did not converge - use parameters with caution ;
-    
-    #    model  parameter                 value
-    #     NRTL        rms               0.14541
-    #     NRTL    Alpha21           11079.44078
-    #     NRTL    Alpha31              -0.91374
-    #     NRTL    Alpha32              -0.49250
-    #     NRTL      Tau12               3.6E-05
-    #     NRTL      Tau13               1.13739
-    #     NRTL      Tau21 -1.04628763936280E-04
-    #     NRTL      Tau23               1.70744
-    #     NRTL      Tau31               2.20114
-    #     NRTL      Tau32               1.99529
-
-    #  Property  job 1 : Ternary mixture - NRTL fit ;
-    #  Compounds job 1 : h2o (1) ; lacticacid (2) ; n-undecane (3) ;
-    #  Settings  job 1 : T= 303.15 K ;
-    #  Units     job 1 : Energies in kJ/mol ; Pressure in kPa ; Area in nm^2 ; Temperature in K ; Molecular weights in g/mol ; Concentrations x : mole fraction ;
-    #  General   job 1 : Molecular weights 18.0153 (1) 90.0783 (2) 156.3093 (3) ; Surface areas 0.4307 (1) 1.1968 (2) 2.5175 (3) ;
-    
-    #           x1          x2          x3            ptot      ln(gamma1)      ln(gamma2)      ln(gamma3)          y1          y2          y3
-    #  0.000998004 0.000998004 0.998003992      1.19376348      5.37818968      5.91430830      0.00003902 0.902170090 0.000924135 0.096905775
-    #  0.000999001 0.049950050 0.949050949      0.58927110      4.51223245      5.04844843      0.02297780 0.769564047 0.039418854 0.191017099
-    
-
-def ternaryVLE_tab_to_df(filepath: str) -> pd.DataFrame:
-    """
-    Converts a COSMOtherm ternary VLE .tab output file to a pandas DataFrame.
-    Args:
-        filepath (str): Path to the .tab file.
-    Returns:
-        pd.DataFrame: DataFrame containing the parsed data with appropriate column names.
-    """
-    with open(filepath, 'r') as f:
-        lines = f.readlines()
-    
-    # Find the header line (first non-empty line starting with whitespace and then column names)
-    header_idx = None
-    for i, line in enumerate(lines):
-        if re.match(r'^\s*x1\s+x2\s+x3', line):
-            header_idx = i
-            break
-    if header_idx is None:
-        raise ValueError("Could not find data header in the file.")
-    
-    # Extract column names
-    header_line = lines[header_idx]
-    columns = re.split(r'\s{2,}', header_line.strip())
-    
-    # Find where the data ends (either next empty line or end of file)
-    data_start = header_idx + 1
-    data_end = data_start
-    for i in range(data_start, len(lines)):
-        if lines[i].strip() == '' or not re.match(r'^\s*\d', lines[i]):
-            break
-        data_end = i + 1
-    
-    # Read the data into a DataFrame
-    from io import StringIO
-    data_str = ''.join(lines[data_start:data_end])
-    df = pd.read_csv(StringIO(data_str), delim_whitespace=True, names=columns)
-    return df
-    
-def parse_ternaryVLE_tab_blocks(filepath: str):
+def parse_ternaryVLE_tab_blocks(filepath: str): 
     """
     Splits the .tab file at each 'General   job 1 :' and parses the three blocks:
     1. Real prediction (first block)
@@ -351,10 +257,6 @@ def parse_ternaryVLE_tab_blocks(filepath: str):
     return df_real, df_nrtl_params, df_nrtl_pred
 
 if __name__ == "__main__":
-
-    files = list_files_with_extension(r"C:\Users\kabe02-lokal\Documents\Github\BayesianThompsonSamplingOptimization\COSMOtherm\outputfiles", "tab")
-    df = ternaryVLE_tab_to_df(files[0])
-    print(df)
 
     df_real, df_nrtl_params, df_nrtl_pred = parse_ternaryVLE_tab_blocks(
         r"C:\Users\kabe02-lokal\Documents\Github\BayesianThompsonSamplingOptimization\COSMOtherm\outputfiles\ternaryVLE_h2o_lacticacid_n-undecane.tab"

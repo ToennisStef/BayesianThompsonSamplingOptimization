@@ -30,7 +30,8 @@ def plot_ternary_heatmap_mpltern(df, x_cols=['x1', 'x2', 'x3'], value_col=None, 
     # Plot
     fig = plt.figure(figsize=(7, 6))
     ax = fig.add_subplot(1, 1, 1, projection='ternary')
-    cs = ax.tripcolor(t, l, r, v, cmap=cmap, vmin=vmin, vmax=vmax)
+    # cs = ax.tripcolor(t, l, r, v, cmap=cmap, vmin=vmin, vmax=vmax)
+    cs = ax.tricontourf(t, l, r, v, cmap=cmap, vmin=vmin, vmax=vmax)
     # Set ternary axis labels using standard axis label methods
     ax.set_xlabel(x_cols[0])
     ax.set_ylabel(x_cols[1])
@@ -50,11 +51,17 @@ if __name__ == "__main__":
     )
     plot_ternary_heatmap_mpltern(
         df_real,
-        value_col='y1',
+        value_col='mu1+RTln(x1)',
         title='COSMOtherm Prediction: y1 Heatmap',
         cmap='viridis',
     )
 
+    # plot_ternary_heatmap_mpltern(
+    #     df_real,
+    #     value_col='ptot',
+    #     title='COSMOtherm Prediction: y1 Heatmap',
+    #     cmap='viridis',
+    # )
 
 
     
