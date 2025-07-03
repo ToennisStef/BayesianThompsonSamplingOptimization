@@ -3,6 +3,7 @@ import glob
 from pathlib import Path
 import pandas as pd
 import re
+import concurrent.futures
 
 
 # V:\groups\COSMOTHERM-Datenbank 2021\BP-TZVP-COSMO\h
@@ -52,10 +53,8 @@ def extract_cosmobase_info(cosmo_db_folder: Path):
     ['Molecule name', 'COSMO calculational method', 'CAS number', 'Molecular Weight', 'Sum Formula', 'file_name']
     """
     columns = ['Molecule name', 'COSMO calculational method', 'CAS number', 'Molecular Weight', 'Sum Formula', 'file_name']
-    data = []
-
-    # Recursively find all .cosmo files in all subfolders
-    for cosmo_file in cosmo_db_folder.glob("**/*.cosmo"):
+    
+    def extract_from_file(cosmo_file):
         info = {col: "" for col in columns}
         info['file_name'] = str(cosmo_file)
         try:
@@ -71,11 +70,17 @@ def extract_cosmobase_info(cosmo_db_folder: Path):
                         info['Molecular Weight'] = line.split('=', 1)[1].strip()
                     elif 'Sum Formula =' in line:
                         info['Sum Formula'] = line.split('=', 1)[1].strip()
-            data.append(info)
+            return info
         except Exception as e:
             print(f"Error reading {cosmo_file}: {e}")
-            continue
-    df = pd.DataFrame(data, columns=columns)
+            return None
+
+    cosmo_files = list(cosmo_db_folder.glob("**/*_c0.cosmo"))
+    data = []
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        results = list(executor.map(extract_from_file, cosmo_files))
+        data = [r for r in results if r is not None]
+    df = pd.DataFrame(data, columns=columns)  # type: ignore
     return df
 
 
