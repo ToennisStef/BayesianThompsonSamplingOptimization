@@ -8,8 +8,8 @@
 from COSMOtherm.Configfiles import Config
 from COSMOtherm.src.Chemfuncs import calc_la_molefrac, calc_rho_h2o
 from COSMOtherm.src.Design_Matrix import create_design_matrix_for_solvent_screening
-from COSMOtherm.src.COSMOtherm_functions.Inputfile_Generation import gen_2Phase_LIQEX_inp_file
-from COSMOtherm.src.COSMOtherm_functions.Run_COSMOtherm_Calculations import run_COSMOtherm_calculations
+from COSMOtherm.src.Inputfile_Generation import gen_2Phase_LIQEX_inp_file
+from COSMOtherm.src.Run_COSMOtherm_Calculations import run_COSMOtherm_calculations
 import logging
 import pandas as pd
 import os

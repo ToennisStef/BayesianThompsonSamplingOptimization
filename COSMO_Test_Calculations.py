@@ -5,8 +5,8 @@
 
 # --- Imports ---
 from COSMOtherm.Configfiles import Config
-from COSMOtherm.src.COSMOtherm_functions.Inputfile_Generation import gen_TBOIL_inp_file, gen_binaryLLE_inp_file, gen_binaryActivity_inp_file, gen_PVAP_inp_file, gen_ternaryVLE_NRTL_inp_file
-from COSMOtherm.src.COSMOtherm_functions.Run_COSMOtherm_Calculations import run_COSMOtherm_calculations
+from COSMOtherm.src.Inputfile_Generation import gen_TBOIL_inp_file, gen_binaryLLE_inp_file, gen_binaryActivity_inp_file, gen_PVAP_inp_file, gen_ternaryVLE_NRTL_inp_file
+from COSMOtherm.src.Run_COSMOtherm_Calculations import run_COSMOtherm_calculations
 import logging
 import pandas as pd
 import os
