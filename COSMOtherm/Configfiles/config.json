@@ -17,10 +17,12 @@
   "TIGER": {
     "COSMOtherm_version": "COSMOtherm 2021",
     "exe_fullpath": "C:/Program Files/BIOVIA/COSMOtherm2021/COSMOtherm/BIN-WINDOWS/cosmotherm.exe",
-    "ctd_file": "BP_TZVP_21.ctd",
+    "ctd_file_not_FINE": "BP_TZVP_21.ctd",
+    "ctd_file": "BP_TZVPD_FINE_21.ctd",
     "cdir": "C:/Program Files/BIOVIA/COSMOtherm2021/COSMOtherm/CTDATA-FILES",
     "ldir": "C:/Program Files/BIOVIA/COSMOtherm2021/licensefiles",
-    "fdir": "V:/groups/COSMOTHERM-Datenbank 2021/BP-TZVP-COSMO"
+    "fdir_not_FINE": "V:/groups/COSMOTHERM-Datenbank 2021/BP-TZVP-COSMO",
+    "fdir": "V:/groups/COSMOTHERM-Datenbank 2021/BP-TZVPD-FINE"
   },
   "composition_types": {
     "Mole fraction": "x",
@@ -42,8 +44,8 @@
   },
   "V_p1": 1.0,
   "V_p2": 1.0,
-  "tC_levels": [20, 30, 40],
-  "rho_lacticacid_levels": [5, 10, 20, 50, 100, 150, 200, 250],
+  "tC_levels": [40],
+  "rho_lacticacid_levels": [100],
   "composition_type": "Masses W[g]",
   "N_steps": 50,
   "Run_initialSampling": false,

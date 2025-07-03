@@ -24,5 +24,26 @@ inputfile_dir_screening = config["inputfile_dir_screening"]
 outputfile_dir_screening = config["outputfile_dir_screening"]
 # Add additional parameters here if needed
 
+#   },
+#   "V_p1": 1.0,
+#   "V_p2": 1.0,
+#   "tC_levels": [20, 30, 40],
+#   "rho_lacticacid_levels": [5, 10, 20, 50, 100, 150, 200, 250],
+#   "composition_type": "Masses W[g]",
+#   "N_steps": 50,
+#   "Run_initialSampling": false,
+#   "log_file": "BayesianOptimization.log",
+#   "reduction": 4
+# } 
+V_p1 = config["V_p1"] 
+V_p2 = config["V_p2"] 
+tC_levels = config["tC_levels"]  # [°C]
+rho_lacticacid_levels = config["rho_lacticacid_levels"]  # [g/L] mass concentration of lactic acid in the solution
+composition_type = config["composition_type"]  # composition type for COSMOtherm calculation
+N_steps = config["N_steps"]  # Number of steps for the Bayesian optimization
+Run_initialSampling = config["Run_initialSampling"]  # Flag to run initial sampling
+log_file = config["log_file"]  # Log file name for the calculations
+reduction = config["reduction"]  # Reduction factor for the number of solvents in the screening
+
 # cosmotherm_filepath = r""""C:\Program Files\COSMOlogic\COSMOthermX19\COSMOtherm\BIN-WINDOWS\cosmotherm.exe" """
 # Screening_dir = r".\COSMOtherm\outputfiles\CompleteScreening" # Use relative path

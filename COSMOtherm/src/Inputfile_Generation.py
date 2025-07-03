@@ -457,7 +457,7 @@ FDIR="{fdir}" AUTOC UNIT=SI                                # Global command line
     content += f"f = {carrier}\n"
     content += f"f = {solute}\n"
     content += f"f = {solvent}\n"
-    content += f"ternary={{1 2 3}} tc={tC} NRTL"  # Ternary VLE computation with NRTL model
+    content += f"ternary={{1 2 3}} tc={tC} LLE NRTL RENORM nomix"  # Ternary VLE computation with NRTL model
     
     if os.path.exists(file_fullpath):
         logger.warning(f"File already exists: {file_fullpath}")
@@ -480,3 +480,4 @@ FDIR="{fdir}" AUTOC UNIT=SI                                # Global command line
         "filename": file_name,
         "folder": os.path.abspath(inputfiles_folder)
     }
+
