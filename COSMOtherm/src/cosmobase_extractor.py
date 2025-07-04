@@ -5,6 +5,16 @@ from pathlib import Path
 import pandas as pd
 import re
 import concurrent.futures
+# Try to import openbabel via pybel (preferred for Python), fallback to openbabel.openbabel
+try:
+    from openbabel import openbabel as ob
+except ImportError:
+    import openbabel as ob
+# Use pybel from openbabel for SMILES conversion
+try:
+    from openbabel import pybel
+except ImportError:
+    pybel = None
 
 # V:\groups\COSMOTHERM-Datenbank 2021\BP-TZVP-COSMO\h
 # V:\groups\COSMOTHERM-Datenbank 2021\BP-TZVP-COSMO\i
@@ -87,16 +97,18 @@ def extract_cosmobase_info(cosmo_db_folder: Path):
     """
     Recursively extract info from all .cosmo files in all subfolders of cosmo_db_folder.
     Returns a DataFrame with columns:
-    ['Molecule name', 'COSMO calculational method', 'CAS number', 'Molecular Weight', 'Sum Formula', 'file_name']
+    ['Molecule name', 'COSMO calculational method', 'CAS number', 'Molecular Weight', 'Sum Formula', 'file_name', 'SMILES']
     """
-    columns = ['Molecule name', 'COSMO calculational method', 'CAS number', 'Molecular Weight', 'Sum Formula', 'file_name']
+    columns = ['Molecule name', 'COSMO calculational method', 'CAS number', 'Molecular Weight', 'Sum Formula', 'file_name', 'SMILES']
     
     def extract_from_file(cosmo_file):
         info = {col: "" for col in columns}
         info['name'] = cosmo_file.name.split('_c0.cosmo')[0]  # Extract the name before '_c0.cosmo'
         try:
             with open(cosmo_file, 'r', encoding='utf-8', errors='ignore') as f:
-                for line in f:
+                lines = f.readlines()
+                # Extract info fields
+                for line in lines:
                     if 'Molecule name =' in line:
                         info['Molecule name'] = line.split('=', 1)[1].strip()
                     elif 'COSMO calculational method =' in line:
@@ -107,6 +119,29 @@ def extract_cosmobase_info(cosmo_db_folder: Path):
                         info['Molecular Weight'] = line.split('=', 1)[1].strip()
                     elif 'Sum Formula =' in line:
                         info['Sum Formula'] = line.split('=', 1)[1].strip()
+                # Extract $coord_car block
+                car_block = []
+                in_car = False
+                for line in lines:
+                    if line.strip().startswith('$coord_car'):
+                        in_car = True
+                        car_block = [line]
+                        continue
+                    if in_car:
+                        car_block.append(line)
+                        if line.strip() == 'end':
+                            break
+                if car_block and pybel is not None:
+                    car_data = ''.join(car_block)
+                    try:
+                        mol = next(pybel.readstring("car", car_data))
+                        smiles_output = mol.write("smi").strip()
+                        info['SMILES'] = smiles_output
+                    except Exception as ob_e:
+                        print(f"OpenBabel/pybel error for {cosmo_file}: {ob_e}")
+                        info['SMILES'] = ''
+                else:
+                    info['SMILES'] = ''
             print(f"Extracted info for {cosmo_file.name}")
             return info
         
@@ -123,31 +158,6 @@ def extract_cosmobase_info(cosmo_db_folder: Path):
     return df
 
 
-def pura_get_cas_number_and_smiles(molecule_name_list: list[str]) -> pd.DataFrame:
-
-    # Resolve names to SMILES
-    resolved = resolve_identifiers(
-        molecule_name_list,
-        input_identifer_type=CompoundIdentifierType.NAME,
-        output_identifier_type=CompoundIdentifierType.SMILES,
-        services=[PubChem(autocomplete=True), CIR(), CAS()],
-        agreement=1,
-        silent=True,
-    )
-    print("\nResults\n")
-    for input_compound, resolved_identifiers in resolved:
-        print(input_compound, resolved_identifiers, "\n")
-    
-    return pd.DataFrame(
-        [
-            {
-                "name": input_compound,
-                "CAS number": resolved_identifiers.get(CompoundIdentifierType.CAS_NUMBER, ""),
-                "SMILES": resolved_identifiers.get(CompoundIdentifierType.SMILES, ""),
-            }
-            for input_compound, resolved_identifiers in resolved
-        ]
-    )
 
 if __name__ == "__main__":
     db_folder = r"V:\groups\COSMOTHERM-Datenbank 2021\BP-TZVP-COSMO"
