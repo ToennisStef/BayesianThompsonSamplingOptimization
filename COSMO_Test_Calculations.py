@@ -5,7 +5,7 @@
 
 # --- Imports ---
 from COSMOtherm.Configfiles import Config
-from COSMOtherm.src.Inputfile_Generation import gen_TBOIL_inp_file, gen_binaryLLE_inp_file, gen_binaryActivity_inp_file, gen_PVAP_inp_file, gen_ternaryVLE_NRTL_inp_file
+from COSMOtherm.src.Inputfile_Generation import gen_TBOIL_inp_file, gen_binaryLLE_inp_file, gen_binaryActivity_inp_file, gen_PVAP_inp_file, gen_ternaryVLE_NRTL_inp_file, gen_2Phase_LIQEX_inp_file
 from COSMOtherm.src.Run_COSMOtherm_Calculations import run_COSMOtherm_calculations
 import logging
 import pandas as pd
@@ -73,34 +73,33 @@ if __name__ == "__main__":
         #     overwrite=True
         #     )
         
-        # file =  gen_PVAP_inp_file(
-        #     solvent=solvent, 
-        #     t_start=25,
-        #     t_end=100,
-        #     t_steps=5,
-        #     ctd_file=Config.TIGER['ctd_file'], 
-        #     cdir=Config.TIGER['cdir'], 
-        #     ldir=Config.TIGER['ldir'], 
-        #     odir=Config.outputfile_dir,
-        #     fdir=Config.TIGER['fdir'],
-        #     inputfiles_folder=Config.inputfile_dir,
-        #     overwrite=True
-        #     )
-        
-        file = gen_ternaryVLE_NRTL_inp_file(
+        file =  gen_PVAP_inp_file(
             solvent=solvent, 
-            carrier=carrier,
-            solute=solute,
-            tC=30.0,
+            t_start=25,
+            t_end=100,
+            t_steps=5,
             ctd_file=Config.TIGER['ctd_file'], 
             cdir=Config.TIGER['cdir'], 
             ldir=Config.TIGER['ldir'], 
-            odir=Config.outputfile_dir, 
+            odir=Config.outputfile_dir,
             fdir=Config.TIGER['fdir'],
             inputfiles_folder=Config.inputfile_dir,
             overwrite=True
-        )
-
+            )
+        
+        # file = gen_ternaryVLE_NRTL_inp_file(
+        #     solvent=solvent, 
+        #     carrier=carrier,
+        #     solute=solute,
+        #     tC=30.0,
+        #     ctd_file=Config.TIGER['ctd_file_not_FINE'], 
+        #     cdir=Config.TIGER['cdir'], 
+        #     ldir=Config.TIGER['ldir'], 
+        #     odir=Config.outputfile_dir, 
+        #     fdir=Config.TIGER['fdir_not_FINE'],
+        #     inputfiles_folder=Config.inputfile_dir,
+        #     overwrite=True
+        # )
         
         run_COSMOtherm_calculations(
             COSMOtherm_exe_fullpath=Config.TIGER['exe_fullpath'],
