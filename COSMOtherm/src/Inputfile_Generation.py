@@ -14,11 +14,11 @@ def gen_2Phase_LIQEX_inp_file(
     ldir:str, 
     fdir:str,
     odir:str, 
-    file_name:str = None,  
+    file_name:str = '',
     inputfiles_folder:str =".",
     composition_type:str = "Mole fraction",
     overwrite:bool = False
-    )->None:
+    ) -> dict[str, str]:
     """
     Generates an input file for a general multi-component 2-phase LIQEX calculation in COSMOtherm.
 
@@ -43,8 +43,7 @@ def gen_2Phase_LIQEX_inp_file(
         overwrite (bool, optional): If True, overwrite existing files. Default is False.
 
     Returns:
-        str: The full path of the generated input file.
-        str: The name of the generated input file.
+        dict: Contains 'fullpath', 'filename', and 'folder' of the generated input file.
     """
     
     if composition_type == "Mole fraction":
@@ -71,7 +70,7 @@ def gen_2Phase_LIQEX_inp_file(
     os.makedirs(inputfiles_folder, exist_ok=True)
     logger.debug(f"Ensured the directory '{inputfiles_folder}' exists.")
     
-    if file_name is None:
+    if not file_name:
         file_name = f"LIQEX_{components[1]}_tc{tC}_{c_type}1{p1_input[2]}.inp"
     file_fullpath = os.path.join(inputfiles_folder, file_name)
     logger.debug(f"Generated file name: {file_name}, full path: {file_fullpath}")
@@ -96,7 +95,7 @@ FDIR="{fdir}" vpfile CTAB WCONF AUTOC                                 # Global c
     for component in components:
         content += f"f = {component}\n"
     
-    content += f"""tc={tC} LIQ_EX {c_type}1={{{' '.join(map(str, p1_input))}}} {c_type}2={{{' '.join(map(str, p2_input))}}} maxiter=1000 """
+    content += f"""tc={tC} LIQ_EX {c_type}1={{{' '.join(map(str, p1_input))}}} {c_type}2={{{' '.join(map(str, p2_input))}}} maxiter=1000 pr_K """
             
     # Check if the output file already exists
     if os.path.exists(file_fullpath):
@@ -128,10 +127,10 @@ def gen_TBOIL_inp_file(
     ldir:str, 
     odir:str, 
     fdir:str,
-    file_name:str = None,  
+    file_name:str = '',
     inputfiles_folder:str =".",
     overwrite:bool = False
-    )->None:
+    ) -> dict[str, str]:
     """
     Generates an input file for TBOIL calculations in COSMOtherm for a given solvent.
     
@@ -147,15 +146,14 @@ def gen_TBOIL_inp_file(
         overwrite (bool, optional): If True, overwrite existing files. Default is False.
 
     Returns:
-        str: The full path of the generated input file.
-        str: The name of the generated input file.
+        dict: Contains 'fullpath', 'filename', and 'folder' of the generated input file.
     """
     
     # Ensure the output directory exists
     os.makedirs(inputfiles_folder, exist_ok=True)
     logger.debug(f"Ensured the directory '{inputfiles_folder}' exists.")
     
-    if file_name is None:
+    if not file_name:
         file_name = f"TBOIL_{solvent}.inp"
     file_fullpath = os.path.join(inputfiles_folder, file_name)
     
@@ -197,10 +195,10 @@ def gen_binaryLLE_inp_file(
     ldir:str, 
     odir:str, 
     fdir:str,
-    file_name:str = None,  
+    file_name:str = '',
     inputfiles_folder:str =".",
     overwrite:bool = False
-    )->None:
+    ) -> dict[str, str]:
     """
     Generates an input file for TBOIL calculations in COSMOtherm for a given solvent.
     
@@ -216,15 +214,14 @@ def gen_binaryLLE_inp_file(
         overwrite (bool, optional): If True, overwrite existing files. Default is False.
 
     Returns:
-        str: The full path of the generated input file.
-        str: The name of the generated input file.
+        dict: Contains 'fullpath', 'filename', and 'folder' of the generated input file.
     """
     
     # Ensure the output directory exists
     os.makedirs(inputfiles_folder, exist_ok=True)
     logger.debug(f"Ensured the directory '{inputfiles_folder}' exists.")
     
-    if file_name is None:
+    if not file_name:
         file_name = f"binaryLLE_h2o_{solvent}.inp"
     file_fullpath = os.path.join(inputfiles_folder, file_name)
     
@@ -267,10 +264,10 @@ def gen_binaryActivity_inp_file(
     ldir:str, 
     odir:str, 
     fdir:str,
-    file_name:str = None,  
+    file_name:str = '',
     inputfiles_folder:str =".",
     overwrite:bool = False
-    )->None:
+    ) -> dict[str, str]:
     """
     Generates an input file for TBOIL calculations in COSMOtherm for a given solvent.
     
@@ -286,15 +283,14 @@ def gen_binaryActivity_inp_file(
         overwrite (bool, optional): If True, overwrite existing files. Default is False.
 
     Returns:
-        str: The full path of the generated input file.
-        str: The name of the generated input file.
+        dict: Contains 'fullpath', 'filename', and 'folder' of the generated input file.
     """
     
     # Ensure the output directory exists
     os.makedirs(inputfiles_folder, exist_ok=True)
     logger.debug(f"Ensured the directory '{inputfiles_folder}' exists.")
     
-    if file_name is None:
+    if not file_name:
         file_name = f"binaryactivity_h2o_{solvent}.inp"
     file_fullpath = os.path.join(inputfiles_folder, file_name)
     
@@ -340,10 +336,10 @@ def gen_PVAP_inp_file(
     ldir:str, 
     odir:str, 
     fdir:str,
-    file_name:str = None,  
+    file_name:str = '',
     inputfiles_folder:str =".",
     overwrite:bool = False
-    )->None:
+    ) -> dict[str, str]:
     """
     Generates an input file for TVAP (Vapour pressure calculation) calculations in COSMOtherm for a given solvent.
     Vapour pressure calculations are executed at different temperatures. 
@@ -361,25 +357,27 @@ def gen_PVAP_inp_file(
         overwrite (bool, optional): If True, overwrite existing files. Default is False.
 
     Returns:
-        str: The full path of the generated input file.
-        str: The name of the generated input file.
+        dict: Contains 'fullpath', 'filename', and 'folder' of the generated input file.
     """
-    
-    # Ensure the output directory exists
-    os.makedirs(inputfiles_folder, exist_ok=True)
-    logger.debug(f"Ensured the directory '{inputfiles_folder}' exists.")
-    
-    if file_name is None:
+    # Ensure PVAP subfolders exist for input and output
+    pvap_input_folder = os.path.join(inputfiles_folder, "PVAP")
+    pvap_output_folder = os.path.join(odir, "PVAP")
+    os.makedirs(pvap_input_folder, exist_ok=True)
+    os.makedirs(pvap_output_folder, exist_ok=True)
+    logger.debug(f"Ensured the directory '{pvap_input_folder}' exists.")
+    logger.debug(f"Ensured the directory '{pvap_output_folder}' exists.")
+
+    if not file_name:
         file_name = f"PVAP_{solvent}.inp"
-    file_fullpath = os.path.join(inputfiles_folder, file_name)
-    
+    file_fullpath = os.path.join(pvap_input_folder, file_name)
+
     # Define content
-    content = f"""ctd={ctd_file} CDIR="{cdir}" LDIR="{ldir}" odir="{odir}" # Global command line
-FDIR="{fdir}" AUTOC UNIT=SI                                # Global command line
+    content = f"""ctd={ctd_file} CDIR=\"{cdir}\" LDIR=\"{ldir}\" odir=\"{pvap_output_folder}\" # Global command line
+FDIR=\"{fdir}\" AUTOC UNIT=SI                                # Global command line
 !  Automatic computation of vapor pressure curve p_vap(T)                                          # Comment line
 """
     content += f"f = {solvent}\n"
-    content += f"x={{1}} pvap tc={t_start} tc2={t_end} tstep={t_steps}"                                                              # Automatic binary computation and LLE search"
+    content += f"x={{1}} pvap tc={t_start} tc2={t_end} tstep={t_steps}"
     
     if os.path.exists(file_fullpath):
         logger.warning(f"File already exists: {file_fullpath}")
@@ -389,7 +387,7 @@ FDIR="{fdir}" AUTOC UNIT=SI                                # Global command line
             return {
                 "fullpath": os.path.abspath(file_fullpath),
                 "filename": file_name,
-                "folder": os.path.abspath(inputfiles_folder)
+                "folder": os.path.abspath(pvap_input_folder)
             }
             
     with open(file_fullpath, "w") as file:
@@ -400,7 +398,7 @@ FDIR="{fdir}" AUTOC UNIT=SI                                # Global command line
     return {
         "fullpath": os.path.abspath(file_fullpath),
         "filename": file_name,
-        "folder": os.path.abspath(inputfiles_folder)
+        "folder": os.path.abspath(pvap_input_folder)
     }
 
 # ternary={1 2 3} tc=25.0 NRTL # Ternary VLE computation
@@ -414,10 +412,10 @@ def gen_ternaryVLE_NRTL_inp_file(
     ldir:str,
     odir:str,
     fdir:str,
-    file_name:str = None,
+    file_name:str = '',
     inputfiles_folder:str = ".",
     overwrite:bool = False
-    )->None:
+    ) -> dict[str, str]:
     """
     Generates an input file for ternary VLE + NRTL calculations in COSMOtherm for a given carrier, solute, and solvent.
     
@@ -436,16 +434,14 @@ def gen_ternaryVLE_NRTL_inp_file(
         overwrite (bool, optional): If True, overwrite existing files. Default is False.
 
     Returns:
-        str: The full path of the generated input file.
-        str: The name of the generated input file.
-        str: The folder where the input file is saved.
+        dict: Contains 'fullpath', 'filename', and 'folder' of the generated input file.
     """
     
     # Ensure the output directory exists
     os.makedirs(inputfiles_folder, exist_ok=True)
     logger.debug(f"Ensured the directory '{inputfiles_folder}' exists.")
     
-    if file_name is None:
+    if not file_name:
         file_name = f"ternaryVLE_NRTL_{carrier}_{solute}_{solvent}.inp"
     file_fullpath = os.path.join(inputfiles_folder, file_name)
 
