@@ -2,6 +2,7 @@ import os
 import glob
 import pandas as pd
 import re
+import numpy as np
 
 def list_files_with_extension(folder_path, file_extension):
         search_pattern = os.path.join(folder_path, f"*.{file_extension}")
@@ -256,11 +257,123 @@ def parse_ternaryVLE_tab_blocks(filepath: str):
     df_nrtl_pred = extract_table(blocks[2], r'^\s*x1\s+x2\s+x3')
     return df_real, df_nrtl_params, df_nrtl_pred
 
-if __name__ == "__main__":
+def parse_PVAPantoine_density_tab_blocks(filepath: str):
+    """
+    Parses a .tab file containing:
+    1. Vapor pressure table (T, PVtot, mu(Liquid), E_Gas-E_COSMO, H(Vapori))
+    2. Antoine equation coefficients (A, B, C)
+    3. Extended Antoine equation coefficients (A, B, C, D, E, F, G)
+    4. Density/volume table (Nr, Compound, Density, Volume, ...)
+    5. Compound name from the top of the file (from 'Compounds job 1 : ...')
+    Returns:
+        tuple: (df_pvap, df_antoine, df_antoine_ext, df_density, compound_name)
+    """
+    import re
+    from io import StringIO
+    import pandas as pd
+    with open(filepath, 'r') as f:
+        text = f.read()
+    # 1. Vapor pressure block
+    pvap_match = re.search(r"Property  job 1 : Vapor pressures ;.*?\n\s*(T.+?H\\(Vapori\\))\n((?:[ \t]*\d.+\n)+)", text, re.DOTALL)
+    df_pvap = None
+    if pvap_match:
+        header = pvap_match.group(1)
+        data = pvap_match.group(2)
+        lines = [l for l in data.splitlines() if len(l.split()) == 5]
+        data_clean = '\n'.join(lines)
+        df_pvap = pd.read_csv(StringIO(data_clean), sep=r'\s+', names=header.split())
+    # 1a. Compound name from the top (do not use density table Compound field)
+    compound_name = None
+    compound_name_match = re.search(r"Compounds job 1 :\s*(.+?)\s*\(\d+\)\s*;", text)
+    if compound_name_match:
+        compound_name = compound_name_match.group(1).strip()
+    # 2. Antoine equation block
+    antoine_match = re.search(r"Vapor pressure \(ln\(p\) calculated\) fitted to Antoine equation ;.*?\n\s*A.+?C\n(.+?)\n\n", text, re.DOTALL)
+    df_antoine = None
+    if antoine_match:
+        data = antoine_match.group(1)
+        lines = [l for l in data.splitlines() if len(l.split()) == 3]
+        data_clean = '\n'.join(lines)
+        df_antoine = pd.read_csv(StringIO(data_clean), sep=r'\s+', names=["A", "B", "C"])
+    # 3. Extended Antoine equation block
+    antoine_ext_match = re.search(r"Vapor pressure \(ln\(p\) calculated\) fitted to Extended Antoine equation ;.*?\n\s*A.+?G\n(.+?)\n\n", text, re.DOTALL)
+    df_antoine_ext = None
+    if antoine_ext_match:
+        data = antoine_ext_match.group(1)
+        lines = [l for l in data.splitlines() if len(l.split()) == 7]
+        data_clean = '\n'.join(lines)
+        df_antoine_ext = pd.read_csv(StringIO(data_clean), sep=r'\s+', names=["A", "B", "C", "D", "E", "F", "G"])
+    # 4. Density/volume block
+    density_match = re.search(r"Property  job 2 : Liquid density and volume ;.*?\n\s*Nr Compound.+?NRing\n((?:.+\n)+)", text, re.DOTALL)
+    df_density = None
+    if density_match:
+        data = density_match.group(1)
+        lines = [l for l in data.splitlines() if len(l.split()) >= 2]  # at least Nr and Compound
+        data_clean = '\n'.join(lines)
+        df_density = pd.read_csv(StringIO(data_clean), sep=r'\s+', names=["Nr", "Compound", "Density", "Volume", "Exp_Density", "Exp_Volume", "MolWeight", "COSMO_Volume", "Smom(2)", "Smom(2)^2", "NRing"])
+    return df_pvap, df_antoine, df_antoine_ext, df_density, compound_name
 
-    df_real, df_nrtl_params, df_nrtl_pred = parse_ternaryVLE_tab_blocks(
-        r"C:\Users\kabe02-lokal\Documents\Github\BayesianThompsonSamplingOptimization\COSMOtherm\outputfiles\ternaryVLE_h2o_lacticacid_n-undecane.tab"
-    )
-    print(df_real.head())
-    print(df_nrtl_params)
-    print(df_nrtl_pred.head())
+def ingest_pvap_antoine_density_folder_parallel(folderpath: str):
+    import os
+    import concurrent.futures
+    import pandas as pd
+    from tqdm import tqdm
+
+    def process_file(filepath):
+        try:
+            df_pvap, df_antoine, df_antoine_ext, df_density, compound_name = parse_PVAPantoine_density_tab_blocks(filepath)
+            # Extract values or set to None if missing
+            A = B = C = Ae = Be = Ce = De = Ee = Fe = Ge = Density = Volume = None
+            if df_antoine is not None and not df_antoine.empty:
+                A, B, C = df_antoine.iloc[0][["A", "B", "C"]]
+            if df_antoine_ext is not None and not df_antoine_ext.empty:
+                Ae, Be, Ce, De, Ee, Fe, Ge = df_antoine_ext.iloc[0][["A", "B", "C", "D", "E", "F", "G"]]
+            if df_density is not None and not df_density.empty:
+                Density = df_density.iloc[0]["Density"]
+                Volume = df_density.iloc[0]["Volume"]
+            return {
+                "file_name": os.path.basename(filepath),
+                "compound_name": compound_name,
+                "A": A, "B": B, "C": C,
+                "Ae": Ae, "Be": Be, "Ce": Ce, "De": De, "Ee": Ee, "Fe": Fe, "Ge": Ge,
+                "Density": Density, "Volume": Volume
+            }
+        except Exception as e:
+            return {"file_name": os.path.basename(filepath), "compound_name": None, "A": None, "B": None, "C": None, "Ae": None, "Be": None, "Ce": None, "De": None, "Ee": None, "Fe": None, "Ge": None, "Density": None, "Volume": None, "error": str(e)}
+
+    # List all .tab files
+    filepaths = [os.path.join(folderpath, f) for f in os.listdir(folderpath) if f.endswith('.tab')]
+    results = []
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        for result in tqdm(executor.map(process_file, filepaths), total=len(filepaths), desc="Ingesting .tab files"):
+            results.append(result)
+    df = pd.DataFrame(results)
+    return df
+
+def Antoine_p_from_A_B_C(A, B, C, T):
+    return np.exp(A - B / (T + C))
+
+def Antoine_T_from_p_A_B_C(p, A, B, C):
+    return B / (A - np.log(p)) - C
+
+
+
+
+if __name__ == "__main__":
+    # Test for PVAP/Antoine/density tab file
+    pvap_path = r"U:\\Github\\BayesianThompsonSamplingOptimization\\COSMOtherm\\outputfiles\\PVAP\\PVAP_(-)-(2r,4s)-florol.tab"
+    df_pvap, df_antoine, df_antoine_ext, df_density, compound_name = parse_PVAPantoine_density_tab_blocks(pvap_path)
+    print("PVAP Table:\n", df_pvap)
+    print("\nAntoine coefficients:\n", df_antoine)
+    print("\nExtended Antoine coefficients:\n", df_antoine_ext)
+    print("\nDensity Table:\n", df_density)
+    print("\nCompound Name:\n", compound_name)
+
+    pvap_folder = r"U:\\Github\\BayesianThompsonSamplingOptimization\\COSMOtherm\\outputfiles\\PVAP"
+    # df = ingest_pvap_antoine_density_folder_parallel(pvap_folder)
+    df = pd.read_csv(r"U:\\Github\\BayesianThompsonSamplingOptimization\\COSMOtherm\\outputfiles\\PVAP_antoine_density_ingested.csv")
+
+    df["T_boil"] = Antoine_T_from_p_A_B_C(101.325, df["A"], df["B"], df["C"])
+
+    print(df.head())
+    df.to_csv(r"U:\\Github\\BayesianThompsonSamplingOptimization\\COSMOtherm\\outputfiles\\PVAP_antoine_density_ingested.csv", index=False)

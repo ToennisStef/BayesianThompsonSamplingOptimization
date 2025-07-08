@@ -5,12 +5,14 @@
 
 # --- Imports ---
 from COSMOtherm.Configfiles import Config
-from COSMOtherm.src.Inputfile_Generation import gen_TBOIL_inp_file, gen_binaryLLE_inp_file, gen_binaryActivity_inp_file, gen_PVAP_inp_file, gen_ternaryVLE_NRTL_inp_file, gen_2Phase_LIQEX_inp_file
+from COSMOtherm.src.Inputfile_Generation import gen_TBOIL_inp_file, gen_binaryLLE_inp_file, gen_binaryActivity_inp_file, gen_PVAP_inp_file, gen_ternaryVLE_NRTL_inp_file, gen_2Phase_LIQEX_inp_file, FileGenConfig
 from COSMOtherm.src.Run_COSMOtherm_Calculations import run_COSMOtherm_calculations
 import logging
 import pandas as pd
 import os
 import multiprocessing
+import time
+from multiprocessing.dummy import Pool as ThreadPool
 # Ensure the logs directory exists
 log_dir = "logs"
 os.makedirs(log_dir, exist_ok=True)
@@ -29,19 +31,29 @@ logging.basicConfig(
 
 def process_solvent(solvent):
     try:
-        file = gen_PVAP_inp_file(
-            solvent=solvent, 
-            t_start=25,
-            t_end=200,
-            t_steps=5,
+        config = FileGenConfig(
             ctd_file=Config.TIGER['ctd_file_not_FINE'],
-            cdir=Config.TIGER['cdir'], 
-            ldir=Config.TIGER['ldir'], 
+            cdir=Config.TIGER['cdir'],
+            ldir=Config.TIGER['ldir'],
             odir=Config.outputfile_dir,
             fdir=Config.TIGER['fdir_not_FINE'],
             inputfiles_folder=Config.inputfile_dir,
             overwrite=True
         )
+        # file = gen_PVAP_inp_file(
+        #     solvent=solvent,
+        #     t_start=25,
+        #     t_end=200,
+        #     t_steps=5,
+        #     config=config
+        # )
+
+        #tboil
+        file = gen_TBOIL_inp_file(
+            solvent=solvent,
+            config=config
+        )
+
         result = run_COSMOtherm_calculations(
             COSMOtherm_exe_fullpath=Config.TIGER['exe_fullpath'],
             files=[file['fullpath']]
@@ -59,11 +71,18 @@ if __name__ == "__main__":
     carrier = "h2o"
     solute = "lacticacid"
     Server = 'TIGER'  # or 'TIGER2'
-    solvent_list = solvents['COSMO_name'].unique().tolist()
-    with multiprocessing.Pool(processes=32) as pool:
-        results = pool.map(process_solvent, solvent_list)
-    for solvent, success, error in results:
+    solvent_list = solvents['COSMO_name'].unique().tolist() # Use first 100 solvents for benchmarking
+    # Benchmark Thread Pool
+    start_time = time.time()
+    with ThreadPool(processes=500) as tpool:
+        results_thread = tpool.map(process_solvent, solvent_list)
+    thread_time = time.time() - start_time
+    logging.info(f"ThreadPool completed in {thread_time:.2f} seconds.")
+
+
+    # Log results for thread pool
+    for solvent, success, error in results_thread:
         if success:
-            logging.info(f"Solvent {solvent} processed successfully.")
+            logging.info(f"[ThreadPool] Solvent {solvent} processed successfully.")
         else:
-            logging.error(f"Solvent {solvent} failed with error: {error}")
+            logging.error(f"[ThreadPool] Solvent {solvent} failed with error: {error}")

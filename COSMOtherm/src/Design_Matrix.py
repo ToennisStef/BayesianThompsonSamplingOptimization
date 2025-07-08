@@ -81,7 +81,7 @@ def create_design_matrix_for_solvent_screening(tC_levels, rho_lacticacid_levels,
         """
         design_matrix = pyDOE3.fullfact([len(tC_levels), len(rho_lacticacid_levels), len(solvents)])
     
-        density_map = dict(zip(solvents['COSMO_name'], solvents['density g/cm^3 @20°C']))
+        density_map = dict(zip(solvents['COSMO_name'], solvents['Density']))
         cas_map = dict(zip(solvents['COSMO_name'], solvents['CAS_Number']))
 
         df = pd.DataFrame(design_matrix, columns=['tC', 'rho1_2', 'solvent'])

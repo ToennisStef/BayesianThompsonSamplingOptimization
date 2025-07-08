@@ -1,7 +1,7 @@
 {
   "tC_range": [20, 40],
   "massconcentration_lacticacid_range": [5, 250],
-  "solvents_fullpath": "./cosmobase_info_final.csv",
+  "solvents_fullpath": "./COSMOtherm/outputfiles/PVAP_antoine_density_ingested_filtered.csv",
   "outputfile_dir": "./COSMOtherm/outputfiles",
   "initialSamples_dir": "./COSMOtherm/outputfiles/CompleteScreening",
   "inputfile_dir": "./COSMOtherm/inputfiles",

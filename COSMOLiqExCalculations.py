@@ -8,7 +8,7 @@
 from COSMOtherm.Configfiles import Config
 from COSMOtherm.src.Chemfuncs import calc_la_molefrac, calc_rho_h2o
 from COSMOtherm.src.Design_Matrix import create_design_matrix_for_solvent_screening
-from COSMOtherm.src.Inputfile_Generation import gen_2Phase_LIQEX_inp_file
+from COSMOtherm.src.Inputfile_Generation import gen_2Phase_LIQEX_inp_file, FileGenConfig
 from COSMOtherm.src.Run_COSMOtherm_Calculations import run_COSMOtherm_calculations
 import logging
 import pandas as pd
@@ -75,19 +75,22 @@ if __name__ == "__main__":
         components = [row['component1'], row['component2'], row['component3']]
         
         inputfiles = []
+        config = FileGenConfig(
+            ctd_file=Config.TIGER['ctd_file_not_FINE'],
+            cdir=Config.TIGER['cdir'],
+            ldir=Config.TIGER['ldir'],
+            odir=Config.outputfile_dir_screening[composition_type],
+            fdir=Config.TIGER['fdir_not_FINE'],
+            inputfiles_folder=Config.inputfile_dir_screening[composition_type],
+            overwrite=False
+        )
         inputfiles.append(gen_2Phase_LIQEX_inp_file(
             tC=row['tC'],
             p1_input=p1_input[composition_type],
             p2_input=p2_input[composition_type],
             components=components,
-            ctd_file=Config.TIGER['ctd_file_not_FINE'],
-            cdir=Config.TIGER['cdir'],
-            ldir=Config.TIGER['ldir'],
-            fdir=Config.TIGER['fdir_not_FINE'],
-            odir=Config.outputfile_dir_screening[composition_type],
-            inputfiles_folder=Config.inputfile_dir_screening[composition_type],
-            composition_type=composition_type,
-            overwrite=False,
+            config=config,
+            composition_type=composition_type
         ))
         
         # Check if the corresponding .tab file already exists
