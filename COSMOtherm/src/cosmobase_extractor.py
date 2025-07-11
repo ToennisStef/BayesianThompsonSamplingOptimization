@@ -5,6 +5,12 @@ from pathlib import Path
 import pandas as pd
 import re
 import concurrent.futures
+
+# tempfile
+import tempfile
+import shutil
+import subprocess
+
 # Try to import openbabel via pybel (preferred for Python), fallback to openbabel.openbabel
 try:
     from openbabel import openbabel as ob
@@ -93,17 +99,88 @@ except ImportError:
 #   total      =  -0.000462
 # $cosmo_energy
 
+
+def get_smiles_from_car(car_data: str) -> dict:
+    """
+    Converts molecule data in CAR format to a SMILES string using Open Babel.
+
+    Args:
+        car_data: A string containing the molecule data in the .car file format.
+
+    Returns:
+        A dictionary containing the resulting SMILES string.
+    """
+    temp_car_file_path = None
+    temp_smi_file_path = None
+
+    try:
+        # 1. Create a named temporary file for the input (.car).
+        # We use 'delete=False' so we can get its name and use it after the 'with' block closes it.
+        # The 'with' block ensures the file is closed and its contents are flushed to disk.
+        with tempfile.NamedTemporaryFile(mode='w', encoding='utf-8', delete=False, suffix=".car", dir=".") as temp_car_file:
+            temp_car_file_path = temp_car_file.name
+            temp_car_file.write(car_data)
+        
+        print(f"Wrote CAR data to temporary file: {temp_car_file_path}")
+
+        # 2. Create a named temporary file for the output (.smi).
+        # We just need its name, and we ensure it's closed so obabel can write to it.
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".smi", dir=".") as temp_smi_file:
+            temp_smi_file_path = temp_smi_file.name
+
+        print(f"Output SMILES file will be: {temp_smi_file_path}")
+
+        # 3. Run the Open Babel command.
+        # Now that the input file is written and closed, obabel can safely read it.
+        # The output file path is also ready for obabel to write the results.
+        command = [
+            "obabel",
+            "-i", "car", temp_car_file_path,
+            "-o", "smi",
+            "-O", temp_smi_file_path
+        ]
+        print(f"Running command: {' '.join(command)}")
+        subprocess.run(command, check=True, capture_output=True, text=True)
+
+        # 4. Read the SMILES string from the output file.
+        with open(temp_smi_file_path, 'r', encoding='utf-8') as smi_file:
+            smiles_output = smi_file.read().strip().split('\t')[0]  # Get the first part before any tab character
+        
+        print(f"Successfully generated SMILES: {smiles_output}")
+
+    except FileNotFoundError:
+        print("Error: 'obabel' command not found.")
+        print("Please ensure Open Babel is installed and in your system's PATH.")
+        smiles_output = "Error: Open Babel not found."  
+    except subprocess.CalledProcessError as e:
+        print(f"Open Babel encountered an error (Exit Code: {e.returncode}).")
+        print(f"Stderr: {e.stderr}")
+        smiles_output = f"Error: {e.stderr.strip()}"
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+        smiles_output = f"Error: {str(e)}"
+    finally:
+        # 5. Clean up the temporary files.
+        # This block executes whether an error occurred or not.
+        if temp_car_file_path and os.path.exists(temp_car_file_path):
+            os.remove(temp_car_file_path)
+            print(f"Cleaned up temporary file: {temp_car_file_path}")
+        if temp_smi_file_path and os.path.exists(temp_smi_file_path):
+            os.remove(temp_smi_file_path)
+            print(f"Cleaned up temporary file: {temp_smi_file_path}")
+            
+    return smiles_output
+
 def extract_cosmobase_info(cosmo_db_folder: Path):
     """
     Recursively extract info from all .cosmo files in all subfolders of cosmo_db_folder.
     Returns a DataFrame with columns:
     ['Molecule name', 'COSMO calculational method', 'CAS number', 'Molecular Weight', 'Sum Formula', 'file_name', 'SMILES']
     """
-    columns = ['Molecule name', 'COSMO calculational method', 'CAS number', 'Molecular Weight', 'Sum Formula', 'file_name', 'SMILES']
+    columns = ['COSMO_name', 'Molecule name', 'COSMO calculational method', 'CAS number', 'Molecular Weight', 'Sum Formula', 'file_name', 'SMILES']
     
     def extract_from_file(cosmo_file):
         info = {col: "" for col in columns}
-        info['name'] = cosmo_file.name.split('_c0.cosmo')[0]  # Extract the name before '_c0.cosmo'
         try:
             with open(cosmo_file, 'r', encoding='utf-8', errors='ignore') as f:
                 lines = f.readlines()
@@ -131,18 +208,13 @@ def extract_cosmobase_info(cosmo_db_folder: Path):
                         car_block.append(line)
                         if line.strip() == 'end':
                             break
-                if car_block and pybel is not None:
-                    car_data = ''.join(car_block)
-                    try:
-                        mol = next(pybel.readstring("car", car_data))
-                        smiles_output = mol.write("smi").strip()
-                        info['SMILES'] = smiles_output
-                    except Exception as ob_e:
-                        print(f"OpenBabel/pybel error for {cosmo_file}: {ob_e}")
-                        info['SMILES'] = ''
-                else:
-                    info['SMILES'] = ''
-            print(f"Extracted info for {cosmo_file.name}")
+                car_data = ''.join(car_block)
+                info['SMILES'] = get_smiles_from_car(car_data)
+                # Clean up the temporary file
+
+
+            info['COSMO_name'] = cosmo_file.name.split('_c0.cosmo')[0]  # Extract the name before '_c0.cosmo'
+            print(f"Extracted info for {cosmo_file.name}, SMILES: {info['SMILES']}")
             return info
         
         except Exception as e:
@@ -158,18 +230,22 @@ def extract_cosmobase_info(cosmo_db_folder: Path):
     return df
 
 
-
 if __name__ == "__main__":
     db_folder = r"V:\groups\COSMOTHERM-Datenbank 2021\BP-TZVP-COSMO"
     db_folder = Path(db_folder)
-    # df = extract_cosmobase_info(db_folder)
-    # print(df)
-    # df.to_csv("cosmobase_info.csv", index=False)
+    df = extract_cosmobase_info(db_folder)
+    print(df)
+    df.to_csv("cosmobase_info_final.csv", index=False)
 
-    df = pd.read_csv("cosmobase_info.csv")
+    # df = pd.read_csv("cosmobase_info.csv")
+
+    # fix this ,,,,,,{'SMILES': 'O=C([C@@]12C[C@H]3C[C@@H](C1)C[C@H](C3)C2)[C@@]12C[C@H]3C[C@@H](C1)C[C@H](C3)C2'}
+    # df['SMILES'] = df['SMILES'].apply(lambda x: str(x).split("'SMILES': '")[-1].split("'}")[0]) 
+    # print(df.head())
+    # df.to_csv("cosmobase_info_cleaned.csv", index=False)
 
     # Get CAS numbers and SMILES for the first 10 molecules
-    molecule_names = df['name'].tolist()[:-10]
+    # molecule_names = df['name'].tolist()[:-10]
 
-    resolv_df = pura_get_cas_number_and_smiles(molecule_names)
-    print(resolv_df)
+    # resolv_df = pura_get_cas_number_and_smiles(molecule_names)
+    # print(resolv_df)

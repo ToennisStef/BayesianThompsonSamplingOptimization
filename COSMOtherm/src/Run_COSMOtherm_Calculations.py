@@ -19,7 +19,8 @@ def run_COSMOtherm_calculations(
     results = []
     for file in files:
         # Run the calculations for each file
-        subprocess_str = '"'+ COSMOtherm_exe_fullpath + '"' + ' ' + '"' + file + '"'
+        # subprocess_str = '"'+ COSMOtherm_exe_fullpath + '"' + ' ' + '"' + file + '"'
+        subprocess_str = f'"{COSMOtherm_exe_fullpath}" "{file}" -n 4'  
         logger.info(f"Running COSMOtherm calculation for file: {file}")
         result = subprocess.run(subprocess_str, shell=True)
         results.append(result)

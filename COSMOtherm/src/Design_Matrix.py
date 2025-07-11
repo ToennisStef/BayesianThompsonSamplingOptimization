@@ -81,47 +81,47 @@ def create_design_matrix_for_solvent_screening(tC_levels, rho_lacticacid_levels,
         """
         design_matrix = pyDOE3.fullfact([len(tC_levels), len(rho_lacticacid_levels), len(solvents)])
     
-        density_map = dict(zip(solvents['COSMO_name'], solvents['density g/cm^3 @20°C']))
+        density_map = dict(zip(solvents['COSMO_name'], solvents['Density']))
         cas_map = dict(zip(solvents['COSMO_name'], solvents['CAS_Number']))
 
         df = pd.DataFrame(design_matrix, columns=['tC', 'rho1_2', 'solvent'])
         df['tC'] = df['tC'].apply(lambda x: tC_levels[int(x)])
         df['component1'] = 'h2o'
-        df['component2'] = df['solvent'].apply(lambda x: solvents['COSMO_name'][int(x)])
-        df['component3'] = 'lacticacid'
+        df['component3'] = df['solvent'].apply(lambda x: solvents['COSMO_name'][int(x)])
+        df['component2'] = 'lacticacid'
         
         df['cas_c1'] = '7732-18-5'
-        df['cas_c2'] = df['solvent'].apply(lambda x: cas_map[solvents.iloc[int(x)]['COSMO_name']])
-        df['cas_c3'] = '50-21-5'
+        df['cas_c3'] = df['solvent'].apply(lambda x: cas_map[solvents.iloc[int(x)]['COSMO_name']])
+        df['cas_c2'] = '50-21-5'
         
         df['x1_1'] = df['rho1_2'].apply(lambda x: x_h2o_levels[int(x)])
-        df['x1_2'] = 0
-        df['x1_3'] = df['rho1_2'].apply(lambda x: x_lacticacid_levels[int(x)])
+        df['x1_3'] = 0
+        df['x1_2'] = df['rho1_2'].apply(lambda x: x_lacticacid_levels[int(x)])
         
         df['x2_1'] = 0
-        df['x2_2'] = 1
-        df['x2_3'] = 0
+        df['x2_3'] = 1
+        df['x2_2'] = 0
         
         df['W1_1'] = df['rho1_2'].apply(lambda x: m_h2o_levels[int(x)])
-        df['W1_2'] = 0
-        df['W1_3'] = df['rho1_2'].apply(lambda x: m_lacticacid_levels[int(x)])
+        df['W1_3'] = 0
+        df['W1_2'] = df['rho1_2'].apply(lambda x: m_lacticacid_levels[int(x)])
         
         df['W2_1'] = 0
-        df['W2_2'] = df['component2'].map(density_map) * V_p2 * 1000
-        df['W2_3'] = 0
+        df['W2_3'] = df['component3'].map(density_map) * V_p2 * 1000
+        df['W2_2'] = 0
         
         df['c1_1'] = df['W1_1'] / (df['W1_1'] + df['W1_2'] + df['W1_3'])
-        df['c1_2'] = df['W1_2'] / (df['W1_1'] + df['W1_2'] + df['W1_3'])
         df['c1_3'] = df['W1_3'] / (df['W1_1'] + df['W1_2'] + df['W1_3'])
+        df['c1_2'] = df['W1_2'] / (df['W1_1'] + df['W1_2'] + df['W1_3'])
         
         df['c2_1'] = 0
-        df['c2_2'] = 1
-        df['c2_3'] = 0
+        df['c2_3'] = 1
+        df['c2_2'] = 0
         
         df['N1_1'] = df['W1_1'] / 18.01528
-        df['N1_2'] = 0
-        df['N1_3'] = df['W1_2'] / 90.078
+        df['N1_3'] = 0
+        df['N1_2'] = df['W1_2'] / 90.078
         df['N2_1'] = 0
-        df['N2_2'] = 1
-        df['N2_3'] = 0 #df['m2_3'] / solvents['Molar_mass'].map(lambda x: x * 1000)  # Convert g/mol to g
+        df['N2_3'] = 1
+        df['N2_2'] = 0 #df['m2_3'] / solvents['Molar_mass'].map(lambda x: x * 1000)  # Convert g/mol to g
         return df
