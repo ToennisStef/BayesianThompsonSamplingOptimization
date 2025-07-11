@@ -13,6 +13,7 @@ import os
 import multiprocessing
 import time
 from multiprocessing.dummy import Pool as ThreadPool
+from tqdm import tqdm
 # Ensure the logs directory exists
 log_dir = "logs"
 os.makedirs(log_dir, exist_ok=True)
@@ -30,6 +31,8 @@ logging.basicConfig(
 
 
 def process_solvent(solvent):
+    carrier = "h2o"
+    solute = "lacticacid"
     try:
         config = FileGenConfig(
             ctd_file=Config.TIGER['ctd_file_not_FINE'],
@@ -49,9 +52,17 @@ def process_solvent(solvent):
         # )
 
         #tboil
-        file = gen_TBOIL_inp_file(
+        # file = gen_TBOIL_inp_file(
+        #     solvent=solvent,
+        #     config=config
+        # )
+
+        file = gen_ternaryVLE_NRTL_inp_file(
+            carrier=carrier,
+            solute=solute,
             solvent=solvent,
-            config=config
+            tC=40.0,
+            config=config,
         )
 
         result = run_COSMOtherm_calculations(
@@ -68,17 +79,15 @@ def process_solvent(solvent):
 if __name__ == "__main__":
     logging.info("Starting new COSMOtherm PVAP calculation run.")
     solvents = pd.read_csv(Config.solvents_fullpath)
-    carrier = "h2o"
-    solute = "lacticacid"
     Server = 'TIGER'  # or 'TIGER2'
-    solvent_list = solvents['COSMO_name'].unique().tolist() # Use first 100 solvents for benchmarking
-    # Benchmark Thread Pool
+    solvent_list = solvents['COSMO_name'].unique().tolist()[:10]
+    # Progress bar for preparing jobs (if needed)
+    logging.info(f"Preparing {len(solvent_list)} solvent jobs...")
     start_time = time.time()
-    with ThreadPool(processes=500) as tpool:
-        results_thread = tpool.map(process_solvent, solvent_list)
+    with ThreadPool(processes=100) as tpool:
+        results_thread = list(tqdm(tpool.imap(process_solvent, solvent_list), total=len(solvent_list), desc="Running calculations", smoothing=0.1))
     thread_time = time.time() - start_time
     logging.info(f"ThreadPool completed in {thread_time:.2f} seconds.")
-
 
     # Log results for thread pool
     for solvent, success, error in results_thread:

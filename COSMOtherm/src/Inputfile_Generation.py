@@ -74,7 +74,7 @@ def gen_2Phase_LIQEX_inp_file(
 
     ensure_dir_exists(config.inputfiles_folder)
 
-    file_name = config.file_name or f"LIQEX_{components[1]}_tc{tC}_{c_type}1{p1_input[2]}.inp"
+    file_name = config.file_name or f"LIQEX_{components[2]}_tc{tC}_{c_type}1{p1_input[1]}.inp"
     file_fullpath = os.path.join(config.inputfiles_folder, file_name)
 
     if len(p1_input) > len(components) or len(p2_input) > len(components):
@@ -206,10 +206,14 @@ def gen_ternaryVLE_NRTL_inp_file(
     """
     Generates an input file for ternary VLE + NRTL calculations in COSMOtherm for a given carrier, solute, and solvent.
     """
-    ensure_dir_exists(config.inputfiles_folder)
-    file_name = config.file_name or f"ternaryVLE_NRTL_{carrier}_{solute}_{solvent}.inp"
-    file_fullpath = os.path.join(config.inputfiles_folder, file_name)
-    content = f"""ctd={config.ctd_file} CDIR=\"{config.cdir}\" LDIR=\"{config.ldir}\" odir=\"{config.odir}\" # Global command line
+    task = "NRTL"
+    input_folder = os.path.join(config.inputfiles_folder, task)
+    output_folder = os.path.join(config.odir, task)
+    ensure_dir_exists(input_folder)
+    ensure_dir_exists(output_folder)
+    file_name = config.file_name or f"{task}_{solvent}.inp"
+    file_fullpath = os.path.join(input_folder, file_name)
+    content = f"""ctd={config.ctd_file} CDIR=\"{config.cdir}\" LDIR=\"{config.ldir}\" odir=\"{output_folder}\" # Global command line
 FDIR=\"{config.fdir}\" AUTOC UNIT=SI                                # Global command line
 !  Ternary VLE computation with NRTL model for {carrier}, {solute}, and {solvent} at {tC} °C                                          # Comment line
 f = {carrier}\nf = {solute}\nf = {solvent}\nternary={{1 2 3}} tc={tC} LLE NRTL RENORM nomix"""
