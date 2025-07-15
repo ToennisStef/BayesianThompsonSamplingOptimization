@@ -10,3 +10,5 @@ Archive/
 *.xml
 *.log
 *.png
+**/chemprop*
+*.joblib
