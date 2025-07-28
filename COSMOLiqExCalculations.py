@@ -46,13 +46,15 @@ def process_design_row(row_dict):
             p2_input[key] = [row[f"{value}2_1"], row[f"{value}2_2"], row[f"{value}2_3"]]
         components = [str(row['component1']), str(row['component2']), str(row['component3'])]
         config = FileGenConfig(
-            ctd_file=Config.TIGER['ctd_file_not_FINE'],
+            # ctd_file=Config.TIGER['ctd_file_not_FINE'],
+            ctd_file=Config.TIGER['ctd_file'],
             cdir=Config.TIGER['cdir'],
             ldir=Config.TIGER['ldir'],
             odir=Config.outputfile_dir_screening[composition_type],
-            fdir=Config.TIGER['fdir_not_FINE'],
+            # fdir=Config.TIGER['fdir_not_FINE'],
+            fdir=Config.TIGER['fdir'],
             inputfiles_folder=Config.inputfile_dir_screening[composition_type],
-            overwrite=True
+            overwrite=False
         )
         inputfile = gen_2Phase_LIQEX_inp_file(
             tC=float(row['tC']),
@@ -115,7 +117,7 @@ if __name__ == "__main__":
     # Convert DataFrame rows to dicts for picklability
     design_rows = [row._asdict() if hasattr(row, '_asdict') else row.to_dict() for _, row in tqdm(design_matrix.iterrows(), total=len(design_matrix), desc="Preparing jobs")]  # progress bar for row conversion
     start_time = time.time()
-    with ThreadPool(processes=32) as tpool:
+    with ThreadPool(processes=64) as tpool:
         results_thread = list(tqdm(tpool.imap(process_design_row, design_rows), total=len(design_rows), desc="Running calculations", smoothing=0.1))
     thread_time = time.time() - start_time
     logging.info(f"ThreadPool completed in {thread_time:.2f} seconds.")
