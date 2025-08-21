@@ -12,3 +12,5 @@ Archive/
 *.png
 **/chemprop*
 *.joblib
+**/COSMObase*
+**/catboost*
