@@ -72,17 +72,22 @@ def gen_2Phase_LIQEX_inp_file(
                     p2_input = [x / s for x in p2_input]
                     logger.info("Normalized p2_input to sum to 1.")
 
-    ensure_dir_exists(config.inputfiles_folder)
+    task = "LIQEX_FINE"
+    input_folder = os.path.join(config.inputfiles_folder, task)
+    output_folder = os.path.join(config.odir, task)
+    ensure_dir_exists(input_folder)
+    ensure_dir_exists(output_folder)
+    file_name = config.file_name or f"{task}_{components[2]}_tc{tC}_{c_type}1{p1_input[1]}.inp"
+    file_fullpath = os.path.join(input_folder, file_name)
 
-    file_name = config.file_name or f"LIQEX_{components[2]}_tc{tC}_{c_type}1{p1_input[1]}.inp"
-    file_fullpath = os.path.join(config.inputfiles_folder, file_name)
 
     if len(p1_input) > len(components) or len(p2_input) > len(components):
         raise ValueError("Too many entries for P1_input or P2_input. Number of entries cannot exceed the number of specified Components!")
     p1_input = p1_input + [0] * (len(components) - len(p1_input))
     p2_input = p2_input + [0] * (len(components) - len(p2_input))
 
-    content = f"""ctd={config.ctd_file} CDIR=\"{config.cdir}\" LDIR=\"{config.ldir}\" odir=\"{config.odir}\" # Global command line
+    # content = f"""ctd={config.ctd_file} CDIR=\"{config.cdir}\" LDIR=\"{config.ldir}\" odir=\"{config.odir}\" # Global command line
+    content = f"""ctd={config.ctd_file} CDIR=\"{config.cdir}\" LDIR=\"{config.ldir}\" odir=\"{output_folder}\" # Global command line
 FDIR=\"{config.fdir}\" vpfile CTAB WCONF AUTOC                                 # Global command line
 !! Multi-Component-2-Phase-Equilibrium calculation                    # Comment line
 """

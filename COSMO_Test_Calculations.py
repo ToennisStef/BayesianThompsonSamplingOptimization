@@ -80,11 +80,11 @@ if __name__ == "__main__":
     logging.info("Starting new COSMOtherm PVAP calculation run.")
     solvents = pd.read_csv(Config.solvents_fullpath)
     Server = 'TIGER'  # or 'TIGER2'
-    solvent_list = solvents['COSMO_name'].unique().tolist()[:10]
+    solvent_list = solvents['COSMO_name'].unique().tolist()
     # Progress bar for preparing jobs (if needed)
     logging.info(f"Preparing {len(solvent_list)} solvent jobs...")
     start_time = time.time()
-    with ThreadPool(processes=100) as tpool:
+    with ThreadPool(processes=400) as tpool:
         results_thread = list(tqdm(tpool.imap(process_solvent, solvent_list), total=len(solvent_list), desc="Running calculations", smoothing=0.1))
     thread_time = time.time() - start_time
     logging.info(f"ThreadPool completed in {thread_time:.2f} seconds.")
